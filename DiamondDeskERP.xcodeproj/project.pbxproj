@@ -6,6 +6,10 @@
 	objectVersion = 90;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B381FF082E2C130E004624AC /* ReadME.md in Resources */ = {isa = PBXBuildFile; fileRef = B381FF072E2C1300004624AC /* ReadME.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B3417E7F2E2B1CCC0018A3C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		B3417E6A2E2B1CC90018A3C7 /* DiamondDeskERP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiamondDeskERP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3417E7E2E2B1CCC0018A3C7 /* DiamondDeskERPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiamondDeskERPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3417E882E2B1CCC0018A3C7 /* DiamondDeskERPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiamondDeskERPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B381FF072E2C1300004624AC /* ReadME.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadME.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -98,6 +103,7 @@
 		B3417E612E2B1CC90018A3C7 = {
 			isa = PBXGroup;
 			children = (
+				B381FF072E2C1300004624AC /* ReadME.md */,
 				B3417E6C2E2B1CC90018A3C7 /* DiamondDeskERP */,
 				B3417E812E2B1CCC0018A3C7 /* DiamondDeskERPTests */,
 				B3417E8B2E2B1CCC0018A3C7 /* DiamondDeskERPUITests */,
@@ -226,6 +232,7 @@
 		B3417E682E2B1CC90018A3C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
+				B381FF082E2C130E004624AC /* ReadME.md in Resources */,
 			);
 		};
 		B3417E7C2E2B1CCC0018A3C7 /* Resources */ = {
