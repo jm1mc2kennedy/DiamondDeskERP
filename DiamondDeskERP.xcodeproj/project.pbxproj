@@ -37,6 +37,20 @@
 			);
 			target = B3417E692E2B1CC90018A3C7 /* DiamondDeskERP */;
 		};
+		B3C1DCEE2E2C0CB200EC7FA8 /* Exceptions for "DiamondDeskERP" folder in "DiamondDeskERPTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				aps.cer,
+			);
+			target = B3417E7D2E2B1CCC0018A3C7 /* DiamondDeskERPTests */;
+		};
+		B3C1DCEF2E2C0CB200EC7FA8 /* Exceptions for "DiamondDeskERP" folder in "DiamondDeskERPUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				aps.cer,
+			);
+			target = B3417E872E2B1CCC0018A3C7 /* DiamondDeskERPUITests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,6 +58,8 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				B3417E902E2B1CCC0018A3C7 /* Exceptions for "DiamondDeskERP" folder in "DiamondDeskERP" target */,
+				B3C1DCEE2E2C0CB200EC7FA8 /* Exceptions for "DiamondDeskERP" folder in "DiamondDeskERPTests" target */,
+				B3C1DCEF2E2C0CB200EC7FA8 /* Exceptions for "DiamondDeskERP" folder in "DiamondDeskERPUITests" target */,
 			);
 			path = DiamondDeskERP;
 			sourceTree = "<group>";
