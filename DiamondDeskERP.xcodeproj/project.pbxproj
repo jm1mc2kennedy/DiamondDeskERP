@@ -7,7 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B381FF082E2C130E004624AC /* ReadME.md in Resources */ = {isa = PBXBuildFile; fileRef = B381FF072E2C1300004624AC /* ReadME.md */; };
+		B381FF082E2C130E004624AC /* iOSSwifitUIReferences.md in Resources */ = {isa = PBXBuildFile; fileRef = B381FF072E2C1300004624AC /* iOSSwifitUIReferences.md */; };
+		B3DC47F62E2C2E0200BCCA03 /* AppProjectBuildoutPlanVS1.md in Resources */ = {isa = PBXBuildFile; fileRef = B3DC47F52E2C2DF300BCCA03 /* AppProjectBuildoutPlanVS1.md */; };
+		B3DC47F82E2C309800BCCA03 /* AppProjectBuildoutPlanVS2.md in Sources */ = {isa = PBXBuildFile; fileRef = B3DC47F72E2C308E00BCCA03 /* AppProjectBuildoutPlanVS2.md */; };
+		B3DC47FA2E2C314900BCCA03 /* AppPojectBuildoutPlanPT2VS1.md in Resources */ = {isa = PBXBuildFile; fileRef = B3DC47F92E2C313B00BCCA03 /* AppPojectBuildoutPlanPT2VS1.md */; };
+		B3DC47FC2E2C320600BCCA03 /* AppProjectBuildoutPlanPT3VS1.md in Sources */ = {isa = PBXBuildFile; fileRef = B3DC47FB2E2C31F900BCCA03 /* AppProjectBuildoutPlanPT3VS1.md */; };
+		B3DC47FE2E2C384C00BCCA03 /* DocsAIAssistantIntegration.md in Resources */ = {isa = PBXBuildFile; fileRef = B3DC47FD2E2C382200BCCA03 /* DocsAIAssistantIntegration.md */; };
+		B3DC48002E2C387800BCCA03 /* DocsAI_Error_Index.md in Resources */ = {isa = PBXBuildFile; fileRef = B3DC47FF2E2C386D00BCCA03 /* DocsAI_Error_Index.md */; };
+		B3DC48022E2C393E00BCCA03 /* DiamondDeskAIPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48012E2C393300BCCA03 /* DiamondDeskAIPlugin.swift */; };
+		B3DC48042E2C3A2900BCCA03 /* DiamondDeskAIAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48032E2C3A2900BCCA03 /* DiamondDeskAIAssistant.swift */; };
+		B3DC48062E2C3C1800BCCA03 /* Seeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48052E2C3C1800BCCA03 /* Seeder.swift */; };
+		B3DC48082E2C3C3800BCCA03 /* SeedStores.json in Resources */ = {isa = PBXBuildFile; fileRef = B3DC48072E2C3C3800BCCA03 /* SeedStores.json */; };
+		B3DC480A2E2C3C4A00BCCA03 /* SeedStores 2.json in Resources */ = {isa = PBXBuildFile; fileRef = B3DC48092E2C3C4A00BCCA03 /* SeedStores 2.json */; };
+		B3DC480C2E2C3CFA00BCCA03 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC480B2E2C3CFA00BCCA03 /* TaskModel.swift */; };
+		B3DC480E2E2C3CFB00BCCA03 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC480D2E2C3CFB00BCCA03 /* TaskRepository.swift */; };
+		B3DC48102E2C3CFF00BCCA03 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC480F2E2C3CFF00BCCA03 /* TaskViewModel.swift */; };
+		B3DC48122E2C3D0600BCCA03 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48112E2C3D0600BCCA03 /* TaskListView.swift */; };
+		B3DC48142E2C3D3A00BCCA03 /* TaskListView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48132E2C3D3A00BCCA03 /* TaskListView 2.swift */; };
+		B3DC48162E2C3D3B00BCCA03 /* UserProvisioningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48152E2C3D3B00BCCA03 /* UserProvisioningService.swift */; };
+		B3DC48182E2C3F0D00BCCA03 /* TicketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48172E2C3F0D00BCCA03 /* TicketModel.swift */; };
+		B3DC481A2E2C3F0F00BCCA03 /* TicketRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48192E2C3F0F00BCCA03 /* TicketRepository.swift */; };
+		B3DC481C2E2C3F1400BCCA03 /* TicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC481B2E2C3F1400BCCA03 /* TicketViewModel.swift */; };
+		B3DC481E2E2C3F1A00BCCA03 /* TicketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC481D2E2C3F1A00BCCA03 /* TicketListView.swift */; };
+		B3DC48202E2C3F5000BCCA03 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC481F2E2C3F5000BCCA03 /* ClientModel.swift */; };
+		B3DC48222E2C3F5200BCCA03 /* ClientRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48212E2C3F5200BCCA03 /* ClientRepository.swift */; };
+		B3DC48242E2C3F5600BCCA03 /* ClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48232E2C3F5600BCCA03 /* ClientViewModel.swift */; };
+		B3DC48262E2C3F5D00BCCA03 /* ClientListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48252E2C3F5D00BCCA03 /* ClientListView.swift */; };
+		B3DC48282E2C3F6400BCCA03 /* KPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48272E2C3F6400BCCA03 /* KPIModel.swift */; };
+		B3DC482A2E2C3F6B00BCCA03 /* KPIRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48292E2C3F6B00BCCA03 /* KPIRepository.swift */; };
+		B3DC482C2E2C3F7000BCCA03 /* KPIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC482B2E2C3F7000BCCA03 /* KPIViewModel.swift */; };
+		B3DC482E2E2C3F7D00BCCA03 /* KPIListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC482D2E2C3F7D00BCCA03 /* KPIListView.swift */; };
+		B3DC48302E2C405A00BCCA03 /* ClientListView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC482F2E2C405A00BCCA03 /* ClientListView 2.swift */; };
+		B3DC48322E2C407C00BCCA03 /* KPIListView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48312E2C407C00BCCA03 /* KPIListView 2.swift */; };
+		B3DC48342E2C40B900BCCA03 /* TaskListView 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48332E2C40B900BCCA03 /* TaskListView 3.swift */; };
+		B3DC48362E2C40BC00BCCA03 /* TicketListView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48352E2C40BC00BCCA03 /* TicketListView 2.swift */; };
+		B3DC48382E2C40C100BCCA03 /* RepositoryFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48372E2C40C100BCCA03 /* RepositoryFetchTests.swift */; };
+		B3DC483A2E2C40FC00BCCA03 /* TaskListView 4.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48392E2C40FC00BCCA03 /* TaskListView 4.swift */; };
+		B3DC483C2E2C411A00BCCA03 /* RepositoryFetchTests 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC483B2E2C411A00BCCA03 /* RepositoryFetchTests 2.swift */; };
+		B3DC483E2E2C411C00BCCA03 /* TicketListView 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC483D2E2C411C00BCCA03 /* TicketListView 3.swift */; };
+		B3DC48402E2C41E000BCCA03 /* TaskListView 5.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC483F2E2C41E000BCCA03 /* TaskListView 5.swift */; };
+		B3DC48422E2C420100BCCA03 /* TicketListView 4.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48412E2C420100BCCA03 /* TicketListView 4.swift */; };
+		B3DC48442E2C422A00BCCA03 /* ClientListView 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48432E2C422A00BCCA03 /* ClientListView 3.swift */; };
+		B3DC48462E2C423000BCCA03 /* KPIListView 3.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48452E2C423000BCCA03 /* KPIListView 3.swift */; };
+		B3DC48482E2C429600BCCA03 /* TaskListView 6.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48472E2C429600BCCA03 /* TaskListView 6.swift */; };
+		B3DC484A2E2C429800BCCA03 /* TicketListView 5.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48492E2C429800BCCA03 /* TicketListView 5.swift */; };
+		B3DC484C2E2C435200BCCA03 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC484B2E2C435200BCCA03 /* NotificationService.swift */; };
+		B3DC484E2E2C439600BCCA03 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC484D2E2C439600BCCA03 /* OnboardingView.swift */; };
+		B3DC48502E2C43BB00BCCA03 /* StoreReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC484F2E2C43BB00BCCA03 /* StoreReportModel.swift */; };
+		B3DC48522E2C43ED00BCCA03 /* StoreReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48512E2C43ED00BCCA03 /* StoreReportRepository.swift */; };
+		B3DC48542E2C43F100BCCA03 /* StoreReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48532E2C43F100BCCA03 /* StoreReportViewModel.swift */; };
+		B3DC48562E2C43F800BCCA03 /* StoreReportListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48552E2C43F800BCCA03 /* StoreReportListView.swift */; };
+		B3DC48582E2C45AD00BCCA03 /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48572E2C45AD00BCCA03 /* AnalyticsService.swift */; };
+		B3DC485A2E2C45B800BCCA03 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DC48592E2C45B800BCCA03 /* DashboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +82,58 @@
 		B3417E6A2E2B1CC90018A3C7 /* DiamondDeskERP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiamondDeskERP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3417E7E2E2B1CCC0018A3C7 /* DiamondDeskERPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiamondDeskERPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3417E882E2B1CCC0018A3C7 /* DiamondDeskERPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiamondDeskERPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B381FF072E2C1300004624AC /* ReadME.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadME.md; sourceTree = "<group>"; };
+		B381FF072E2C1300004624AC /* iOSSwifitUIReferences.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = iOSSwifitUIReferences.md; sourceTree = "<group>"; };
+		B3DC47F52E2C2DF300BCCA03 /* AppProjectBuildoutPlanVS1.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AppProjectBuildoutPlanVS1.md; sourceTree = "<group>"; };
+		B3DC47F72E2C308E00BCCA03 /* AppProjectBuildoutPlanVS2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AppProjectBuildoutPlanVS2.md; sourceTree = "<group>"; };
+		B3DC47F92E2C313B00BCCA03 /* AppPojectBuildoutPlanPT2VS1.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AppPojectBuildoutPlanPT2VS1.md; sourceTree = "<group>"; };
+		B3DC47FB2E2C31F900BCCA03 /* AppProjectBuildoutPlanPT3VS1.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AppProjectBuildoutPlanPT3VS1.md; sourceTree = "<group>"; };
+		B3DC47FD2E2C382200BCCA03 /* DocsAIAssistantIntegration.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DocsAIAssistantIntegration.md; sourceTree = "<group>"; };
+		B3DC47FF2E2C386D00BCCA03 /* DocsAI_Error_Index.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DocsAI_Error_Index.md; sourceTree = "<group>"; };
+		B3DC48012E2C393300BCCA03 /* DiamondDeskAIPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondDeskAIPlugin.swift; sourceTree = "<group>"; };
+		B3DC48032E2C3A2900BCCA03 /* DiamondDeskAIAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiamondDeskAIAssistant.swift; sourceTree = "<group>"; };
+		B3DC48052E2C3C1800BCCA03 /* Seeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeder.swift; sourceTree = "<group>"; };
+		B3DC48072E2C3C3800BCCA03 /* SeedStores.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SeedStores.json; sourceTree = "<group>"; };
+		B3DC48092E2C3C4A00BCCA03 /* SeedStores 2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "SeedStores 2.json"; sourceTree = "<group>"; };
+		B3DC480B2E2C3CFA00BCCA03 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		B3DC480D2E2C3CFB00BCCA03 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
+		B3DC480F2E2C3CFF00BCCA03 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+		B3DC48112E2C3D0600BCCA03 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		B3DC48132E2C3D3A00BCCA03 /* TaskListView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskListView 2.swift"; sourceTree = "<group>"; };
+		B3DC48152E2C3D3B00BCCA03 /* UserProvisioningService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvisioningService.swift; sourceTree = "<group>"; };
+		B3DC48172E2C3F0D00BCCA03 /* TicketModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketModel.swift; sourceTree = "<group>"; };
+		B3DC48192E2C3F0F00BCCA03 /* TicketRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketRepository.swift; sourceTree = "<group>"; };
+		B3DC481B2E2C3F1400BCCA03 /* TicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketViewModel.swift; sourceTree = "<group>"; };
+		B3DC481D2E2C3F1A00BCCA03 /* TicketListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketListView.swift; sourceTree = "<group>"; };
+		B3DC481F2E2C3F5000BCCA03 /* ClientModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientModel.swift; sourceTree = "<group>"; };
+		B3DC48212E2C3F5200BCCA03 /* ClientRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientRepository.swift; sourceTree = "<group>"; };
+		B3DC48232E2C3F5600BCCA03 /* ClientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientViewModel.swift; sourceTree = "<group>"; };
+		B3DC48252E2C3F5D00BCCA03 /* ClientListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientListView.swift; sourceTree = "<group>"; };
+		B3DC48272E2C3F6400BCCA03 /* KPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPIModel.swift; sourceTree = "<group>"; };
+		B3DC48292E2C3F6B00BCCA03 /* KPIRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPIRepository.swift; sourceTree = "<group>"; };
+		B3DC482B2E2C3F7000BCCA03 /* KPIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPIViewModel.swift; sourceTree = "<group>"; };
+		B3DC482D2E2C3F7D00BCCA03 /* KPIListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPIListView.swift; sourceTree = "<group>"; };
+		B3DC482F2E2C405A00BCCA03 /* ClientListView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClientListView 2.swift"; sourceTree = "<group>"; };
+		B3DC48312E2C407C00BCCA03 /* KPIListView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KPIListView 2.swift"; sourceTree = "<group>"; };
+		B3DC48332E2C40B900BCCA03 /* TaskListView 3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskListView 3.swift"; sourceTree = "<group>"; };
+		B3DC48352E2C40BC00BCCA03 /* TicketListView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TicketListView 2.swift"; sourceTree = "<group>"; };
+		B3DC48372E2C40C100BCCA03 /* RepositoryFetchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFetchTests.swift; sourceTree = "<group>"; };
+		B3DC48392E2C40FC00BCCA03 /* TaskListView 4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskListView 4.swift"; sourceTree = "<group>"; };
+		B3DC483B2E2C411A00BCCA03 /* RepositoryFetchTests 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepositoryFetchTests 2.swift"; sourceTree = "<group>"; };
+		B3DC483D2E2C411C00BCCA03 /* TicketListView 3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TicketListView 3.swift"; sourceTree = "<group>"; };
+		B3DC483F2E2C41E000BCCA03 /* TaskListView 5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskListView 5.swift"; sourceTree = "<group>"; };
+		B3DC48412E2C420100BCCA03 /* TicketListView 4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TicketListView 4.swift"; sourceTree = "<group>"; };
+		B3DC48432E2C422A00BCCA03 /* ClientListView 3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClientListView 3.swift"; sourceTree = "<group>"; };
+		B3DC48452E2C423000BCCA03 /* KPIListView 3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KPIListView 3.swift"; sourceTree = "<group>"; };
+		B3DC48472E2C429600BCCA03 /* TaskListView 6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskListView 6.swift"; sourceTree = "<group>"; };
+		B3DC48492E2C429800BCCA03 /* TicketListView 5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TicketListView 5.swift"; sourceTree = "<group>"; };
+		B3DC484B2E2C435200BCCA03 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		B3DC484D2E2C439600BCCA03 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		B3DC484F2E2C43BB00BCCA03 /* StoreReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReportModel.swift; sourceTree = "<group>"; };
+		B3DC48512E2C43ED00BCCA03 /* StoreReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReportRepository.swift; sourceTree = "<group>"; };
+		B3DC48532E2C43F100BCCA03 /* StoreReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReportViewModel.swift; sourceTree = "<group>"; };
+		B3DC48552E2C43F800BCCA03 /* StoreReportListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReportListView.swift; sourceTree = "<group>"; };
+		B3DC48572E2C45AD00BCCA03 /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
+		B3DC48592E2C45B800BCCA03 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -103,11 +205,62 @@
 		B3417E612E2B1CC90018A3C7 = {
 			isa = PBXGroup;
 			children = (
-				B381FF072E2C1300004624AC /* ReadME.md */,
+				B3DC48012E2C393300BCCA03 /* DiamondDeskAIPlugin.swift */,
+				B3DC47FF2E2C386D00BCCA03 /* DocsAI_Error_Index.md */,
+				B3DC47FD2E2C382200BCCA03 /* DocsAIAssistantIntegration.md */,
+				B3DC47FB2E2C31F900BCCA03 /* AppProjectBuildoutPlanPT3VS1.md */,
+				B3DC47F92E2C313B00BCCA03 /* AppPojectBuildoutPlanPT2VS1.md */,
+				B3DC47F72E2C308E00BCCA03 /* AppProjectBuildoutPlanVS2.md */,
+				B3DC47F52E2C2DF300BCCA03 /* AppProjectBuildoutPlanVS1.md */,
+				B381FF072E2C1300004624AC /* iOSSwifitUIReferences.md */,
 				B3417E6C2E2B1CC90018A3C7 /* DiamondDeskERP */,
 				B3417E812E2B1CCC0018A3C7 /* DiamondDeskERPTests */,
 				B3417E8B2E2B1CCC0018A3C7 /* DiamondDeskERPUITests */,
 				B3417E6B2E2B1CC90018A3C7 /* Products */,
+				B3DC48032E2C3A2900BCCA03 /* DiamondDeskAIAssistant.swift */,
+				B3DC48052E2C3C1800BCCA03 /* Seeder.swift */,
+				B3DC48072E2C3C3800BCCA03 /* SeedStores.json */,
+				B3DC48092E2C3C4A00BCCA03 /* SeedStores 2.json */,
+				B3DC480B2E2C3CFA00BCCA03 /* TaskModel.swift */,
+				B3DC480D2E2C3CFB00BCCA03 /* TaskRepository.swift */,
+				B3DC480F2E2C3CFF00BCCA03 /* TaskViewModel.swift */,
+				B3DC48112E2C3D0600BCCA03 /* TaskListView.swift */,
+				B3DC48132E2C3D3A00BCCA03 /* TaskListView 2.swift */,
+				B3DC48152E2C3D3B00BCCA03 /* UserProvisioningService.swift */,
+				B3DC48172E2C3F0D00BCCA03 /* TicketModel.swift */,
+				B3DC48192E2C3F0F00BCCA03 /* TicketRepository.swift */,
+				B3DC481B2E2C3F1400BCCA03 /* TicketViewModel.swift */,
+				B3DC481D2E2C3F1A00BCCA03 /* TicketListView.swift */,
+				B3DC481F2E2C3F5000BCCA03 /* ClientModel.swift */,
+				B3DC48212E2C3F5200BCCA03 /* ClientRepository.swift */,
+				B3DC48232E2C3F5600BCCA03 /* ClientViewModel.swift */,
+				B3DC48252E2C3F5D00BCCA03 /* ClientListView.swift */,
+				B3DC48272E2C3F6400BCCA03 /* KPIModel.swift */,
+				B3DC48292E2C3F6B00BCCA03 /* KPIRepository.swift */,
+				B3DC482B2E2C3F7000BCCA03 /* KPIViewModel.swift */,
+				B3DC482D2E2C3F7D00BCCA03 /* KPIListView.swift */,
+				B3DC482F2E2C405A00BCCA03 /* ClientListView 2.swift */,
+				B3DC48312E2C407C00BCCA03 /* KPIListView 2.swift */,
+				B3DC48332E2C40B900BCCA03 /* TaskListView 3.swift */,
+				B3DC48352E2C40BC00BCCA03 /* TicketListView 2.swift */,
+				B3DC48372E2C40C100BCCA03 /* RepositoryFetchTests.swift */,
+				B3DC48392E2C40FC00BCCA03 /* TaskListView 4.swift */,
+				B3DC483B2E2C411A00BCCA03 /* RepositoryFetchTests 2.swift */,
+				B3DC483D2E2C411C00BCCA03 /* TicketListView 3.swift */,
+				B3DC483F2E2C41E000BCCA03 /* TaskListView 5.swift */,
+				B3DC48412E2C420100BCCA03 /* TicketListView 4.swift */,
+				B3DC48432E2C422A00BCCA03 /* ClientListView 3.swift */,
+				B3DC48452E2C423000BCCA03 /* KPIListView 3.swift */,
+				B3DC48472E2C429600BCCA03 /* TaskListView 6.swift */,
+				B3DC48492E2C429800BCCA03 /* TicketListView 5.swift */,
+				B3DC484B2E2C435200BCCA03 /* NotificationService.swift */,
+				B3DC484D2E2C439600BCCA03 /* OnboardingView.swift */,
+				B3DC484F2E2C43BB00BCCA03 /* StoreReportModel.swift */,
+				B3DC48512E2C43ED00BCCA03 /* StoreReportRepository.swift */,
+				B3DC48532E2C43F100BCCA03 /* StoreReportViewModel.swift */,
+				B3DC48552E2C43F800BCCA03 /* StoreReportListView.swift */,
+				B3DC48572E2C45AD00BCCA03 /* AnalyticsService.swift */,
+				B3DC48592E2C45B800BCCA03 /* DashboardView.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -232,7 +385,13 @@
 		B3417E682E2B1CC90018A3C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				B381FF082E2C130E004624AC /* ReadME.md in Resources */,
+				B3DC48082E2C3C3800BCCA03 /* SeedStores.json in Resources */,
+				B3DC47FA2E2C314900BCCA03 /* AppPojectBuildoutPlanPT2VS1.md in Resources */,
+				B3DC480A2E2C3C4A00BCCA03 /* SeedStores 2.json in Resources */,
+				B381FF082E2C130E004624AC /* iOSSwifitUIReferences.md in Resources */,
+				B3DC48002E2C387800BCCA03 /* DocsAI_Error_Index.md in Resources */,
+				B3DC47FE2E2C384C00BCCA03 /* DocsAIAssistantIntegration.md in Resources */,
+				B3DC47F62E2C2E0200BCCA03 /* AppProjectBuildoutPlanVS1.md in Resources */,
 			);
 		};
 		B3417E7C2E2B1CCC0018A3C7 /* Resources */ = {
@@ -251,6 +410,51 @@
 		B3417E662E2B1CC90018A3C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				B3DC48022E2C393E00BCCA03 /* DiamondDeskAIPlugin.swift in Sources */,
+				B3DC48042E2C3A2900BCCA03 /* DiamondDeskAIAssistant.swift in Sources */,
+				B3DC47FC2E2C320600BCCA03 /* AppProjectBuildoutPlanPT3VS1.md in Sources */,
+				B3DC48202E2C3F5000BCCA03 /* ClientModel.swift in Sources */,
+				B3DC47F82E2C309800BCCA03 /* AppProjectBuildoutPlanVS2.md in Sources */,
+				B3DC48322E2C407C00BCCA03 /* KPIListView 2.swift in Sources */,
+				B3DC48182E2C3F0D00BCCA03 /* TicketModel.swift in Sources */,
+				B3DC480C2E2C3CFA00BCCA03 /* TaskModel.swift in Sources */,
+				B3DC483C2E2C411A00BCCA03 /* RepositoryFetchTests 2.swift in Sources */,
+				B3DC48502E2C43BB00BCCA03 /* StoreReportModel.swift in Sources */,
+				B3DC485A2E2C45B800BCCA03 /* DashboardView.swift in Sources */,
+				B3DC483A2E2C40FC00BCCA03 /* TaskListView 4.swift in Sources */,
+				B3DC48582E2C45AD00BCCA03 /* AnalyticsService.swift in Sources */,
+				B3DC48422E2C420100BCCA03 /* TicketListView 4.swift in Sources */,
+				B3DC48162E2C3D3B00BCCA03 /* UserProvisioningService.swift in Sources */,
+				B3DC481C2E2C3F1400BCCA03 /* TicketViewModel.swift in Sources */,
+				B3DC482E2E2C3F7D00BCCA03 /* KPIListView.swift in Sources */,
+				B3DC48382E2C40C100BCCA03 /* RepositoryFetchTests.swift in Sources */,
+				B3DC480E2E2C3CFB00BCCA03 /* TaskRepository.swift in Sources */,
+				B3DC481E2E2C3F1A00BCCA03 /* TicketListView.swift in Sources */,
+				B3DC48442E2C422A00BCCA03 /* ClientListView 3.swift in Sources */,
+				B3DC48562E2C43F800BCCA03 /* StoreReportListView.swift in Sources */,
+				B3DC481A2E2C3F0F00BCCA03 /* TicketRepository.swift in Sources */,
+				B3DC48402E2C41E000BCCA03 /* TaskListView 5.swift in Sources */,
+				B3DC482C2E2C3F7000BCCA03 /* KPIViewModel.swift in Sources */,
+				B3DC484A2E2C429800BCCA03 /* TicketListView 5.swift in Sources */,
+				B3DC482A2E2C3F6B00BCCA03 /* KPIRepository.swift in Sources */,
+				B3DC48122E2C3D0600BCCA03 /* TaskListView.swift in Sources */,
+				B3DC483E2E2C411C00BCCA03 /* TicketListView 3.swift in Sources */,
+				B3DC48542E2C43F100BCCA03 /* StoreReportViewModel.swift in Sources */,
+				B3DC48242E2C3F5600BCCA03 /* ClientViewModel.swift in Sources */,
+				B3DC48062E2C3C1800BCCA03 /* Seeder.swift in Sources */,
+				B3DC48362E2C40BC00BCCA03 /* TicketListView 2.swift in Sources */,
+				B3DC48102E2C3CFF00BCCA03 /* TaskViewModel.swift in Sources */,
+				B3DC48522E2C43ED00BCCA03 /* StoreReportRepository.swift in Sources */,
+				B3DC48302E2C405A00BCCA03 /* ClientListView 2.swift in Sources */,
+				B3DC48282E2C3F6400BCCA03 /* KPIModel.swift in Sources */,
+				B3DC484E2E2C439600BCCA03 /* OnboardingView.swift in Sources */,
+				B3DC48342E2C40B900BCCA03 /* TaskListView 3.swift in Sources */,
+				B3DC48142E2C3D3A00BCCA03 /* TaskListView 2.swift in Sources */,
+				B3DC48462E2C423000BCCA03 /* KPIListView 3.swift in Sources */,
+				B3DC48262E2C3F5D00BCCA03 /* ClientListView.swift in Sources */,
+				B3DC484C2E2C435200BCCA03 /* NotificationService.swift in Sources */,
+				B3DC48222E2C3F5200BCCA03 /* ClientRepository.swift in Sources */,
+				B3DC48482E2C429600BCCA03 /* TaskListView 6.swift in Sources */,
 			);
 		};
 		B3417E7A2E2B1CCC0018A3C7 /* Sources */ = {
