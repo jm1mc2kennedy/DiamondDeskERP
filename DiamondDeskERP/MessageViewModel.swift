@@ -8,6 +8,7 @@ class MessageViewModel: ObservableObject {
     
     @Published var messages: [PublicMessage] = []
     @Published var isLoading = false
+    @Published var iCloudUserName: String?
 
     private let database = CKContainer.default().publicCloudDatabase
 
@@ -112,6 +113,32 @@ class MessageViewModel: ObservableObject {
                 print("Subscription error: \(error)")
             } else {
                 print("Subscribed to new messages.")
+            }
+        }
+    }
+    
+    func fetchiCloudUserName() {
+        CKContainer.default().requestApplicationPermission(.userDiscoverability) { [weak self] status, error in
+            guard status == .granted else {
+                Task { @MainActor in self?.iCloudUserName = "Guest" }
+                return
+            }
+            CKContainer.default().fetchUserRecordID { recordID, error in
+                guard let recordID = recordID else {
+                    Task { @MainActor in self?.iCloudUserName = "Guest" }
+                    return
+                }
+                CKContainer.default().discoverUserIdentity(withUserRecordID: recordID) { identity, error in
+                    let nameString: String
+                    if let name = identity?.nameComponents {
+                        let given = name.givenName ?? ""
+                        let family = name.familyName ?? ""
+                        nameString = (given + " " + family).trimmingCharacters(in: .whitespaces)
+                    } else {
+                        nameString = "Guest"
+                    }
+                    Task { @MainActor in self?.iCloudUserName = nameString.isEmpty ? "Guest" : nameString }
+                }
             }
         }
     }

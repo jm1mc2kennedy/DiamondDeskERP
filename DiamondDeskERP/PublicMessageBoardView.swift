@@ -16,6 +16,10 @@ struct PublicMessageBoardView: View {
     var body: some View {
         NavigationView {
             VStack {
+                Text("Welcome, \(viewModel.iCloudUserName ?? "Loading...")!")
+                    .font(.subheadline)
+                    .padding(.top)
+
                 TextField("Filter by author name", text: $filterAuthor)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding([.leading, .trailing])
@@ -49,7 +53,10 @@ struct PublicMessageBoardView: View {
                 }
             }
             .navigationTitle("Public Message Board")
-            .onAppear { viewModel.fetchMessages() }
+            .onAppear {
+                viewModel.fetchMessages()
+                viewModel.fetchiCloudUserName()
+            }
         }
     }
 
