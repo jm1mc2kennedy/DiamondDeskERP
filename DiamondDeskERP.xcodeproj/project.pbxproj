@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
@@ -63,24 +63,18 @@
 /* Begin PBXFrameworksBuildPhase section */
 		B3417E672E2B1CC90018A3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B3417E7B2E2B1CCC0018A3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B3417E852E2B1CCC0018A3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -118,14 +112,10 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				B3417E6C2E2B1CC90018A3C7 /* DiamondDeskERP */,
 			);
 			name = DiamondDeskERP;
-			packageProductDependencies = (
-			);
 			productName = DiamondDeskERP;
 			productReference = B3417E6A2E2B1CC90018A3C7 /* DiamondDeskERP.app */;
 			productType = "com.apple.product-type.application";
@@ -147,8 +137,6 @@
 				B3417E812E2B1CCC0018A3C7 /* DiamondDeskERPTests */,
 			);
 			name = DiamondDeskERPTests;
-			packageProductDependencies = (
-			);
 			productName = DiamondDeskERPTests;
 			productReference = B3417E7E2E2B1CCC0018A3C7 /* DiamondDeskERPTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -170,8 +158,6 @@
 				B3417E8B2E2B1CCC0018A3C7 /* DiamondDeskERPUITests */,
 			);
 			name = DiamondDeskERPUITests;
-			packageProductDependencies = (
-			);
 			productName = DiamondDeskERPUITests;
 			productReference = B3417E882E2B1CCC0018A3C7 /* DiamondDeskERPUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -208,7 +194,7 @@
 			);
 			mainGroup = B3417E612E2B1CC90018A3C7;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = B3417E6B2E2B1CC90018A3C7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -223,48 +209,36 @@
 /* Begin PBXResourcesBuildPhase section */
 		B3417E682E2B1CC90018A3C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B3417E7C2E2B1CCC0018A3C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B3417E862E2B1CCC0018A3C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B3417E662E2B1CC90018A3C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B3417E7A2E2B1CCC0018A3C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B3417E842E2B1CCC0018A3C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -282,20 +256,36 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		B3417E922E2B1CCC0018A3C7 /* Debug */ = {
+		B3417E922E2B1CCC0018A3C7 /* Debug configuration for PBXNativeTarget "DiamondDeskERP" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DiamondDeskERP/DiamondDeskERP.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_MOVIES_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_MUSIC_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_PICTURE_FOLDER = readwrite;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = YES;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = YES;
+				ENABLE_RESOURCE_ACCESS_CAMERA = YES;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = YES;
+				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = YES;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiamondDeskERP/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Diamond Desk";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -327,20 +317,36 @@
 			};
 			name = Debug;
 		};
-		B3417E932E2B1CCC0018A3C7 /* Release */ = {
+		B3417E932E2B1CCC0018A3C7 /* Release configuration for PBXNativeTarget "DiamondDeskERP" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DiamondDeskERP/DiamondDeskERP.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_MOVIES_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_MUSIC_FOLDER = readwrite;
+				ENABLE_FILE_ACCESS_PICTURE_FOLDER = readwrite;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = YES;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = YES;
+				ENABLE_RESOURCE_ACCESS_CAMERA = YES;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = YES;
+				ENABLE_RESOURCE_ACCESS_LOCATION = YES;
+				ENABLE_RESOURCE_ACCESS_PRINTING = YES;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DiamondDeskERP/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Diamond Desk";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -372,7 +378,7 @@
 			};
 			name = Release;
 		};
-		B3417E942E2B1CCC0018A3C7 /* Debug */ = {
+		B3417E942E2B1CCC0018A3C7 /* Debug configuration for PBXProject "DiamondDeskERP" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -434,7 +440,7 @@
 			};
 			name = Debug;
 		};
-		B3417E952E2B1CCC0018A3C7 /* Release */ = {
+		B3417E952E2B1CCC0018A3C7 /* Release configuration for PBXProject "DiamondDeskERP" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -488,7 +494,7 @@
 			};
 			name = Release;
 		};
-		B3417E972E2B1CCC0018A3C7 /* Debug */ = {
+		B3417E972E2B1CCC0018A3C7 /* Debug configuration for PBXNativeTarget "DiamondDeskERPTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -514,7 +520,7 @@
 			};
 			name = Debug;
 		};
-		B3417E982E2B1CCC0018A3C7 /* Release */ = {
+		B3417E982E2B1CCC0018A3C7 /* Release configuration for PBXNativeTarget "DiamondDeskERPTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -540,7 +546,7 @@
 			};
 			name = Release;
 		};
-		B3417E9A2E2B1CCC0018A3C7 /* Debug */ = {
+		B3417E9A2E2B1CCC0018A3C7 /* Debug configuration for PBXNativeTarget "DiamondDeskERPUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -565,7 +571,7 @@
 			};
 			name = Debug;
 		};
-		B3417E9B2E2B1CCC0018A3C7 /* Release */ = {
+		B3417E9B2E2B1CCC0018A3C7 /* Release configuration for PBXNativeTarget "DiamondDeskERPUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -596,37 +602,33 @@
 		B3417E652E2B1CC90018A3C7 /* Build configuration list for PBXProject "DiamondDeskERP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B3417E942E2B1CCC0018A3C7 /* Debug */,
-				B3417E952E2B1CCC0018A3C7 /* Release */,
+				B3417E942E2B1CCC0018A3C7 /* Debug configuration for PBXProject "DiamondDeskERP" */,
+				B3417E952E2B1CCC0018A3C7 /* Release configuration for PBXProject "DiamondDeskERP" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		B3417E912E2B1CCC0018A3C7 /* Build configuration list for PBXNativeTarget "DiamondDeskERP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B3417E922E2B1CCC0018A3C7 /* Debug */,
-				B3417E932E2B1CCC0018A3C7 /* Release */,
+				B3417E922E2B1CCC0018A3C7 /* Debug configuration for PBXNativeTarget "DiamondDeskERP" */,
+				B3417E932E2B1CCC0018A3C7 /* Release configuration for PBXNativeTarget "DiamondDeskERP" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		B3417E962E2B1CCC0018A3C7 /* Build configuration list for PBXNativeTarget "DiamondDeskERPTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B3417E972E2B1CCC0018A3C7 /* Debug */,
-				B3417E982E2B1CCC0018A3C7 /* Release */,
+				B3417E972E2B1CCC0018A3C7 /* Debug configuration for PBXNativeTarget "DiamondDeskERPTests" */,
+				B3417E982E2B1CCC0018A3C7 /* Release configuration for PBXNativeTarget "DiamondDeskERPTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		B3417E992E2B1CCC0018A3C7 /* Build configuration list for PBXNativeTarget "DiamondDeskERPUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B3417E9A2E2B1CCC0018A3C7 /* Debug */,
-				B3417E9B2E2B1CCC0018A3C7 /* Release */,
+				B3417E9A2E2B1CCC0018A3C7 /* Debug configuration for PBXNativeTarget "DiamondDeskERPUITests" */,
+				B3417E9B2E2B1CCC0018A3C7 /* Release configuration for PBXNativeTarget "DiamondDeskERPUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
