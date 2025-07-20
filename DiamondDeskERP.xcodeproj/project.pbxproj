@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B355CE612E2C7A26005D1145 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE602E2C7A26005D1145 /* AsyncAlgorithms */; };
+		B355CE632E2C7A3D005D1145 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE622E2C7A3D005D1145 /* AsyncAlgorithms */; };
+		B355CE652E2C7A49005D1145 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE642E2C7A49005D1145 /* AsyncAlgorithms */; };
+		B355CE682E2C7A8F005D1145 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE672E2C7A8F005D1145 /* ArgumentParser */; };
+		B355CE6A2E2C7A8F005D1145 /* generate-docc-reference in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE692E2C7A8F005D1145 /* generate-docc-reference */; };
+		B355CE6C2E2C7A8F005D1145 /* generate-manual in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE6B2E2C7A8F005D1145 /* generate-manual */; };
+		B355CE6E2E2C7AA5005D1145 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE6D2E2C7AA5005D1145 /* ArgumentParser */; };
+		B355CE702E2C7AA5005D1145 /* generate-docc-reference in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE6F2E2C7AA5005D1145 /* generate-docc-reference */; };
+		B355CE722E2C7AA5005D1145 /* generate-manual in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE712E2C7AA5005D1145 /* generate-manual */; };
+		B355CE742E2C7AC9005D1145 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE732E2C7AC9005D1145 /* ArgumentParser */; };
+		B355CE762E2C7AC9005D1145 /* generate-docc-reference in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE752E2C7AC9005D1145 /* generate-docc-reference */; };
+		B355CE782E2C7AC9005D1145 /* generate-manual in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE772E2C7AC9005D1145 /* generate-manual */; };
 		B381FF082E2C130E004624AC /* iOSSwifitUIReferences.md in Resources */ = {isa = PBXBuildFile; fileRef = B381FF072E2C1300004624AC /* iOSSwifitUIReferences.md */; };
 		B3DC47F62E2C2E0200BCCA03 /* AppProjectBuildoutPlanVS1.md in Resources */ = {isa = PBXBuildFile; fileRef = B3DC47F52E2C2DF300BCCA03 /* AppProjectBuildoutPlanVS1.md */; };
 		B3DC47F82E2C309800BCCA03 /* AppProjectBuildoutPlanVS2.md in Sources */ = {isa = PBXBuildFile; fileRef = B3DC47F72E2C308E00BCCA03 /* AppProjectBuildoutPlanVS2.md */; };
@@ -187,16 +199,28 @@
 		B3417E672E2B1CC90018A3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				B355CE682E2C7A8F005D1145 /* ArgumentParser in Frameworks */,
+				B355CE6C2E2C7A8F005D1145 /* generate-manual in Frameworks */,
+				B355CE612E2C7A26005D1145 /* AsyncAlgorithms in Frameworks */,
+				B355CE6A2E2C7A8F005D1145 /* generate-docc-reference in Frameworks */,
 			);
 		};
 		B3417E7B2E2B1CCC0018A3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				B355CE6E2E2C7AA5005D1145 /* ArgumentParser in Frameworks */,
+				B355CE722E2C7AA5005D1145 /* generate-manual in Frameworks */,
+				B355CE632E2C7A3D005D1145 /* AsyncAlgorithms in Frameworks */,
+				B355CE702E2C7AA5005D1145 /* generate-docc-reference in Frameworks */,
 			);
 		};
 		B3417E852E2B1CCC0018A3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				B355CE742E2C7AC9005D1145 /* ArgumentParser in Frameworks */,
+				B355CE782E2C7AC9005D1145 /* generate-manual in Frameworks */,
+				B355CE652E2C7A49005D1145 /* AsyncAlgorithms in Frameworks */,
+				B355CE762E2C7AC9005D1145 /* generate-docc-reference in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -291,6 +315,12 @@
 				B3417E6C2E2B1CC90018A3C7 /* DiamondDeskERP */,
 			);
 			name = DiamondDeskERP;
+			packageProductDependencies = (
+				B355CE602E2C7A26005D1145 /* AsyncAlgorithms */,
+				B355CE672E2C7A8F005D1145 /* ArgumentParser */,
+				B355CE692E2C7A8F005D1145 /* generate-docc-reference */,
+				B355CE6B2E2C7A8F005D1145 /* generate-manual */,
+			);
 			productName = DiamondDeskERP;
 			productReference = B3417E6A2E2B1CC90018A3C7 /* DiamondDeskERP.app */;
 			productType = "com.apple.product-type.application";
@@ -312,6 +342,12 @@
 				B3417E812E2B1CCC0018A3C7 /* DiamondDeskERPTests */,
 			);
 			name = DiamondDeskERPTests;
+			packageProductDependencies = (
+				B355CE622E2C7A3D005D1145 /* AsyncAlgorithms */,
+				B355CE6D2E2C7AA5005D1145 /* ArgumentParser */,
+				B355CE6F2E2C7AA5005D1145 /* generate-docc-reference */,
+				B355CE712E2C7AA5005D1145 /* generate-manual */,
+			);
 			productName = DiamondDeskERPTests;
 			productReference = B3417E7E2E2B1CCC0018A3C7 /* DiamondDeskERPTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -333,6 +369,12 @@
 				B3417E8B2E2B1CCC0018A3C7 /* DiamondDeskERPUITests */,
 			);
 			name = DiamondDeskERPUITests;
+			packageProductDependencies = (
+				B355CE642E2C7A49005D1145 /* AsyncAlgorithms */,
+				B355CE732E2C7AC9005D1145 /* ArgumentParser */,
+				B355CE752E2C7AC9005D1145 /* generate-docc-reference */,
+				B355CE772E2C7AC9005D1145 /* generate-manual */,
+			);
 			productName = DiamondDeskERPUITests;
 			productReference = B3417E882E2B1CCC0018A3C7 /* DiamondDeskERPUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -369,6 +411,10 @@
 			);
 			mainGroup = B3417E612E2B1CC90018A3C7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B355CE5F2E2C7A26005D1145 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+				B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = B3417E6B2E2B1CC90018A3C7 /* Products */;
 			projectDirPath = "";
@@ -491,6 +537,7 @@
 				CODE_SIGN_ENTITLEMENTS = DiamondDeskERP/DiamondDeskERP.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
@@ -533,13 +580,14 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
@@ -552,6 +600,7 @@
 				CODE_SIGN_ENTITLEMENTS = DiamondDeskERP/DiamondDeskERP.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
@@ -594,13 +643,14 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
@@ -639,6 +689,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -662,6 +713,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -701,6 +753,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -717,6 +770,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -727,6 +781,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -753,6 +808,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -778,6 +834,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -803,6 +860,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = D3NKYL58CD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -859,6 +917,88 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B355CE5F2E2C7A26005D1145 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-async-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+		B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B355CE602E2C7A26005D1145 /* AsyncAlgorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE5F2E2C7A26005D1145 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
+		};
+		B355CE622E2C7A3D005D1145 /* AsyncAlgorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE5F2E2C7A26005D1145 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
+		};
+		B355CE642E2C7A49005D1145 /* AsyncAlgorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE5F2E2C7A26005D1145 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
+		};
+		B355CE672E2C7A8F005D1145 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		B355CE692E2C7A8F005D1145 /* generate-docc-reference */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = "generate-docc-reference";
+		};
+		B355CE6B2E2C7A8F005D1145 /* generate-manual */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = "generate-manual";
+		};
+		B355CE6D2E2C7AA5005D1145 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		B355CE6F2E2C7AA5005D1145 /* generate-docc-reference */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = "generate-docc-reference";
+		};
+		B355CE712E2C7AA5005D1145 /* generate-manual */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = "generate-manual";
+		};
+		B355CE732E2C7AC9005D1145 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		B355CE752E2C7AC9005D1145 /* generate-docc-reference */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = "generate-docc-reference";
+		};
+		B355CE772E2C7AC9005D1145 /* generate-manual */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = "generate-manual";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B3417E622E2B1CC90018A3C7 /* Project object */;
 }
