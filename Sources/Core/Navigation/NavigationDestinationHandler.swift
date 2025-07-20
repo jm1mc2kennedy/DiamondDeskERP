@@ -142,6 +142,55 @@ struct NavigationDestinationHandler: ViewModifier {
                 DocumentVersionHistoryByIdView(documentId: documentId)
             }
             
+        // MARK: - AI Insights Destinations (Enterprise)
+        
+        case .aiInsightsList:
+            AIInsightsListView()
+            
+        case .aiInsightsFilters:
+            AIInsightsFilterView(viewModel: AIInsightsViewModel())
+            
+        case .aiInsightDetail(let insightId):
+            if let insight = router.selectedAIInsight {
+                AIInsightDetailView(insight: insight, viewModel: AIInsightsViewModel())
+            } else {
+                AIInsightDetailByIdView(insightId: insightId)
+            }
+            
+        case .aiInsightsAnalytics:
+            AIInsightsAnalyticsView()
+            
+        case .aiInsightsGenerate:
+            AIInsightsGenerationView()
+            
+        // MARK: - Directory Destinations (Enterprise)
+        case .directoryList:
+            DirectoryListView(viewModel: DirectoryViewModel())
+        case .directoryFilters:
+            DirectoryFilterView(viewModel: DirectoryViewModel())
+        case .employeeDetail(let employeeId):
+            EmployeeDetailView(employeeId: employeeId)
+            
+        // MARK: - Performance Targets Destinations (Enterprise)
+        case .performanceTargetsList:
+            PerformanceTargetsListView(viewModel: PerformanceTargetsViewModel())
+        case .performanceTargetDetail(let targetId):
+            PerformanceTargetDetailView(targetId: targetId)
+        case .performanceTargetCreation:
+            PerformanceTargetCreationView()
+            
+        // MARK: - Project Management Destinations (Enterprise)
+        case .projectList:
+            ProjectListView(viewModel: ProjectListViewModel())
+        case .projectDetail(let projectId):
+            ProjectDetailView(projectId: projectId)
+        case .projectCreation:
+            ProjectCreationView()
+        case .projectMilestones(let projectId):
+            ProjectMilestonesView(projectId: projectId)
+        case .projectTasks(let projectId):
+            ProjectTasksView(projectId: projectId)
+            
         // MARK: - Admin Destinations
         
         case .eventQAConsole:

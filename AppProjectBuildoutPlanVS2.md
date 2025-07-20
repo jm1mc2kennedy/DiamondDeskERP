@@ -15,7 +15,7 @@
 - Tasks and Tickets have robust CRUD (create/edit) support with validation, error handling, accessible UI, and Liquid Glass visual polish.
 - Clients and KPIs currently support create operations, display errors gracefully, and feature accessible card/list designs; edit capability coming next.
 - Basic test coverage now includes validation and error path checks for key flows in Task and Ticket creation.
-- Next up: advanced filtering and search, batch operations, notification integration, onboarding UI, and multi-store KPI support.
+- Next up: advanced filtering and search, batch operations, notification integration, onboarding UI, multi-store KPI support; enterprise modules backlog: Performance Targets, Project Management (Directory filter & creation UI implemented).
 
 ---
 
@@ -203,28 +203,62 @@ UserSettings controls whether push converts to in-app banner or silent update.
 - Fields: title, startDate, endDate, isAllDay, storeCodes[], participants[].
 - Future: Office 365 integration; keep abstraction layer `CalendarService` to swap provider.
 
-### 9.5 Documents & Knowledge Base
+  
+### 9.5 Directory (Enterprise)
+  
+- Features: Employee directory list with search, filters, and multiple view modes (list, grid, org chart, map); employee detail display; add/edit employee profiles; org chart navigation; bulk import and LDAP integration (future).
+  
+- Data: `Employee` record type with personalInfo, contactInfo, organizationalInfo, professionalInfo, permissions, preferences, analytics.
+  
+- Views: `DirectoryListView`, `EmployeeDetailView`, `EmployeeCreationView`, `DirectoryFilterView`, `OrganizationalChartView`, `DirectoryMapView`.
+  
+- Later: Bulk import/export CSV, Active Directory sync, advanced org chart editing, profile photo upload and cropping.
+
+  
+### 9.6 Performance Targets (Enterprise)
+  
+- Features: Define and track performance targets for KPIs and custom metrics; list, detail, create/edit targets; assign to employees, departments, and projects; recurring targets and scheduling; deletion and notifications for target breaches.
+  
+- Data: `PerformanceTarget` record type with name, description, metricType, targetValue, unit, period, recurrence, assignedTo, departmentId, projectId.
+  
+- Views: `PerformanceTargetsListView`, `PerformanceTargetDetailView`, `PerformanceTargetCreationView`.
+  
+- Later: Progress tracking dashboard, target alerts, threshold notifications, goal alignment charts.
+
+  
+### 9.7 Project Management (Enterprise)
+  
+- Features: Project list view; project detail and timeline; create/edit projects; task and milestone association; stakeholder assignment; status updates (planning, active, on hold, completed); deletion.
+  
+- Data: `Project` record type with name, description, startDate, endDate, status, managerId, stakeholderIds, tasks, milestoneIds.
+  
+- Views: `ProjectListView`, `ProjectDetailView`, `ProjectCreationView`, `ProjectMilestonesView`, `ProjectTasksView`.
+  
+- Later: Gantt chart visualization, resource allocation, dependency management, export to CSV/PDF, project templating.
+
+  
+### 9.8 Documents & Knowledge Base
 
 - Version history: append metadata entry to `versionHistory[]` (author, timestamp, changeSummary).
 - Non‑privileged roles see only `updatedAt` & current asset.
 
-### 9.6 Training Modules
+### 9.9 Training Modules
 
 - Support video (CKAsset) + quiz (questions JSON).
 - Progress records create KPI signals.
 - SCORM (Phase 2+): placeholder field `scormManifests[]` for import mapping.
 
-### 9.7 Surveys
+### 9.10 Surveys
 
 - Schema question types: single choice, multiple choice, text, number, acknowledgment (boolean).
 - Anonymous: omit userRef and store hashed surrogate key for aggregate counts.
 
-### 9.8 Audits
+### 9.11 Audits
 
 - Template-driven hierarchical sections, weighted scoring.
 - On audit completion: if `responses[].answer == Fail` and `autoCreateTicket` setting enabled → stage ticket draft for approving role (AreaDirector or template owner) with prefilled context.
 
-### 9.9 CRM
+### 9.12 CRM
 
 - Comprehensive fields per prior spec.
 - Follow-up scheduling: nextInteractionDate derived from purchase anniversaries + custom reminders.
@@ -233,19 +267,19 @@ UserSettings controls whether push converts to in-app banner or silent update.
 - Filters: store, assigned user, follow-up due window, birthday month, anniversary month, interest tags, account type, contact permission.
 - Access: Associates see own + store peers (configurable), Agents limited to assigned departments (Marketing, Productivity).
 
-### 9.10 Visual Merch
+### 9.13 Visual Merch
 
 - Tasks reference; each submission requires approval by creator or designated approver (store director / area director).
 - Revision cycle: resubmit until approved.
 
-### 9.11 Performance Dashboard
+### 9.14 Performance Dashboard
 
 - Aggregates WTD/MTD/YTD metrics from StoreReport + other ingestion record sets.
 - Target merge: global PerformanceGoal + optional store override.
 - Percent to target = (actual / target) - 1 displayed with color semantics (>=0 green, <0 red).
 - Quarterly Review generator consolidates 3 months + quarter totals for export (PDF Phase 2).
 
-### 9.12 Settings Module
+### 9.15 Settings Module
 
 - Notification preferences per module (Push / In-App / Email placeholder).
 - Layout toggle for CRM detail (tab vs scroll).
@@ -401,7 +435,7 @@ No Firebase / Firestore references remain. Ready for confirmation or targeted de
 | Appointment               | `clientRef?` `title:String` `storeCode:String` `start:Date` `end:Date` `createdBy:String` `attendeeUserIds:[String]`                                                                                                       | Yes                                                                         | Range queries by `start`                                                                                                                                   | Visible to participants + hierarchical roles.                                                                                              |                                                                                                       |
 | Document                  | `title:String` `category:String` `version:Int` `storeScope:[String]?` `departmentScope:[String]?` `fileAsset:CKAsset` `updatedBy:String` `updatedAt:Date` `changeLog:String?`                                              | Yes                                                                         | Filter on `category`, `updatedAt >`                                                                                                                        | Version increments; only permitted roles upload (Admin, AreaDirector, DeptHead for own dept).                                              |                                                                                                       |
 | KnowledgeArticle          | `title:String` `slug:String` \`bodyMarkdown\:CKAsset                                                                                                                                                                       | Text` `tags:[String]` `createdBy\:String` `updatedAt\:Date` `version\:Int\` | Yes                                                                                                                                                        | Indexed on `slug`, tag filters                                                                                                             | Edit roles: Admin, Agents (Marketing/Selling/Operations), AreaDirector, StoreDirector (if permitted). |
-| Survey                    | `title:String` `questions:[JSON]` `isAnonymous:Bool` `targetStoreCodes:[String]?` `targetRoles:[String]?` `createdBy:String` `publishedAt:Date?`                                                                           | Yes                                                                         | Filter: `publishedAt != NULL`                                                                                                                              | Submission allowed if user matches target filters.                                                                                         |                                                                                                       |
+| Survey                    | `title:String` `questions:[JSON]` `isAnonymous:Bool` `targetStoreCodes:[String]?` `targetRoles:[String]?` `createdBy:String` `publishedAt:Date?`                                                                           | Yes                                                                         | Filter `publishedAt != NULL`                                                                                                                               | Submission allowed if user matches target filters.                                                                                         |                                                                                                       |
 | SurveyResponse            | `surveyRef:CKReference(Survey)` `userId:String?` `submittedAt:Date` `answers:JSON`                                                                                                                                         | Yes                                                                         | Query by `surveyRef`                                                                                                                                       | If anonymous, omit `userId`. Restricted read (aggregate for non-admin).                                                                    |                                                                                                       |
 | AuditTemplate             | `title:String` `sections:[JSON]` `department:String?` `createdBy:String` `version:Int`                                                                                                                                     | Yes                                                                         | Filter by `department`                                                                                                                                     | Create/edit privileged roles only.                                                                                                         |                                                                                                       |
 | Audit                     | `templateRef:CKReference(AuditTemplate)` `storeCode:String` `status:String` `startedBy:String` `startedAt:Date` `finishedAt:Date?` `score:Double?` `failCount:Int` `passCount:Int` `naCount:Int`                           | Yes                                                                         | Filter by `storeCode`, date ranges                                                                                                                         | Creation allowed to roles with store access; visibility hierarchical.                                                                      |                                                                                                       |
@@ -578,10 +612,4 @@ struct TaskModel: Identifiable, Hashable {
 ---
 
 **End of Document**
-
-//
-//  AppProjectBuildoutPlanVS2.md
-//  DiamondDeskERP
-//
-//  Created by J.Michael McDermott on 7/19/25.
-//
+  

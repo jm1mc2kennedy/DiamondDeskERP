@@ -36,6 +36,10 @@ final class NavigationRouter: ObservableObject {
     @Published var selectedClient: ClientModel?
     @Published var selectedKPI: KPIModel?
     @Published var selectedDocument: DocumentModel?
+    @Published var selectedAIInsight: AIInsight?
+    @Published var selectedEmployee: Employee?
+    @Published var selectedPerformanceTarget: PerformanceTarget?
+    @Published var selectedProject: Project?
     
     // MARK: - Singleton
     
@@ -128,6 +132,30 @@ final class NavigationRouter: ObservableObject {
     
     func presentCreateDocument() {
         documentsPath.append(NavigationDestination.documentCreation)
+    }
+    
+    // MARK: - AI Insights Navigation (Enterprise)
+    
+    func navigateToAIInsights() {
+        documentsPath.append(NavigationDestination.aiInsightsList)
+    }
+    
+    func navigateToAIInsightDetail(_ insight: AIInsight) {
+        selectedAIInsight = insight
+        documentsPath.append(NavigationDestination.aiInsightDetail(insight.id.uuidString))
+    }
+    
+    func navigateToAIInsightDetailFromDashboard(_ insight: AIInsight) {
+        selectedAIInsight = insight
+        dashboardPath.append(NavigationDestination.aiInsightDetail(insight.id.uuidString))
+    }
+    
+    func navigateToAIInsightsFilters() {
+        documentsPath.append(NavigationDestination.aiInsightsFilters)
+    }
+    
+    func navigateToAIInsightsAnalytics() {
+        documentsPath.append(NavigationDestination.aiInsightsAnalytics)
     }
     
     // MARK: - Admin Navigation
@@ -245,6 +273,10 @@ final class NavigationRouter: ObservableObject {
         case "document":
             if let documentId = components.queryItems?.first(where: { $0.name == "id" })?.value {
                 documentsPath.append(NavigationDestination.documentDetail(documentId))
+            }
+        case "ai-insight":
+            if let insightId = components.queryItems?.first(where: { $0.name == "id" })?.value {
+                documentsPath.append(NavigationDestination.aiInsightDetail(insightId))
             }
         case "admin":
             guard let path = components.path.split(separator: "/").first else { return }

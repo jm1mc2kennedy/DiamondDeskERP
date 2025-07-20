@@ -27,6 +27,12 @@ struct ContentView: View {
                         .tabItem {
                             Label("Clients", systemImage: "person.3")
                         }
+                    
+                    // AI Insights Tab (Enterprise Feature)
+                    AIInsightsListView()
+                        .tabItem {
+                            Label("AI Insights", systemImage: "brain.head.profile")
+                        }
 
                     if let storeCode = user.storeCodes.first {
                         KPIListView(storeCode: storeCode)

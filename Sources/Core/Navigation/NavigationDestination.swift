@@ -48,6 +48,31 @@ enum NavigationDestination: Hashable, Codable {
     case documentsFilters
     case documentCreation
     case documentDetail(String)
+    
+    // MARK: - AI Insights Destinations (Enterprise)
+    
+    case aiInsightsList
+    case aiInsightsFilters
+    case aiInsightDetail(String)
+    case aiInsightsAnalytics
+    case aiInsightsGenerate
+    
+    // MARK: - Directory Destinations (Enterprise)
+    case directoryList
+    case directoryFilters
+    case employeeDetail(String)
+    
+    // MARK: - Performance Targets Destinations (Enterprise)
+    case performanceTargetsList
+    case performanceTargetDetail(String)
+    case performanceTargetCreation
+    
+    // MARK: - Project Management Destinations (Enterprise)
+    case projectList
+    case projectDetail(String)
+    case projectCreation
+    case projectMilestones(String)
+    case projectTasks(String)
     case documentVersionHistory(String)
     
     // MARK: - Admin Destinations
@@ -137,6 +162,46 @@ extension NavigationDestination {
             return "Document Details"
         case .documentVersionHistory:
             return "Version History"
+            
+        // AI Insights (Enterprise)
+        case .aiInsightsList:
+            return "AI Insights"
+        case .aiInsightsFilters:
+            return "Insight Filters"
+        case .aiInsightDetail:
+            return "Insight Details"
+        case .aiInsightsAnalytics:
+            return "Insights Analytics"
+        case .aiInsightsGenerate:
+            return "Generate Insights"
+        
+        // Directory (Enterprise)
+        case .directoryList:
+            return "Directory"
+        case .directoryFilters:
+            return "Directory Filters"
+        case .employeeDetail:
+            return "Employee Profile"
+        
+        // Performance Targets (Enterprise)
+        case .performanceTargetsList:
+            return "Performance Targets"
+        case .performanceTargetDetail:
+            return "Performance Target"
+        case .performanceTargetCreation:
+            return "Create Performance Target"
+        
+        // Project Management (Enterprise)
+        case .projectList:
+            return "Projects"
+        case .projectDetail:
+            return "Project Details"
+        case .projectCreation:
+            return "Create Project"
+        case .projectMilestones:
+            return "Project Milestones"
+        case .projectTasks:
+            return "Project Tasks"
             
         // Admin
         case .eventQAConsole:
@@ -232,6 +297,18 @@ extension NavigationDestination {
             return "doc.text"
         case .documentVersionHistory:
             return "clock.arrow.circlepath"
+            
+        // AI Insights (Enterprise)
+        case .aiInsightsList:
+            return "brain.head.profile"
+        case .aiInsightsFilters:
+            return "line.3.horizontal.decrease"
+        case .aiInsightDetail:
+            return "lightbulb"
+        case .aiInsightsAnalytics:
+            return "chart.bar.doc.horizontal"
+        case .aiInsightsGenerate:
+            return "brain.head.profile.fill"
             
         // Admin
         case .eventQAConsole:
