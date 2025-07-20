@@ -94,6 +94,15 @@ Sources/
     ProjectManagement/
     DocumentManagement/
     Permissions/
+    Calendar/          # Reserved: Phase 4.7 Calendar Module
+    Assets/            # Reserved: Phase 4.8 Asset Management Module  
+    WorkflowBuilder/   # Reserved: Phase 4.9 Workflow & Automation Builder
+    Reports/           # Reserved: Phase 4.11 Custom Reports Module
+    Dashboards/        # Reserved: Phase 4.12 Customizable Dashboards
+    RecordLinking/     # Reserved: Phase 4.15 Cross-Module Record Linking
+    UISettings/        # Reserved: Phase 4.14 User Interface Customization
+  Integrations/        # External service integrations
+    Office365/         # Reserved: Phase 4.10 & 4.13 Office 365 Integration
   Shared/              # Reusable UI components, extensions, utilities
   Resources/           # Assets, Fonts, Config files, Localization keys (future)
 

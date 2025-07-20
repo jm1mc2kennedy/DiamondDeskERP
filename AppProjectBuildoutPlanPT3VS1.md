@@ -801,12 +801,1136 @@ enum ResourceType: String, CaseIterable {
     case software = "SOFTWARE"
     case budget = "BUDGET"
 }
+
+#### Calendar Module
+```graphql
+type CalendarEvent {
+  id: ID!
+  title: String!
+  startTime: DateTime!
+  endTime: DateTime!
+  location: String
+  ownerId: ID!
+  attendees: [EventAttendee!]!
+  calendarGroupId: ID
+  isSyncedWithOutlook: Boolean!
+}
+
+type EventAttendee {
+  id: ID!
+  eventId: ID!
+  userId: ID!
+  status: String! # e.g. accepted, declined
+}
+
+type CalendarGroup {
+  id: ID!
+  name: String!
+  ownerId: ID!
+  members: [ID!]!
+  isPublic: Boolean!
+}
+```
+
+#### Asset Management Module
+```graphql
+type Asset {
+  id: ID!
+  name: String!
+  type: String!
+  category: String
+  tags: [String!]!
+  uploadedBy: ID!
+  uploadDate: Date!
+  storagePath: String!
+  accessRoles: [String!]!
+  fileSize: Int!
+  mimeType: String!
+  usageCount: Int!
+}
+
+type AssetCategory {
+  id: ID!
+  name: String!
+  parentId: ID
+  description: String
+}
+
+type AssetTag {
+  id: ID!
+  name: String!
+  color: String
+}
+
+type AssetUsageLog {
+  id: ID!
+  assetId: ID!
+  userId: ID!
+  action: String!
+  timestamp: DateTime!
+  context: String
+}
+```
+
+#### Workflow & Automation Builder
+```graphql
+type Workflow {
+  id: ID!
+  name: String!
+  description: String
+  triggerType: String!
+  isActive: Boolean!
+  createdBy: ID!
+  createdAt: DateTime!
+  lastExecuted: DateTime
+  executionCount: Int!
+}
+
+type TriggerCondition {
+  id: ID!
+  workflowId: ID!
+  field: String!
+  operator: String!
+  value: String!
+  logicalOperator: String # AND, OR
+}
+
+type ActionStep {
+  id: ID!
+  workflowId: ID!
+  stepOrder: Int!
+  actionType: String!
+  params: JSON!
+  isEnabled: Boolean!
+}
+
+type WorkflowExecution {
+  id: ID!
+  workflowId: ID!
+  status: String!
+  startedAt: DateTime!
+  completedAt: DateTime
+  errorMessage: String
+  executedBy: ID
+}
+```
+
+#### Office 365 Integration
+```graphql
+type Office365Token {
+  id: ID!
+  userId: ID!
+  accessToken: String!
+  refreshToken: String!
+  expiry: DateTime!
+  scope: [String!]!
+  tenantId: String!
+}
+
+type SharePointResource {
+  id: ID!
+  userId: ID!
+  path: String!
+  resourceType: String!
+  lastIndexed: DateTime
+  isAccessible: Boolean!
+  metadata: JSON
+}
+
+type OutlookIntegration {
+  id: ID!
+  userId: ID!
+  isCalendarSyncEnabled: Boolean!
+  isEmailSyncEnabled: Boolean!
+  lastSyncAt: DateTime
+  syncErrors: [String!]!
+}
+
+type MicrosoftGraphSync {
+  id: ID!
+  userId: ID!
+  resourceType: String!
+  lastSyncToken: String
+  syncStatus: String!
+  errorCount: Int!
+}
+```
+
+#### Custom Reports Module
+```graphql
+type CustomReport {
+  id: ID!
+  name: String!
+  ownerId: ID!
+  parserTemplateId: ID!
+  createdAt: Date!
+  lastRun: Date
+  outputPath: String
+  description: String
+  isPublic: Boolean!
+  tags: [String!]!
+}
+
+type ParserTemplate {
+  id: ID!
+  name: String!
+  pythonCode: String!
+  version: Int!
+  createdBy: ID!
+  isActive: Boolean!
+  parameters: JSON
+  outputSchema: JSON
+}
+
+type UploadRecord {
+  id: ID!
+  reportId: ID!
+  filename: String!
+  version: Int!
+  uploadDate: Date!
+  fileSize: Int!
+  processedRows: Int
+  errorCount: Int
+}
+
+type ReportLog {
+  id: ID!
+  reportId: ID!
+  entryDate: Date!
+  summary: String!
+  executionTime: Float
+  status: String!
+  errorDetails: String
+}
+```
+
+#### Customizable Dashboards & Widgets
+```graphql
+type UserDashboard {
+  id: ID!
+  userId: ID!
+  name: String!
+  layout: JSON!
+  isDefault: Boolean!
+  isPublic: Boolean!
+  createdAt: Date!
+  lastModified: Date!
+}
+
+type DashboardWidget {
+  id: ID!
+  dashboardId: ID!
+  module: String!
+  widgetType: String!
+  config: JSON!
+  position: JSON!
+  size: JSON!
+  isEnabled: Boolean!
+}
+
+type WidgetConfig {
+  id: ID!
+  widgetType: String!
+  name: String!
+  description: String
+  defaultConfig: JSON!
+  requiredPermissions: [String!]!
+  availableModules: [String!]!
+}
+```
+
+#### User Interface Customization
+```graphql
+type UserPreferences {
+  id: ID!
+  userId: ID!
+  preferredTheme: String!
+  iconChoice: String!
+  navOrder: [String!]!
+  colorScheme: String!
+  sidebarCollapsed: Boolean!
+  defaultView: String
+  notificationSettings: JSON
+  lastUpdated: Date!
+}
+
+type ThemeOption {
+  id: ID!
+  name: String!
+  colorScheme: JSON!
+  previewImage: String
+  isActive: Boolean!
+  category: String!
+}
+
+type AppIconOption {
+  id: ID!
+  name: String!
+  iconPath: String!
+  category: String!
+  isDefault: Boolean!
+}
+```
+
+#### Cross-Module Record Linking
+```graphql
+type RecordLink {
+  id: ID!
+  sourceModule: String!
+  sourceId: ID!
+  targetModule: String!
+  targetId: ID!
+  linkType: String!
+  label: String
+  context: String
+  createdBy: ID!
+  createdAt: Date!
+  isActive: Boolean!
+}
+
+type LinkableRecord {
+  id: ID!
+  module: String!
+  recordId: ID!
+  title: String!
+  description: String
+  recordType: String!
+  metadata: JSON
+}
+
+type RecordLinkRule {
+  id: ID!
+  sourceModule: String!
+  targetModule: String!
+  isEnabled: Boolean!
+  autoLinkConditions: JSON
+  requiredPermissions: [String!]!
+}
+```
 ```
 
 //
-//  AppProjectBuildoutPlanPT3VS1.swift
-//  DiamondDeskERP
-//
-//  Created by J.Michael McDermott on 7/19/25.
-//
+```
+
+#### Phase 4.11-4.15 Enterprise Data Models (Custom Reports, Dashboards, Office365 Deep Integration, UI Customization, Cross-Module Linking)
+
+```swift
+// Custom Reports Module Models
+struct CustomReportModel: Identifiable, Codable {
+    let id: String
+    var name: String
+    var description: String
+    var ownerId: String
+    var parserTemplateId: String
+    var reportType: ReportType
+    var dataSourceConnections: [DataSourceConnection]
+    var scheduleConfig: ReportScheduleConfig?
+    var outputFormat: ReportOutputFormat
+    var accessLevel: ReportAccessLevel
+    var tags: [String]
+    var createdAt: Date
+    var lastExecuted: Date?
+    var executionCount: Int
+    var averageExecutionTime: TimeInterval
+    var isActive: Bool
+    var retentionPolicy: RetentionPolicy
+}
+
+struct ParserTemplateModel: Identifiable, Codable {
+    let id: String
+    var name: String
+    var description: String
+    var version: String
+    var pythonCode: String
+    var inputSchema: ReportSchema
+    var outputSchema: ReportSchema
+    var validationRules: [ValidationRule]
+    var testDataSets: [TestDataSet]
+    var createdBy: String
+    var createdAt: Date
+    var lastModified: Date
+    var isPublic: Bool
+    var downloadCount: Int
+    var rating: Double
+    var tags: [String]
+}
+
+struct ReportExecutionLogModel: Identifiable, Codable {
+    let id: String
+    var reportId: String
+    var executionStartTime: Date
+    var executionEndTime: Date?
+    var status: ExecutionStatus
+    var inputFileMetadata: FileMetadata
+    var outputFileMetadata: FileMetadata?
+    var recordsProcessed: Int
+    var recordsValid: Int
+    var recordsRejected: Int
+    var errorMessages: [ExecutionError]
+    var performanceMetrics: ExecutionMetrics
+    var triggeredBy: String
+    var triggeredMethod: TriggerMethod
+}
+
+enum ReportType: String, CaseIterable {
+    case salesAnalysis = "SALES_ANALYSIS"
+    case performanceMetrics = "PERFORMANCE_METRICS"
+    case complianceReport = "COMPLIANCE_REPORT"
+    case customDataProcessing = "CUSTOM_DATA_PROCESSING"
+    case crossModuleAnalysis = "CROSS_MODULE_ANALYSIS"
+}
+
+enum ExecutionStatus: String, CaseIterable {
+    case queued = "QUEUED"
+    case running = "RUNNING"
+    case completed = "COMPLETED"
+    case failed = "FAILED"
+    case cancelled = "CANCELLED"
+    case partialSuccess = "PARTIAL_SUCCESS"
+}
+
+// Customizable Dashboards Models
+struct DashboardModel: Identifiable, Codable {
+    let id: String
+    var name: String
+    var description: String
+    var ownerId: String
+    var layoutConfiguration: DashboardLayout
+    var widgets: [DashboardWidgetInstance]
+    var refreshInterval: TimeInterval
+    var isPublic: Bool
+    var sharedWith: [String]
+    var roleRestrictions: [String]
+    var isTemplate: Bool
+    var templateCategory: String?
+    var viewCount: Int
+    var lastAccessed: Date
+    var createdAt: Date
+    var modifiedAt: Date
+}
+
+struct DashboardWidgetInstance: Identifiable, Codable {
+    let id: String
+    var widgetTypeId: String
+    var position: WidgetPosition
+    var size: WidgetSize
+    var configuration: WidgetConfiguration
+    var dataConnections: [DataConnection]
+    var refreshSettings: RefreshSettings
+    var conditionalDisplay: ConditionalDisplayRule?
+    var accessPermissions: [String]
+    var isEnabled: Bool
+    var customStyling: WidgetStyling?
+}
+
+struct WidgetTypeDefinition: Identifiable, Codable {
+    let id: String
+    var name: String
+    var description: String
+    var category: WidgetCategory
+    var supportedDataSources: [String]
+    var configurationSchema: WidgetConfigSchema
+    var defaultConfiguration: WidgetConfiguration
+    var minimumSize: WidgetSize
+    var maximumSize: WidgetSize
+    var requiredPermissions: [String]
+    var previewImage: String
+    var documentation: String
+    var version: String
+    var isActive: Bool
+}
+
+struct DashboardLayout: Codable {
+    var gridColumns: Int
+    var gridRows: Int
+    var responsiveBreakpoints: [ResponsiveBreakpoint]
+    var backgroundColor: String
+    var headerConfiguration: HeaderConfiguration
+    var sidebarConfiguration: SidebarConfiguration?
+    var footerConfiguration: FooterConfiguration?
+}
+
+enum WidgetCategory: String, CaseIterable {
+    case kpiMetrics = "KPI_METRICS"
+    case chartVisualization = "CHART_VISUALIZATION"
+    case dataTable = "DATA_TABLE"
+    case activityFeed = "ACTIVITY_FEED"
+    case statusIndicator = "STATUS_INDICATOR"
+    case controlPanel = "CONTROL_PANEL"
+    case textDisplay = "TEXT_DISPLAY"
+    case mediaViewer = "MEDIA_VIEWER"
+}
+
+// Office365 Deep Integration Models
+struct Office365IntegrationModel: Identifiable, Codable {
+    let id: String
+    var userId: String
+    var tenantId: String
+    var applicationId: String
+    var authenticationTokens: Office365TokenSet
+    var enabledServices: [Office365Service]
+    var syncConfiguration: SyncConfiguration
+    var lastSyncStatus: SyncStatus
+    var errorHistory: [IntegrationError]
+    var usageStatistics: UsageStatistics
+    var permissionGrants: [PermissionGrant]
+    var isActive: Bool
+    var createdAt: Date
+    var lastSyncAt: Date?
+}
+
+struct Office365TokenSet: Codable {
+    var accessToken: String
+    var refreshToken: String
+    var idToken: String?
+    var tokenType: String
+    var expiresAt: Date
+    var scope: [String]
+    var lastRefreshed: Date
+}
+
+struct SharePointResourceModel: Identifiable, Codable {
+    let id: String
+    var userId: String
+    var siteId: String
+    var driveId: String
+    var itemId: String
+    var itemPath: String
+    var itemName: String
+    var itemType: SharePointItemType
+    var mimeType: String
+    var fileSize: Int64?
+    var lastModifiedBy: String
+    var lastModifiedAt: Date
+    var accessLevel: SharePointAccessLevel
+    var syncStatus: SyncStatus
+    var localCachePath: String?
+    var versionInfo: SharePointVersionInfo
+    var isShared: Bool
+    var sharePermissions: [SharePermission]
+}
+
+struct OutlookIntegrationModel: Identifiable, Codable {
+    let id: String
+    var userId: String
+    var mailboxId: String
+    var calendarSyncEnabled: Bool
+    var emailSyncEnabled: Bool
+    var contactSyncEnabled: Bool
+    var taskSyncEnabled: Bool
+    var syncFilters: OutlookSyncFilters
+    var lastCalendarSync: Date?
+    var lastEmailSync: Date?
+    var lastContactSync: Date?
+    var syncErrors: [OutlookSyncError]
+    var performanceMetrics: OutlookMetrics
+}
+
+enum Office365Service: String, CaseIterable {
+    case outlook = "OUTLOOK"
+    case sharePoint = "SHAREPOINT"
+    case teams = "TEAMS"
+    case powerBI = "POWER_BI"
+    case oneDrive = "ONEDRIVE"
+    case planner = "PLANNER"
+    case dynamics365 = "DYNAMICS_365"
+}
+
+enum SharePointItemType: String, CaseIterable {
+    case folder = "FOLDER"
+    case file = "FILE"
+    case list = "LIST"
+    case listItem = "LIST_ITEM"
+    case site = "SITE"
+    case drive = "DRIVE"
+}
+
+// User Interface Customization Models
+struct UserInterfacePreferencesModel: Identifiable, Codable {
+    let id: String
+    var userId: String
+    var themeConfiguration: ThemeConfiguration
+    var navigationConfiguration: NavigationConfiguration
+    var layoutPreferences: LayoutPreferences
+    var accessibilitySettings: AccessibilitySettings
+    var moduleVisibility: ModuleVisibilitySettings
+    var personalizations: [PersonalizationSetting]
+    var isSystemDefault: Bool
+    var lastModified: Date
+    var syncAcrossDevices: Bool
+}
+
+struct ThemeConfiguration: Codable {
+    var themeId: String
+    var colorScheme: ColorScheme
+    var darkModePreference: DarkModePreference
+    var accentColor: String
+    var backgroundStyle: BackgroundStyle
+    var iconStyle: IconStyle
+    var fontConfiguration: FontConfiguration
+    var customColorOverrides: [String: String]
+}
+
+struct NavigationConfiguration: Codable {
+    var sidebarStyle: SidebarStyle
+    var menuItems: [NavigationMenuItem]
+    var collapsedByDefault: Bool
+    var showModuleIcons: Bool
+    var groupingPreference: NavigationGrouping
+    var customShortcuts: [CustomShortcut]
+    var breadcrumbsEnabled: Bool
+    var searchInNavigation: Bool
+}
+
+struct LayoutPreferences: Codable {
+    var informationDensity: InformationDensity
+    var cardSizing: CardSizing
+    var listViewStyle: ListViewStyle
+    var defaultViewModes: [String: ViewMode]
+    var gridColumnPreferences: [String: Int]
+    var pageSizePreferences: [String: Int]
+    var sortingPreferences: [String: SortConfiguration]
+}
+
+struct AppIconConfiguration: Identifiable, Codable {
+    let id: String
+    var name: String
+    var description: String
+    var iconSetPath: String
+    var category: IconCategory
+    var isDefault: Bool
+    var isSeasonalVariant: Bool
+    var availabilityPeriod: DateInterval?
+    var requiredRole: String?
+    var previewImage: String
+    var approvalStatus: ApprovalStatus
+    var downloadCount: Int
+}
+
+enum DarkModePreference: String, CaseIterable {
+    case system = "SYSTEM"
+    case light = "LIGHT"
+    case dark = "DARK"
+    case auto = "AUTO"
+}
+
+enum InformationDensity: String, CaseIterable {
+    case compact = "COMPACT"
+    case standard = "STANDARD"
+    case comfortable = "COMFORTABLE"
+    case spacious = "SPACIOUS"
+}
+
+enum IconCategory: String, CaseIterable {
+    case seasonal = "SEASONAL"
+    case corporate = "CORPORATE"
+    case minimal = "MINIMAL"
+    case colorful = "COLORFUL"
+    case themed = "THEMED"
+    case branded = "BRANDED"
+}
+
+// Cross-Module Record Linking Models
+struct RecordLinkModel: Identifiable, Codable {
+    let id: String
+    var sourceModule: String
+    var sourceRecordId: String
+    var targetModule: String
+    var targetRecordId: String
+    var linkType: LinkType
+    var relationshipCategory: RelationshipCategory
+    var linkStrength: LinkStrength
+    var bidirectional: Bool
+    var contextMetadata: LinkContext
+    var createdBy: String
+    var createdAt: Date
+    var lastValidated: Date
+    var validationStatus: ValidationStatus
+    var automaticallyCreated: Bool
+    var confidenceScore: Double?
+    var isActive: Bool
+}
+
+struct LinkableRecordModel: Identifiable, Codable {
+    let id: String
+    var recordId: String
+    var module: String
+    var recordType: String
+    var title: String
+    var description: String?
+    var metadata: RecordMetadata
+    var linkingRules: [LinkingRule]
+    var searchableFields: [String]
+    var lastIndexed: Date
+    var indexVersion: String
+    var accessRestrictions: [String]
+}
+
+struct RecordLinkRuleModel: Identifiable, Codable {
+    let id: String
+    var name: String
+    var description: String
+    var sourceModule: String
+    var targetModule: String
+    var autoLinkConditions: [AutoLinkCondition]
+    var linkingAlgorithm: LinkingAlgorithm
+    var confidenceThreshold: Double
+    var maxSuggestions: Int
+    var isEnabled: Bool
+    var requiredPermissions: [String]
+    var createdBy: String
+    var createdAt: Date
+    var lastModified: Date
+    var usageStatistics: RuleUsageStatistics
+}
+
+struct LinkSuggestionModel: Identifiable, Codable {
+    let id: String
+    var sourceRecordId: String
+    var targetRecordId: String
+    var suggestionReason: SuggestionReason
+    var confidenceScore: Double
+    var suggestedLinkType: LinkType
+    var supportingEvidence: [EvidenceItem]
+    var generatedAt: Date
+    var status: SuggestionStatus
+    var reviewedBy: String?
+    var reviewedAt: Date?
+    var feedback: SuggestionFeedback?
+}
+
+enum LinkType: String, CaseIterable {
+    case relatedTo = "RELATED_TO"
+    case dependsOn = "DEPENDS_ON"
+    case affects = "AFFECTS"
+    case contains = "CONTAINS"
+    case partOf = "PART_OF"
+    case assignedTo = "ASSIGNED_TO"
+    case causedBy = "CAUSED_BY"
+    case resolvedBy = "RESOLVED_BY"
+    case references = "REFERENCES"
+    case duplicateOf = "DUPLICATE_OF"
+}
+
+enum RelationshipCategory: String, CaseIterable {
+    case hierarchical = "HIERARCHICAL"
+    case peer = "PEER"
+    case dependency = "DEPENDENCY"
+    case causal = "CAUSAL"
+    case temporal = "TEMPORAL"
+    case spatial = "SPATIAL"
+    case contextual = "CONTEXTUAL"
+}
+
+enum LinkStrength: String, CaseIterable {
+    case weak = "WEAK"
+    case moderate = "MODERATE"
+    case strong = "STRONG"
+    case critical = "CRITICAL"
+}
+
+enum SuggestionStatus: String, CaseIterable {
+    case pending = "PENDING"
+    case accepted = "ACCEPTED"
+    case rejected = "REJECTED"
+    case expired = "EXPIRED"
+    case superseded = "SUPERSEDED"
+}
+
+// Supporting GraphQL Schemas for Phase 4.11-4.15
+
+#### Custom Reports Module (GraphQL)
+```graphql
+type CustomReport {
+  id: ID!
+  name: String!
+  description: String
+  ownerId: ID!
+  parserTemplateId: ID!
+  reportType: ReportType!
+  dataSourceConnections: [DataSourceConnection!]!
+  scheduleConfig: ReportScheduleConfig
+  outputFormat: ReportOutputFormat!
+  accessLevel: ReportAccessLevel!
+  tags: [String!]!
+  createdAt: DateTime!
+  lastExecuted: DateTime
+  executionCount: Int!
+  averageExecutionTime: Float!
+  isActive: Boolean!
+  retentionPolicy: RetentionPolicy!
+}
+
+type ParserTemplate {
+  id: ID!
+  name: String!
+  description: String
+  version: String!
+  pythonCode: String!
+  inputSchema: ReportSchema!
+  outputSchema: ReportSchema!
+  validationRules: [ValidationRule!]!
+  testDataSets: [TestDataSet!]!
+  createdBy: ID!
+  createdAt: DateTime!
+  lastModified: DateTime!
+  isPublic: Boolean!
+  downloadCount: Int!
+  rating: Float!
+  tags: [String!]!
+}
+
+type ReportExecutionLog {
+  id: ID!
+  reportId: ID!
+  executionStartTime: DateTime!
+  executionEndTime: DateTime
+  status: ExecutionStatus!
+  inputFileMetadata: FileMetadata!
+  outputFileMetadata: FileMetadata
+  recordsProcessed: Int!
+  recordsValid: Int!
+  recordsRejected: Int!
+  errorMessages: [ExecutionError!]!
+  performanceMetrics: ExecutionMetrics!
+  triggeredBy: ID!
+  triggeredMethod: TriggerMethod!
+}
+
+enum ReportType {
+  SALES_ANALYSIS
+  PERFORMANCE_METRICS
+  COMPLIANCE_REPORT
+  CUSTOM_DATA_PROCESSING
+  CROSS_MODULE_ANALYSIS
+}
+
+enum ExecutionStatus {
+  QUEUED
+  RUNNING
+  COMPLETED
+  FAILED
+  CANCELLED
+  PARTIAL_SUCCESS
+}
+```
+
+#### Customizable Dashboards (GraphQL)
+```graphql
+type Dashboard {
+  id: ID!
+  name: String!
+  description: String
+  ownerId: ID!
+  layoutConfiguration: DashboardLayout!
+  widgets: [DashboardWidgetInstance!]!
+  refreshInterval: Float!
+  isPublic: Boolean!
+  sharedWith: [ID!]!
+  roleRestrictions: [String!]!
+  isTemplate: Boolean!
+  templateCategory: String
+  viewCount: Int!
+  lastAccessed: DateTime!
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+}
+
+type DashboardWidgetInstance {
+  id: ID!
+  widgetTypeId: ID!
+  position: WidgetPosition!
+  size: WidgetSize!
+  configuration: WidgetConfiguration!
+  dataConnections: [DataConnection!]!
+  refreshSettings: RefreshSettings!
+  conditionalDisplay: ConditionalDisplayRule
+  accessPermissions: [String!]!
+  isEnabled: Boolean!
+  customStyling: WidgetStyling
+}
+
+type WidgetTypeDefinition {
+  id: ID!
+  name: String!
+  description: String
+  category: WidgetCategory!
+  supportedDataSources: [String!]!
+  configurationSchema: WidgetConfigSchema!
+  defaultConfiguration: WidgetConfiguration!
+  minimumSize: WidgetSize!
+  maximumSize: WidgetSize!
+  requiredPermissions: [String!]!
+  previewImage: String!
+  documentation: String!
+  version: String!
+  isActive: Boolean!
+}
+
+enum WidgetCategory {
+  KPI_METRICS
+  CHART_VISUALIZATION
+  DATA_TABLE
+  ACTIVITY_FEED
+  STATUS_INDICATOR
+  CONTROL_PANEL
+  TEXT_DISPLAY
+  MEDIA_VIEWER
+}
+```
+
+#### Office365 Deep Integration (GraphQL)
+```graphql
+type Office365Integration {
+  id: ID!
+  userId: ID!
+  tenantId: String!
+  applicationId: String!
+  authenticationTokens: Office365TokenSet!
+  enabledServices: [Office365Service!]!
+  syncConfiguration: SyncConfiguration!
+  lastSyncStatus: SyncStatus!
+  errorHistory: [IntegrationError!]!
+  usageStatistics: UsageStatistics!
+  permissionGrants: [PermissionGrant!]!
+  isActive: Boolean!
+  createdAt: DateTime!
+  lastSyncAt: DateTime
+}
+
+type SharePointResource {
+  id: ID!
+  userId: ID!
+  siteId: String!
+  driveId: String!
+  itemId: String!
+  itemPath: String!
+  itemName: String!
+  itemType: SharePointItemType!
+  mimeType: String!
+  fileSize: Int
+  lastModifiedBy: String!
+  lastModifiedAt: DateTime!
+  accessLevel: SharePointAccessLevel!
+  syncStatus: SyncStatus!
+  localCachePath: String
+  versionInfo: SharePointVersionInfo!
+  isShared: Boolean!
+  sharePermissions: [SharePermission!]!
+}
+
+type OutlookIntegration {
+  id: ID!
+  userId: ID!
+  mailboxId: String!
+  calendarSyncEnabled: Boolean!
+  emailSyncEnabled: Boolean!
+  contactSyncEnabled: Boolean!
+  taskSyncEnabled: Boolean!
+  syncFilters: OutlookSyncFilters!
+  lastCalendarSync: DateTime
+  lastEmailSync: DateTime
+  lastContactSync: DateTime
+  syncErrors: [OutlookSyncError!]!
+  performanceMetrics: OutlookMetrics!
+}
+
+enum Office365Service {
+  OUTLOOK
+  SHAREPOINT
+  TEAMS
+  POWER_BI
+  ONEDRIVE
+  PLANNER
+  DYNAMICS_365
+}
+
+enum SharePointItemType {
+  FOLDER
+  FILE
+  LIST
+  LIST_ITEM
+  SITE
+  DRIVE
+}
+```
+
+#### User Interface Customization (GraphQL)
+```graphql
+type UserInterfacePreferences {
+  id: ID!
+  userId: ID!
+  themeConfiguration: ThemeConfiguration!
+  navigationConfiguration: NavigationConfiguration!
+  layoutPreferences: LayoutPreferences!
+  accessibilitySettings: AccessibilitySettings!
+  moduleVisibility: ModuleVisibilitySettings!
+  personalizations: [PersonalizationSetting!]!
+  isSystemDefault: Boolean!
+  lastModified: DateTime!
+  syncAcrossDevices: Boolean!
+}
+
+type ThemeConfiguration {
+  themeId: String!
+  colorScheme: ColorScheme!
+  darkModePreference: DarkModePreference!
+  accentColor: String!
+  backgroundStyle: BackgroundStyle!
+  iconStyle: IconStyle!
+  fontConfiguration: FontConfiguration!
+  customColorOverrides: [ColorOverride!]!
+}
+
+type NavigationConfiguration {
+  sidebarStyle: SidebarStyle!
+  menuItems: [NavigationMenuItem!]!
+  collapsedByDefault: Boolean!
+  showModuleIcons: Boolean!
+  groupingPreference: NavigationGrouping!
+  customShortcuts: [CustomShortcut!]!
+  breadcrumbsEnabled: Boolean!
+  searchInNavigation: Boolean!
+}
+
+type AppIconConfiguration {
+  id: ID!
+  name: String!
+  description: String
+  iconSetPath: String!
+  category: IconCategory!
+  isDefault: Boolean!
+  isSeasonalVariant: Boolean!
+  availabilityPeriod: DateRange
+  requiredRole: String
+  previewImage: String!
+  approvalStatus: ApprovalStatus!
+  downloadCount: Int!
+}
+
+enum DarkModePreference {
+  SYSTEM
+  LIGHT
+  DARK
+  AUTO
+}
+
+enum IconCategory {
+  SEASONAL
+  CORPORATE
+  MINIMAL
+  COLORFUL
+  THEMED
+  BRANDED
+}
+```
+
+#### Cross-Module Record Linking (GraphQL)
+```graphql
+type RecordLink {
+  id: ID!
+  sourceModule: String!
+  sourceRecordId: ID!
+  targetModule: String!
+  targetRecordId: ID!
+  linkType: LinkType!
+  relationshipCategory: RelationshipCategory!
+  linkStrength: LinkStrength!
+  bidirectional: Boolean!
+  contextMetadata: LinkContext!
+  createdBy: ID!
+  createdAt: DateTime!
+  lastValidated: DateTime!
+  validationStatus: ValidationStatus!
+  automaticallyCreated: Boolean!
+  confidenceScore: Float
+  isActive: Boolean!
+}
+
+type LinkableRecord {
+  id: ID!
+  recordId: ID!
+  module: String!
+  recordType: String!
+  title: String!
+  description: String
+  metadata: RecordMetadata!
+  linkingRules: [LinkingRule!]!
+  searchableFields: [String!]!
+  lastIndexed: DateTime!
+  indexVersion: String!
+  accessRestrictions: [String!]!
+}
+
+type RecordLinkRule {
+  id: ID!
+  name: String!
+  description: String
+  sourceModule: String!
+  targetModule: String!
+  autoLinkConditions: [AutoLinkCondition!]!
+  linkingAlgorithm: LinkingAlgorithm!
+  confidenceThreshold: Float!
+  maxSuggestions: Int!
+  isEnabled: Boolean!
+  requiredPermissions: [String!]!
+  createdBy: ID!
+  createdAt: DateTime!
+  lastModified: DateTime!
+  usageStatistics: RuleUsageStatistics!
+}
+
+type LinkSuggestion {
+  id: ID!
+  sourceRecordId: ID!
+  targetRecordId: ID!
+  suggestionReason: SuggestionReason!
+  confidenceScore: Float!
+  suggestedLinkType: LinkType!
+  supportingEvidence: [EvidenceItem!]!
+  generatedAt: DateTime!
+  status: SuggestionStatus!
+  reviewedBy: ID
+  reviewedAt: DateTime
+  feedback: SuggestionFeedback
+}
+
+enum LinkType {
+  RELATED_TO
+  DEPENDS_ON
+  AFFECTS
+  CONTAINS
+  PART_OF
+  ASSIGNED_TO
+  CAUSED_BY
+  RESOLVED_BY
+  REFERENCES
+  DUPLICATE_OF
+}
+
+enum RelationshipCategory {
+  HIERARCHICAL
+  PEER
+  DEPENDENCY
+  CAUSAL
+  TEMPORAL
+  SPATIAL
+  CONTEXTUAL
+}
+
+enum LinkStrength {
+  WEAK
+  MODERATE
+  STRONG
+  CRITICAL
+}
+
+enum SuggestionStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  EXPIRED
+  SUPERSEDED
+}
+````
 

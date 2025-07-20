@@ -584,6 +584,219 @@ struct TaskModel: Identifiable, Hashable {
 - **Workflow Automation:** Custom workflow builders with approval chains
 - **External Integrations:** Slack, Teams, and external calendar synchronization
 
+### 4.7 Calendar Module
+| Purpose | In-app calendar that supports event creation, visibility, team scheduling, and integration with Office 365. |
+| Entities | CalendarEvent, CalendarGroup, EventAttendee |
+| Views | CalendarGridView, DayDetailView, EventModal, SharedGroupCalendar |
+| Features | Create/edit/delete events, assign guests, location/time zone support, Office 365 sync. |
+| Permissions | View/Manage by role and store. |
+| Milestones | Schema (M4.7-a), Basic UI (M4.7-b), Office 365 Integration (M4.7-c), Alerts + Reminders (M4.7-d) |
+
+### 4.8 Asset Management Module
+| Purpose | Central inventory of digital assets (photos, PDFs, training materials, product videos). |
+| Entities | Asset, AssetCategory, AssetTag, AssetUsageLog |
+| Features | Upload, categorize, tag, restrict by role/store/department, track usage. |
+| Views | AssetLibraryView, AssetDetailView, UploadFlow, UsageAnalyticsView |
+| Integrations | CRM (for media submitted by associates or guests), DMS (for versioned documents) |
+
+### 4.9 Workflow & Automation Builder
+| Purpose | Self-service tool to define custom rules, alerts, and automated sequences across modules. |
+| Example Use Cases | Auto-notify Area Director when sales fall below threshold; auto-assign follow-up task if care plan is missing; auto-export guest records weekly. |
+| Core Concepts | Trigger (event), Condition (optional filter), Action (executed rule) |
+| Entities | Workflow, TriggerCondition, ActionStep |
+| Views | WorkflowDashboard, WorkflowBuilderCanvas, ActionLibraryModal |
+| Execution Engine | On-device for UI triggers, Cloud Function backend for DB events |
+| Security | Admin-only creation, role-scoped activation |
+
+### 4.10 Office 365 Integration
+| Purpose | Authenticate & sync with Microsoft accounts to pull Outlook email, Outlook calendar, and SharePoint file references. |
+| Features | 
+- Sign in with Microsoft (OAuth2)
+- Import Outlook calendar to Diamond Desk Calendar
+- Sync tasks and events to Outlook
+- Index SharePoint folders for asset/document access
+- Send email to Outlook from Tickets/CRM |
+| Architecture | Use Microsoft Graph API; sync via background job or real-time WebHooks |
+| Requirements | Per-user consent; tenant-based restrictions; fallback logic for failed connections |
+| UI Elements | Office365ConnectButton, SharePointFilePicker, EmailSendDialog |
+| Milestones | Auth & Token Mgmt (M4.10-a), Calendar sync (M4.10-b), SharePoint indexer (M4.10-c), Outlook outbound (M4.10-d) |
+
+### 4.11 Custom Reports Module
+**Timeline:** 2026-Q1  
+**Scope:** Self-service report generation with dynamic parsing and analytics
+
+#### Core Features
+- **File Upload Engine:** Support CSV, XLSX, JSON, and custom delimited formats
+- **Parser Template Library:** Python-based parsing with configurable schemas  
+- **Report Builder:** Visual query builder with filters, aggregations, and joins
+- **Template Management:** Save, version, and share parsing templates across teams
+- **Automated Processing:** Schedule reports with email delivery and export options
+- **Data Validation:** Schema validation with error reporting and data cleansing suggestions
+
+#### Views & Components
+| View | Purpose | Features |
+|------|---------|----------|
+| ReportUploaderView | File upload interface | Drag-drop, preview, validation, progress tracking |
+| ReportBuilderView | Visual query builder | Schema mapping, filter builder, aggregation controls |
+| SavedReportsDashboard | Report library | Search, categories, access control, sharing options |
+| LogDetailModal | Execution history | Runtime logs, error details, performance metrics |
+| ParserTemplateManager | Template authoring | Python editor, testing sandbox, version control |
+
+#### Data Models
+- **CustomReport:** Report metadata, ownership, template references, execution history
+- **UploadRecord:** File processing details, version tracking, data lineage  
+- **ParserTemplate:** Python logic, input/output schemas, validation rules
+- **ReportLog:** Execution details, performance metrics, error tracking
+- **ReportSchedule:** Automated execution configuration with delivery preferences
+
+#### Technical Implementation
+- **On-Device Python Runtime:** Pyodide or custom Swift-Python bridge for parsing
+- **Cloud Function Fallback:** Complex operations offloaded to server infrastructure
+- **Version Control:** Git-like versioning for templates and data transformations
+- **Caching Layer:** Intelligent result caching with invalidation strategies
+
+### 4.12 Customizable Dashboards
+**Timeline:** 2026-Q1  
+**Scope:** Drag-and-drop dashboard builder with multi-module data integration
+
+#### Core Features
+- **Widget Library:** 20+ pre-built widgets covering all modules (KPIs, charts, lists, calendars)
+- **Drag-Drop Builder:** Intuitive interface with grid snapping and responsive layouts
+- **Data Connections:** Real-time data binding with automatic refresh intervals
+- **Custom Visualizations:** Chart.js integration with custom styling options
+- **Role-Based Templates:** Default dashboard configurations per role and department
+- **Export & Sharing:** PDF export, dashboard sharing, and presentation mode
+
+#### Dashboard Widgets
+| Widget Type | Data Source | Customization Options |
+|-------------|-------------|----------------------|
+| KPI Summary Cards | StoreReport, Custom Reports | Timeframe, comparison periods, target overlays |
+| Sales Performance Chart | Multiple KPI sources | Chart type, date range, store filtering |
+| Task Progress Tracker | Task Module | Assignment filters, completion status, due dates |
+| Ticket Backlog Monitor | Ticket Module | Priority filtering, SLA tracking, assignment view |
+| Training Compliance Grid | Training Module | Department filter, certification status, progress |
+| Calendar Event Feed | Calendar Module | Date range, event types, attendee filtering |
+| CRM Activity Stream | CRM Module | Follow-up alerts, birthday reminders, interaction log |
+
+#### Views & Components
+- **DashboardEditorView:** Main editor with widget palette and canvas
+- **WidgetSelectorModal:** Categorized widget library with search and preview
+- **WidgetConfigurationDialog:** Per-widget settings with live preview
+- **DashboardLibraryView:** Saved dashboards with templates and sharing
+- **PresentationModeView:** Full-screen dashboard display for meetings
+
+#### Data Models
+- **UserDashboard:** Layout configuration, widget instances, sharing settings
+- **DashboardWidget:** Widget type, position, data configuration, styling
+- **WidgetConfig:** Available widgets, default settings, permission requirements
+- **DashboardTemplate:** Pre-configured dashboards per role with customization options
+
+### 4.13 Office365 Deep Integration Enhancements
+**Timeline:** 2026-Q1  
+**Scope:** Comprehensive Microsoft ecosystem integration across all modules
+
+#### Enhanced Integration Points
+| Module | Office 365 Feature | Integration Details |
+|--------|-------------------|-------------------|
+| Calendar | Outlook Calendar Sync | Bi-directional sync, meeting integration, availability status |
+| Messaging | Exchange Integration | Unified inbox, email templates, contact synchronization |
+| Documents | SharePoint Integration | File browser, version control, collaborative editing |
+| Tasks | Planner Integration | Task synchronization, project alignment, status updates |
+| CRM | Dynamics 365 Sync | Contact integration, sales pipeline, activity tracking |
+| Reports | Power BI Integration | Embedded reports, data refresh, interactive dashboards |
+
+#### Core Features
+- **Single Sign-On (SSO):** Microsoft Graph authentication with token management
+- **Unified Search:** Cross-platform search across Diamond Desk and Office 365 content
+- **Offline Synchronization:** Intelligent sync with conflict resolution and merge strategies
+- **Permission Inheritance:** Respect Office 365 permissions within Diamond Desk interface
+- **Audit Trail Integration:** Combined audit logs across both platforms
+
+#### Views & Components
+- **Office365ConnectorView:** Setup wizard with permission configuration
+- **UnifiedInboxView:** Combined email and Diamond Desk messages
+- **SharePointBrowserView:** Native file browser with Diamond Desk integration
+- **Office365SettingsView:** Per-module integration controls and sync preferences
+- **ConflictResolutionView:** Manual resolution interface for sync conflicts
+
+#### Data Models
+- **Office365Token:** Authentication tokens with automatic refresh
+- **SharePointResource:** File metadata with access controls and sync status
+- **OutlookIntegration:** Calendar and email sync configuration
+- **MicrosoftGraphSync:** Synchronization status and error tracking
+- **Office365AuditLog:** Combined audit trail for compliance reporting
+
+### 4.14 User Interface Customization
+**Timeline:** 2026-Q1  
+**Scope:** Comprehensive UI personalization system with theme management
+
+#### Core Features
+- **Theme Engine:** 10 curated color schemes with light/dark mode variants
+- **Icon Customization:** 15 app icon options with seasonal and branded variants
+- **Navigation Builder:** Drag-drop sidebar organization with custom menu items
+- **Layout Preferences:** Grid/list toggles, card sizing, information density controls
+- **Typography Options:** Font size scaling, weight preferences, accessibility enhancements
+- **Module Visibility:** Show/hide modules based on role and personal preferences
+
+#### Customization Options
+| Category | Options | User Control Level |
+|----------|---------|-------------------|
+| Color Themes | Sapphire, Emerald, Ruby, Gold, Platinum, Corporate, Minimal | Full selection |
+| App Icons | Seasonal, Corporate, Minimal, Colored, Monochrome | User choice with admin approval |
+| Navigation | Module order, grouping, custom shortcuts | Full customization |
+| Information Density | Compact, Standard, Comfortable | Per-view preference |
+| Accessibility | High contrast, reduced motion, large text | System integration |
+
+#### Views & Components
+- **ThemeCustomizerView:** Live preview with real-time application
+- **AppIconSelectorView:** Icon gallery with preview and seasonal collections
+- **NavigationCustomizerView:** Drag-drop interface for menu organization
+- **LayoutPreferencesView:** Density controls with preview samples
+- **AccessibilityOptionsView:** Enhanced accessibility controls beyond system settings
+
+#### Data Models
+- **UserPreferences:** Theme, icon, navigation, and layout preferences
+- **ThemeOption:** Available themes with color definitions and assets
+- **AppIconOption:** Icon variants with metadata and approval status
+- **NavigationConfiguration:** Custom menu structure and visibility settings
+- **LayoutPreferences:** Per-view density and display preferences
+
+### 4.15 Cross-Module Record Linking
+**Timeline:** 2026-Q1  
+**Scope:** Universal record relationships with intelligent suggestions
+
+#### Core Features
+- **Universal Linking:** Connect any record type across all modules
+- **Smart Suggestions:** AI-powered link recommendations based on context and history
+- **Relationship Types:** Configurable relationship categories (related, dependent, conflicting)
+- **Cascade Navigation:** Seamless navigation between linked records with breadcrumb trails
+- **Link Analytics:** Track relationship patterns and suggest optimizations
+- **Bulk Linking:** Batch operations for creating multiple relationships
+
+#### Link Types & Use Cases
+| Source Module | Target Module | Relationship Examples |
+|---------------|---------------|----------------------|
+| Tickets | Store Reports | Service issues affecting sales performance |
+| CRM Clients | Training Records | Customer interaction training requirements |
+| Audit Results | Tasks | Remediation tasks from failed audit items |
+| Performance Goals | Projects | Strategic initiatives supporting goal achievement |
+| Assets | Vendors | Equipment and supplier relationship tracking |
+| Training | Compliance | Certification requirements and audit evidence |
+
+#### Views & Components
+- **RecordLinkModal:** Universal linking interface with search and filters
+- **LinkedRecordViewer:** Related records display with relationship context
+- **LinkSuggestionPanel:** AI-powered recommendations with acceptance controls
+- **RelationshipMapView:** Visual representation of record connections
+- **BulkLinkingView:** Batch operations interface with validation and preview
+
+#### Data Models
+- **RecordLink:** Source/target references with relationship type and metadata
+- **LinkableRecord:** Universal record interface with module and type identification
+- **RecordLinkRule:** Automatic linking rules based on conditions and patterns
+- **LinkSuggestion:** AI-generated relationship recommendations with confidence scores
+- **RelationshipType:** Configurable relationship categories with display properties
+
 ### Implementation Strategy
 
 #### Phase 4A: Foundation (2025-Q4)
