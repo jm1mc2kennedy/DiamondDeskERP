@@ -5,7 +5,7 @@
 	<key>BuildLocationStyle</key>
 	<string>UseAppPreferences</string>
 	<key>CompilationCachingSetting</key>
-	<string>Default</string>
+	<string>Enable</string>
 	<key>CustomBuildLocationType</key>
 	<string>RelativeToDerivedData</string>
 	<key>DerivedDataLocationStyle</key>

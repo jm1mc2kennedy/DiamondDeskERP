@@ -2,95 +2,81 @@
 // Diamond Desk ERP
 // Basic async tests for Task, Ticket, Client, KPI repository fetches
 
-import XCTest
-@testable import DiamondDeskERP
-
-final class RepositoryFetchTests: XCTestCase {
-    func testTaskFetch() async throws {
+@Suite("Repository fetch and validation")
+struct RepositoryFetchTests {
+    @Test func testTaskFetch() async throws {
         let repo = CloudKitTaskRepository()
         let tasks = try await repo.fetchAssigned(to: "demo-user-id")
-        XCTAssertNotNil(tasks)
+        #expect(tasks != nil, "Tasks should not be nil")
     }
 
-    func testTicketFetch() async throws {
+    @Test func testTicketFetch() async throws {
         let repo = CloudKitTicketRepository()
         let tickets = try await repo.fetchAssigned(to: "demo-user-id")
-        XCTAssertNotNil(tickets)
+        #expect(tickets != nil, "Tickets should not be nil")
     }
 
-    func testClientFetch() async throws {
+    @Test func testClientFetch() async throws {
         let repo = CloudKitClientRepository()
         let clients = try await repo.fetchAssigned(to: "demo-user-id")
-        XCTAssertNotNil(clients)
+        #expect(clients != nil, "Clients should not be nil")
     }
 
-    func testKPIFetch() async throws {
+    @Test func testKPIFetch() async throws {
         let repo = CloudKitKPIRepository()
         let kpis = try await repo.fetchForStore("demo-store")
-        XCTAssertNotNil(kpis)
+        #expect(kpis != nil, "KPIs should not be nil")
     }
     
-    // MARK: - Task Validation Tests
-    
-    func testTaskValidationFailsWithEmptyTitle() {
+    @Test func testTaskValidationFailsWithEmptyTitle() throws {
         var taskForm = TaskForm()
         taskForm.title = ""
         let isValid = taskForm.validate()
-        XCTAssertFalse(isValid, "Task validation should fail when title is empty")
+        #expect(!isValid, "Task validation should fail when title is empty")
     }
     
-    func testTaskValidationSucceedsWithValidData() {
+    @Test func testTaskValidationSucceedsWithValidData() throws {
         var taskForm = TaskForm()
         taskForm.title = "New Task"
         taskForm.details = "Details about task"
         let isValid = taskForm.validate()
-        XCTAssertTrue(isValid, "Task validation should succeed with valid data")
+        #expect(isValid, "Task validation should succeed with valid data")
     }
     
-    // MARK: - Ticket Validation Tests
-    
-    func testTicketValidationFailsWithEmptyTitle() {
+    @Test func testTicketValidationFailsWithEmptyTitle() throws {
         var ticketForm = TicketForm()
         ticketForm.title = ""
         let isValid = ticketForm.validate()
-        XCTAssertFalse(isValid, "Ticket validation should fail when title is empty")
+        #expect(!isValid, "Ticket validation should fail when title is empty")
     }
     
-    func testTicketValidationSucceedsWithValidData() {
+    @Test func testTicketValidationSucceedsWithValidData() throws {
         var ticketForm = TicketForm()
         ticketForm.title = "New Ticket"
         ticketForm.description = "Details about ticket"
         let isValid = ticketForm.validate()
-        XCTAssertTrue(isValid, "Ticket validation should succeed with valid data")
+        #expect(isValid, "Ticket validation should succeed with valid data")
     }
     
-    // MARK: - Save Error Path Tests
-    
-    func testTaskSaveError() async {
-        // Use XCTExpectFailure to mark test expected to fail due to simulated save error
-        XCTExpectFailure("Simulate save error path for Task repository") {
-            let failingRepo = FailingTaskRepository()
-            do {
-                let task = Task(title: "Test Task")
-                try await failingRepo.save(task)
-                XCTFail("Save should have thrown an error")
-            } catch {
-                XCTAssertEqual(error as? RepositoryError, .saveFailed)
-            }
+    @Test func testTaskSaveError() async {
+        let failingRepo = FailingTaskRepository()
+        do {
+            let task = Task(title: "Test Task")
+            try await failingRepo.save(task)
+            #expect(false, "Save should have thrown an error")
+        } catch {
+            #expect(error as? RepositoryError == .saveFailed, "Expected saveFailed error")
         }
     }
     
-    func testTicketSaveError() async {
-        // Use XCTExpectFailure to mark test expected to fail due to simulated save error
-        XCTExpectFailure("Simulate save error path for Ticket repository") {
-            let failingRepo = FailingTicketRepository()
-            do {
-                let ticket = Ticket(title: "Test Ticket")
-                try await failingRepo.save(ticket)
-                XCTFail("Save should have thrown an error")
-            } catch {
-                XCTAssertEqual(error as? RepositoryError, .saveFailed)
-            }
+    @Test func testTicketSaveError() async {
+        let failingRepo = FailingTicketRepository()
+        do {
+            let ticket = Ticket(title: "Test Ticket")
+            try await failingRepo.save(ticket)
+            #expect(false, "Save should have thrown an error")
+        } catch {
+            #expect(error as? RepositoryError == .saveFailed, "Expected saveFailed error")
         }
     }
 }

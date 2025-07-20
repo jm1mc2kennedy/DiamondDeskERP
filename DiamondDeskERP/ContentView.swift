@@ -7,7 +7,6 @@
 
 import SwiftUI
 import CloudKit
-import NotificationService
 
 struct ContentView: View {
     // Changed to optional and initially nil to represent loading state of user ID
