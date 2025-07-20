@@ -14,11 +14,12 @@ struct ProjectCreationView: View {
     @State private var startDate: Date = Date()
     @State private var endDate: Date? = nil
     @State private var status: ProjectStatus = .planning
+    @State private var navigationPath = NavigationPath()
     @Environment(\.dismiss) private var dismiss
     @State private var showError = false
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             Form {
                 Section(header: Text("Project Info")) {
                     TextField("Name", text: $name)
@@ -64,7 +65,7 @@ struct ProjectCreationView: View {
             } message: {
                 Text(viewModel.errorMessage ?? "Unknown error")
             }
-            )
+        }
         }
     }
 }

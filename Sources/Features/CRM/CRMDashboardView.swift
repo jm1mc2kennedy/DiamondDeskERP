@@ -6,9 +6,10 @@ struct CRMDashboardView: View {
     @State private var showingFollowUpForm = false
     @State private var selectedClient: ClientModel?
     @State private var suggestions: [FollowUpSuggestion] = []
+    @State private var navigationPath = NavigationPath()
     
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             VStack(spacing: 0) {
                 // Tab Bar
                 CRMTabBar(selectedTab: $selectedTab)

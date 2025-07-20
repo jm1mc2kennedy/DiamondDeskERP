@@ -16,10 +16,11 @@ struct EmployeeCreationView: View {
     @State private var email: String = ""
     @State private var mobilePhone: String = ""
     @State private var profileImageURL: String = ""
+    @State private var navigationPath = NavigationPath()
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             Form {
                 Section(header: Text("Personal Info")) {
                     TextField("First Name", text: $firstName)
@@ -71,7 +72,7 @@ struct EmployeeCreationView: View {
             } message: {
                 Text(viewModel.errorMessage ?? "Unknown error")
             }
-            )
+        }
         }
     }
 }

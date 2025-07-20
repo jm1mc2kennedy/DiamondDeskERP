@@ -11,10 +11,11 @@ import SwiftUI
 /// Filter view for AI insights with comprehensive filtering options
 struct AIInsightsFilterView: View {
     @ObservedObject var viewModel: AIInsightsViewModel
+    @State private var navigationPath = NavigationPath()
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             List {
                 // Search Section
                 searchSection

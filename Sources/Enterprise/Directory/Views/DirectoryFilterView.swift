@@ -16,9 +16,10 @@ struct DirectoryFilterView: View {
     @State private var selectedDepartments: Set<String> = []
     @State private var selectedLevels: Set<EmployeeLevel> = []
     @State private var selectedLocations: Set<LocationType> = []
+    @State private var navigationPath = NavigationPath()
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             Form {
                 Section(header: Text("Search")) {
                     TextField("Search by name or skill", text: $searchText)

@@ -4,9 +4,10 @@ struct KPIListView: View {
     @StateObject private var viewModel = KPIViewModel()
     @Environment(\.currentUser) private var currentUser
     @State private var selectedTimePeriod: TimePeriod = .mtd
+    @State private var navigationPath = NavigationPath()
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             VStack {
                 Picker("Time Period", selection: $selectedTimePeriod) {
                     ForEach(TimePeriod.allCases) { period in

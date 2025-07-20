@@ -3,9 +3,10 @@ import SwiftUI
 struct TaskListView: View {
     @StateObject private var viewModel = TaskViewModel()
     @Environment(\.currentUser) private var currentUser
+    @State private var navigationPath = NavigationPath()
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             Group {
                 if viewModel.isLoading {
                     ProgressView("Loading tasks...")

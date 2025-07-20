@@ -5,13 +5,14 @@ import SwiftUI
 
 struct StoreReportListView: View {
     @StateObject private var viewModel: StoreReportViewModel
+    @State private var navigationPath = NavigationPath()
     
     init(storeCode: String) {
         _viewModel = StateObject(wrappedValue: StoreReportViewModel(storeCode: storeCode))
     }
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             VStack {
                 if let error = viewModel.error {
                     Text("Error: \(error.underlying.localizedDescription)")

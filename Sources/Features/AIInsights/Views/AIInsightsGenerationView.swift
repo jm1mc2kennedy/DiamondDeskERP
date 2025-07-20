@@ -27,6 +27,7 @@ struct AIInsightsGenerationView: View {
     @State private var isGenerating = false
     @State private var generationProgress: Double = 0.0
     @State private var showingAdvancedOptions = false
+    @State private var navigationPath = NavigationPath()
     
     // MARK: - Enums
     
@@ -82,7 +83,7 @@ struct AIInsightsGenerationView: View {
     // MARK: - View Body
     
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             ScrollView {
                 VStack(spacing: 24) {
                     // Header Section

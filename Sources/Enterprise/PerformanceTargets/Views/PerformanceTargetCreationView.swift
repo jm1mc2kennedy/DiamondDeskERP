@@ -16,10 +16,11 @@ struct PerformanceTargetCreationView: View {
     @State private var unit: String = ""
     @State private var period: TimePeriod = .monthly
     @State private var recurrence: Recurrence = .none
+    @State private var navigationPath = NavigationPath()
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             Form {
                 Section(header: Text("Target Info")) {
                     TextField("Name", text: $name)
@@ -75,7 +76,7 @@ struct PerformanceTargetCreationView: View {
             } message: {
                 Text(viewModel.errorMessage ?? "Unknown error")
             }
-            )
+        }
         }
     }
 }

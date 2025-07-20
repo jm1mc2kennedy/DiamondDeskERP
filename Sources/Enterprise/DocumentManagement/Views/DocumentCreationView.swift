@@ -8,10 +8,11 @@ struct DocumentCreationView: View {
     @State private var assetURLString: String = ""
     @State private var createdBy: String = ""
     @State private var showError = false
+    @State private var navigationPath = NavigationPath()
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             Form {
                 Section(header: Text("Document Info")) {
                     TextField("Title", text: $title)
