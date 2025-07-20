@@ -551,6 +551,258 @@ Feature: HR ticket redaction in unauthorized list
 
 **End of Document**
 
+### Data Models (addendum)
+
+#### Phase 4 Enterprise Models
+
+```swift
+// Document Management System Models
+struct DocumentModel: Identifiable, Codable {
+    let id: String
+    var title: String
+    var fileType: String
+    var fileSize: Int64
+    var version: String
+    var createdBy: String
+    var createdAt: Date
+    var modifiedBy: String
+    var modifiedAt: Date
+    var accessLevel: DocumentAccessLevel
+    var departmentRestrictions: [String]
+    var tags: [String]
+    var documentPath: String
+    var thumbnailPath: String?
+    var checkoutBy: String?
+    var checkoutAt: Date?
+    var approvalStatus: DocumentApprovalStatus
+    var retentionPolicy: RetentionPolicy
+    var auditTrail: [DocumentAuditEntry]
+}
+
+enum DocumentAccessLevel: String, CaseIterable {
+    case public = "PUBLIC"
+    case internal = "INTERNAL" 
+    case confidential = "CONFIDENTIAL"
+    case restricted = "RESTRICTED"
+}
+
+enum DocumentApprovalStatus: String, CaseIterable {
+    case draft = "DRAFT"
+    case pendingReview = "PENDING_REVIEW"
+    case approved = "APPROVED"
+    case rejected = "REJECTED"
+    case archived = "ARCHIVED"
+}
+
+struct DocumentAuditEntry: Codable {
+    let action: String
+    let performedBy: String
+    let timestamp: Date
+    let details: String
+    let ipAddress: String?
+}
+
+// Unified Permissions Framework Models
+struct RoleDefinitionModel: Identifiable, Codable {
+    let id: String
+    var name: String
+    var description: String
+    var inheritFrom: String?
+    var permissions: [PermissionEntry]
+    var contextualRules: [ContextualRule]
+    var isSystemRole: Bool
+    var departmentScope: [String]
+    var locationScope: [String]
+    var createdAt: Date
+    var modifiedAt: Date
+}
+
+struct PermissionEntry: Codable {
+    let resource: String
+    let actions: [String]
+    let conditions: [String]?
+    let inherited: Bool
+}
+
+struct ContextualRule: Codable {
+    let condition: String
+    let timeRestrictions: TimeRestriction?
+    let locationRestrictions: [String]?
+    let additionalPermissions: [PermissionEntry]
+    let deniedPermissions: [PermissionEntry]
+}
+
+// Employee & Vendor Directory Models  
+struct EmployeeModel: Identifiable, Codable {
+    let id: String
+    var employeeNumber: String
+    var firstName: String
+    var lastName: String
+    var email: String
+    var phone: String?
+    var department: String
+    var title: String
+    var manager: String?
+    var directReports: [String]
+    var hireDate: Date
+    var birthDate: Date?
+    var address: Address
+    var emergencyContact: EmergencyContact
+    var skills: [String]
+    var certifications: [Certification]
+    var performanceHistory: [PerformanceReview]
+    var isActive: Bool
+    var profilePhoto: String?
+}
+
+struct VendorModel: Identifiable, Codable {
+    let id: String
+    var companyName: String
+    var contactPerson: String
+    var email: String
+    var phone: String
+    var address: Address
+    var vendorType: VendorType
+    var contractStart: Date
+    var contractEnd: Date
+    var paymentTerms: String
+    var performanceRating: Double
+    var certifications: [String]
+    var serviceCategories: [String]
+    var isPreferred: Bool
+    var riskLevel: RiskLevel
+    var auditHistory: [VendorAudit]
+}
+
+// Enhanced Audit Models
+struct AuditTemplateModel: Identifiable, Codable {
+    let id: String
+    var name: String
+    var description: String
+    var category: String
+    var sections: [AuditSection]
+    var scoringMethod: ScoringMethod
+    var passingScore: Double
+    var estimatedDuration: Int
+    var requiredRole: String
+    var autoCreateTickets: Bool
+    var complianceFramework: String?
+    var version: String
+    var isActive: Bool
+    var createdBy: String
+    var createdAt: Date
+}
+
+struct AuditSection: Codable, Identifiable {
+    let id: String
+    var title: String
+    var weight: Double
+    var items: [AuditItem]
+    var conditionalLogic: ConditionalLogic?
+}
+
+struct AuditItem: Codable, Identifiable {
+    let id: String
+    var question: String
+    var itemType: AuditItemType
+    var required: Bool
+    var weight: Double
+    var acceptableValues: [String]?
+    var photoRequired: Bool
+    var aiAnalysisEnabled: Bool
+    var helpText: String?
+}
+
+// Performance Target Management Models
+struct PerformanceGoalModel: Identifiable, Codable {
+    let id: String
+    var title: String
+    var description: String
+    var goalType: GoalType
+    var targetValue: Double
+    var currentValue: Double
+    var unit: String
+    var period: GoalPeriod
+    var assignedTo: String
+    var assignedBy: String
+    var parentGoal: String?
+    var childGoals: [String]
+    var startDate: Date
+    var endDate: Date
+    var status: GoalStatus
+    var progress: Double
+    var milestones: [Milestone]
+    var kpiMetrics: [KPIMetric]
+}
+
+enum GoalType: String, CaseIterable {
+    case individual = "INDIVIDUAL"
+    case team = "TEAM"
+    case department = "DEPARTMENT"
+    case company = "COMPANY"
+}
+
+enum GoalPeriod: String, CaseIterable {
+    case daily = "DAILY"
+    case weekly = "WEEKLY"
+    case monthly = "MONTHLY"
+    case quarterly = "QUARTERLY"
+    case annual = "ANNUAL"
+}
+
+// Enterprise Project Management Models
+struct ProjectModel: Identifiable, Codable {
+    let id: String
+    var name: String
+    var description: String
+    var projectManager: String
+    var sponsor: String
+    var startDate: Date
+    var endDate: Date
+    var status: ProjectStatus
+    var priority: ProjectPriority
+    var budget: Double
+    var actualCost: Double
+    var progress: Double
+    var phases: [ProjectPhase]
+    var dependencies: [ProjectDependency]
+    var resources: [ResourceAllocation]
+    var risks: [ProjectRisk]
+    var stakeholders: [String]
+    var deliverables: [Deliverable]
+}
+
+struct ProjectPhase: Codable, Identifiable {
+    let id: String
+    var name: String
+    var startDate: Date
+    var endDate: Date
+    var status: PhaseStatus
+    var progress: Double
+    var tasks: [String]
+    var milestones: [Milestone]
+    var budget: Double
+    var actualCost: Double
+}
+
+struct ResourceAllocation: Codable {
+    let resourceId: String
+    let resourceType: ResourceType
+    let allocation: Double // percentage
+    let startDate: Date
+    let endDate: Date
+    let cost: Double
+}
+
+enum ResourceType: String, CaseIterable {
+    case human = "HUMAN"
+    case equipment = "EQUIPMENT"
+    case facility = "FACILITY"
+    case software = "SOFTWARE"
+    case budget = "BUDGET"
+}
+```
+
 //
 //  AppProjectBuildoutPlanPT3VS1.swift
 //  DiamondDeskERP

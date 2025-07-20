@@ -57,6 +57,7 @@ _Note: in prior commits F5 was split into **AI Assistance README** and **CloudK
   /Features/<FeatureName>/{Views, ViewModels, Models, Components}
   /Shared/{UIComponents, Extensions, Utilities}
   /Resources/{Assets, Fonts, Localization (future), Config}
+  /Enterprise/{DocumentManagement, PermissionFramework, Directory, AuditTemplates, PerformanceTargets, ProjectManagement} (Phase 4 Modules)
 /Tests/{Unit, UI}
 ```
 

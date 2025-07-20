@@ -442,3 +442,146 @@ struct TaskModel: Identifiable, Hashable {
     var ackUserIds: [String]
 }
 
+---
+
+## Phase 4 – New Enterprise Modules
+
+### Document Management System (DMS)
+**Timeline:** 2025-Q4 to 2026-Q1  
+**Scope:** Full document lifecycle management with CloudKit private database integration
+
+#### Core Components
+- **DocumentModel.swift** - Document metadata, versioning, and access control
+- **DocumentRepository.swift** - CloudKit operations for document records and CKAsset handling
+- **DocumentListView.swift** - Document browser with search, filtering, and bulk operations
+- **DocumentDetailView.swift** - Document viewer with annotation, sharing, and version history
+- **DocumentUploadService.swift** - Multi-format upload with progress tracking and validation
+- **DocumentVersioningService.swift** - Version control with diff tracking and rollback capabilities
+
+#### Enterprise Features
+- **Access Control:** Role-based permissions with department-level restrictions
+- **Workflow Integration:** Document approval workflows with digital signatures
+- **Compliance:** Retention policies, audit trails, and regulatory compliance reporting
+- **Storage Management:** Intelligent tiering with automatic archival and compression
+
+### Unified Permissions Framework
+**Timeline:** 2025-Q4 (Foundation) 
+**Scope:** Centralized authorization system replacing distributed role checks
+
+#### Architecture
+- **PermissionService.swift** - Central authorization engine with caching
+- **RoleDefinitionModel.swift** - Dynamic role definitions with inheritance
+- **PermissionMatrix.swift** - Action-resource mapping with context awareness
+- **AdminPermissionView.swift** - Visual permission editor with inheritance visualization
+
+#### Advanced Capabilities
+- **Contextual Permissions:** Location, time, and condition-based access
+- **Permission Inheritance:** Role hierarchy with override capabilities
+- **Audit Integration:** Complete permission usage logging and reporting
+- **Dynamic Updates:** Real-time permission changes without app restart
+
+### Vendor & Employee Directory
+**Timeline:** 2026-Q1  
+**Scope:** Comprehensive personnel and vendor management system
+
+#### Core Models
+- **EmployeeModel.swift** - Extended employee profiles with organizational hierarchy
+- **VendorModel.swift** - Vendor information with contract and performance tracking
+- **ContactModel.swift** - Unified contact management with communication history
+- **OrganizationChartModel.swift** - Dynamic organizational structure representation
+
+#### Directory Features
+- **Advanced Search:** Full-text search with faceted filtering and sorting
+- **Integration Points:** Calendar, communication, and task assignment integration
+- **Reporting:** Personnel analytics, vendor performance metrics, and org chart visualization
+- **Compliance:** GDPR-compliant data handling with consent management
+
+### Audits Module (Expanded)
+**Timeline:** 2026-Q1  
+**Scope:** Enterprise-grade audit management with advanced workflow
+
+#### Enhanced Capabilities
+- **Custom Audit Templates:** Visual template builder with conditional logic
+- **Advanced Scoring:** Weighted scoring, benchmarking, and trend analysis
+- **Remediation Tracking:** Action item management with escalation workflows
+- **Compliance Reporting:** Automated compliance reports with regulatory templates
+
+#### Integration Enhancements
+- **Photo AI Analysis:** Automated compliance checking using CoreML
+- **IoT Integration:** Sensor data integration for environmental audits
+- **Third-party Connectors:** Integration with external audit platforms
+- **Predictive Analytics:** ML-powered audit scheduling and risk assessment
+
+### Performance Target Management
+**Timeline:** 2026-Q1  
+**Scope:** Advanced performance management with goal cascading
+
+#### Core Features
+- **Goal Cascading:** Top-down goal alignment with automatic target distribution
+- **Performance Analytics:** Advanced KPI calculations with predictive modeling
+- **Coaching Integration:** Performance coaching workflows with feedback loops
+- **Incentive Management:** Bonus calculation and performance reward tracking
+
+#### Advanced Analytics
+- **Predictive Performance:** ML models for performance forecasting
+- **Peer Benchmarking:** Comparative performance analysis across similar roles/stores
+- **Performance Correlation:** Multi-variable analysis of performance drivers
+- **Real-time Dashboards:** Executive dashboards with drill-down capabilities
+
+### Project & Task Management (Enterprise)
+**Timeline:** 2026-Q1  
+**Scope:** Enterprise project management with resource allocation
+
+#### Project Management
+- **ProjectModel.swift** - Complex project structures with dependencies
+- **ResourceAllocationService.swift** - Intelligent resource scheduling and optimization
+- **ProjectDashboardView.swift** - Executive project portfolio view
+- **GanttChartView.swift** - Interactive project timeline with critical path analysis
+
+#### Advanced Task Features
+- **Task Dependencies:** Complex dependency chains with automatic scheduling
+- **Resource Optimization:** AI-powered resource allocation and load balancing
+- **Portfolio Management:** Multi-project view with resource conflict resolution
+- **Integration APIs:** External project management tool integration
+
+#### Collaboration Enhancement
+- **Real-time Collaboration:** Live document editing and comment threading
+- **Video Integration:** Embedded video conferencing for project meetings
+- **Workflow Automation:** Custom workflow builders with approval chains
+- **External Integrations:** Slack, Teams, and external calendar synchronization
+
+### Implementation Strategy
+
+#### Phase 4A: Foundation (2025-Q4)
+1. **Unified Permissions Framework** - Core authorization system
+2. **Document Management** - Basic document storage and retrieval
+3. **Enhanced Audit Templates** - Visual template builder
+
+#### Phase 4B: Integration (2026-Q1)
+1. **Vendor & Employee Directory** - Complete personnel management
+2. **Performance Target Management** - Advanced performance analytics
+3. **Enterprise Project Management** - Full project lifecycle management
+
+#### Technical Requirements
+- **CloudKit Private Database** - Enhanced security for enterprise data
+- **CoreML Integration** - AI-powered analytics and automation
+- **Advanced Caching** - Enterprise-scale performance optimization
+- **Real-time Sync** - Enhanced CloudKit subscriptions for live collaboration
+- **Security Hardening** - Advanced encryption and access control
+
+#### Success Metrics
+- **User Adoption:** 90% enterprise user engagement within 6 months
+- **Performance:** Sub-200ms response times for all enterprise operations
+- **Compliance:** 100% audit trail coverage for enterprise actions
+- **Integration:** Seamless workflow between all enterprise modules
+
+---
+
+**End of Document**
+
+//
+//  AppProjectBuildoutPlanVS2.md
+//  DiamondDeskERP
+//
+//  Created by J.Michael McDermott on 7/19/25.
+//

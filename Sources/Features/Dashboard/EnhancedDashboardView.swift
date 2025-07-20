@@ -3,51 +3,47 @@ import Charts
 
 struct EnhancedDashboardView: View {
     @StateObject private var dashboardViewModel = DashboardViewModel()
+    @Environment(\.navigationRouter) private var router
     @State private var selectedTimeRange: TimeRange = .thisMonth
-    @State private var showingFilters = false
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVStack(spacing: 20) {
-                    // Time Range Selector
-                    TimeRangePicker(selectedRange: $selectedTimeRange)
-                        .padding(.horizontal)
-                        .onChange(of: selectedTimeRange) { _ in
-                            Task {
-                                await dashboardViewModel.loadData(for: selectedTimeRange)
-                            }
+        ScrollView {
+            LazyVStack(spacing: 20) {
+                // Time Range Selector
+                TimeRangePicker(selectedRange: $selectedTimeRange)
+                    .padding(.horizontal)
+                    .onChange(of: selectedTimeRange) { _ in
+                        Task {
+                            await dashboardViewModel.loadData(for: selectedTimeRange)
                         }
-                    
-                    // KPI Overview
-                    KPIOverviewSection()
-                    
-                    // Charts Section
-                    ChartsSection()
-                    
-                    // Performance Metrics
-                    PerformanceMetricsSection()
-                    
-                    // Quick Actions
-                    QuickActionsSection()
-                    
-                    // Recent Activity
-                    RecentActivitySection()
-                }
-                .padding(.bottom, 20)
-            }
-            .navigationTitle("Dashboard")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Filters") {
-                        showingFilters = true
                     }
+                
+                // KPI Overview
+                KPIOverviewSection()
+                
+                // Charts Section
+                ChartsSection()
+                
+                // Performance Metrics
+                PerformanceMetricsSection()
+                
+                // Quick Actions
+                QuickActionsSection()
+                
+                // Recent Activity
+                RecentActivitySection()
+            }
+            .padding(.bottom, 20)
+        }
+        .navigationTitle("Dashboard")
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Filters") {
+                    router.navigateToDashboardFilters()
                 }
             }
-            .sheet(isPresented: $showingFilters) {
-                DashboardFiltersView(viewModel: dashboardViewModel)
-            }
+        }
             .refreshable {
                 await dashboardViewModel.loadData(for: selectedTimeRange)
             }
@@ -260,7 +256,7 @@ struct EnhancedDashboardView: View {
                         icon: "plus.circle.fill",
                         color: .blue
                     ) {
-                        // Navigate to new task
+                        router.presentCreateTask()
                     }
                     
                     QuickActionButton(
@@ -268,7 +264,7 @@ struct EnhancedDashboardView: View {
                         icon: "person.badge.plus",
                         color: .green
                     ) {
-                        // Navigate to new client
+                        router.navigateToClientList()
                     }
                     
                     QuickActionButton(
@@ -276,7 +272,7 @@ struct EnhancedDashboardView: View {
                         icon: "ticket.fill",
                         color: .orange
                     ) {
-                        // Navigate to new ticket
+                        router.presentCreateTicket()
                     }
                     
                     QuickActionButton(
@@ -284,7 +280,15 @@ struct EnhancedDashboardView: View {
                         icon: "calendar.badge.plus",
                         color: .purple
                     ) {
-                        // Navigate to CRM
+                        router.presentCreateFollowUp()
+                    }
+                    
+                    QuickActionButton(
+                        title: "Documents",
+                        icon: "folder.fill",
+                        color: .indigo
+                    ) {
+                        router.navigateToDocuments()
                     }
                     
                     QuickActionButton(
@@ -292,7 +296,7 @@ struct EnhancedDashboardView: View {
                         icon: "doc.text.fill",
                         color: .teal
                     ) {
-                        // Navigate to reports
+                        // TODO: Navigate to reports when implemented
                     }
                 }
                 .padding(.horizontal)
@@ -313,8 +317,8 @@ struct EnhancedDashboardView: View {
                 }
                 
                 if dashboardViewModel.recentActivities.count > 5 {
-                    NavigationLink("View All Activity") {
-                        ActivityHistoryView()
+                    Button("View All Activity") {
+                        router.dashboardPath.append(NavigationDestination.activityHistory)
                     }
                     .font(.subheadline)
                     .foregroundColor(.blue)
