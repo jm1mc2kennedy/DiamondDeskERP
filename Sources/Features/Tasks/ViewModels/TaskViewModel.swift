@@ -38,44 +38,103 @@ class TaskViewModel: ObservableObject {
         }
     }
     
-    func createTask(data: [String: Any], createdBy user: User) async throws {
-        let record = CKRecord(recordType: "Task")
-        
-        record["title"] = data["title"] as? String
-        record["description"] = data["description"] as? String
-        record["status"] = data["status"] as? String
-        record["dueDate"] = data["dueDate"] as? Date
-        record["isGroupTask"] = data["isGroupTask"] as? Bool
-        record["completionMode"] = data["completionMode"] as? String
-        record["requiresAck"] = data["requiresAck"] as? Bool
-        record["storeCodes"] = data["storeCodes"] as? [String]
-        record["departments"] = data["departments"] as? [String]
-        record["createdAt"] = data["createdAt"] as? Date
-        
-        // Create user references
-        let createdByRef = CKRecord.Reference(recordID: user.id, action: .none)
-        record["createdByRef"] = createdByRef
-        
-        // Convert assignedUserIds to references
-        if let assignedUserIds = data["assignedUserIds"] as? [String] {
-            let assignedRefs = assignedUserIds.map { userId in
-                CKRecord.Reference(recordID: CKRecord.ID(recordName: userId), action: .none)
-            }
-            record["assignedUserRefs"] = assignedRefs
-        }
-        
-        // Initialize empty completed users array
-        record["completedUserRefs"] = [] as [CKRecord.Reference]
+    import Foundation
+import CloudKit
+import Combine
+
+@MainActor
+class TaskViewModel: ObservableObject {
+    @Published var tasks: [TaskModel] = []
+    @Published var error: Error?
+    @Published var isLoading: Bool = false
+    
+    private let repository: TaskRepository
+    
+    init(repository: TaskRepository = TaskRepository()) {
+        self.repository = repository
+    }
+    
+    func loadTasks() async {
+        isLoading = true
         
         do {
-            let savedRecord = try await database.save(record)
-            if let newTask = TaskModel(record: savedRecord) {
-                await MainActor.run {
-                    self.tasks.append(newTask)
-                }
-            }
+            let fetchedTasks = try await repository.fetchAll()
+            self.tasks = fetchedTasks
+            self.error = nil
         } catch {
-            throw error
+            self.error = error
         }
+        
+        isLoading = false
     }
+    
+    func fetchTasks(for user: User) async {
+        isLoading = true
+        
+        do {
+            let fetchedTasks = try await repository.fetchTasks(for: user)
+            self.tasks = fetchedTasks
+            self.error = nil
+        } catch {
+            self.error = error
+        }
+        
+        isLoading = false
+    }
+    
+    @MainActor
+    func createTask(
+        title: String,
+        description: String,
+        priority: TaskPriority,
+        status: TaskStatus,
+        completionMode: TaskCompletionMode,
+        category: String,
+        dueDate: Date,
+        estimatedDuration: TimeInterval,
+        assignee: User?,
+        collaborators: [User],
+        tags: [String],
+        creator: User
+    ) async throws -> TaskModel {
+        
+        let task = TaskModel(
+            id: UUID().uuidString,
+            title: title,
+            description: description,
+            priority: priority,
+            status: status,
+            completionMode: completionMode,
+            category: category,
+            dueDate: dueDate,
+            estimatedDuration: estimatedDuration,
+            assignee: assignee,
+            creator: creator,
+            collaborators: collaborators,
+            tags: tags,
+            createdAt: Date(),
+            updatedAt: Date()
+        )
+        
+        // Save the task
+        try await repository.save(task)
+        
+        // Reload tasks to refresh the list
+        await loadTasks()
+        
+        return task
+    }
+    
+    @MainActor
+    func updateTask(_ task: TaskModel) async throws {
+        try await repository.save(task)
+        await loadTasks()
+    }
+    
+    @MainActor
+    func deleteTask(_ task: TaskModel) async throws {
+        try await repository.delete(task)
+        await loadTasks()
+    }
+}
 }
