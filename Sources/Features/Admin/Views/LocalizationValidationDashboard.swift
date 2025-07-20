@@ -6,9 +6,10 @@ struct LocalizationValidationDashboard: View {
     @StateObject private var validationService = LocalizationValidationService.shared
     @State private var showingDetailReport = false
     @State private var showingExportSheet = false
+    @State private var navigationPath = NavigationPath()
     
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             ScrollView {
                 VStack(spacing: 20) {
                     // Header Section

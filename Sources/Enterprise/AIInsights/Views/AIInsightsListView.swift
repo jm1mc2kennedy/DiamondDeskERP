@@ -13,9 +13,10 @@ struct AIInsightsListView: View {
     @StateObject private var viewModel = AIInsightsViewModel()
     @State private var showingFilterSheet = false
     @State private var selectedInsight: AIInsight?
+    @State private var navigationPath = NavigationPath()
     
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             VStack(spacing: 0) {
                 // Quick Filters
                 quickFiltersSection
@@ -52,7 +53,6 @@ struct AIInsightsListView: View {
                 await viewModel.loadInsights()
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     // MARK: - Quick Filters Section

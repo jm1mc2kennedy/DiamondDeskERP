@@ -10,9 +10,10 @@ import SwiftUI
 struct PerformanceTargetsListView: View {
     @StateObject var viewModel: PerformanceTargetsViewModel
     @State private var showingCreation = false
+    @State private var navigationPath = NavigationPath()
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             Group {
                 if viewModel.isLoading {
                     ProgressView("Loading Performance Targets...")

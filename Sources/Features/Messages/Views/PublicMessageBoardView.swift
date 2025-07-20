@@ -4,6 +4,7 @@ struct PublicMessageBoardView: View {
     @StateObject private var viewModel = MessageViewModel()
     @State private var filterAuthor = ""
     @State private var showNewMessageSheet = false
+    @State private var navigationPath = NavigationPath()
 
     var filteredMessages: [PublicMessage] {
         if filterAuthor.isEmpty {
@@ -14,7 +15,7 @@ struct PublicMessageBoardView: View {
     }
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             VStack {
                 Text("Welcome, \(viewModel.iCloudUserName ?? "Loading...")!")
                     .font(.subheadline)

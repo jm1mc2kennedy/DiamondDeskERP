@@ -12,11 +12,12 @@ struct ConflictViewer: View {
     @State private var showingStatistics = false
     @State private var isLoading = false
     @State private var errorMessage: String?
+    @State private var navigationPath = NavigationPath()
     
     private let recordTypes = ["All", "Task", "Ticket", "Client", "KPI", "StoreReport"]
     
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             VStack {
                 if conflictService.activeConflicts.isEmpty && !isLoading {
                     emptyStateView

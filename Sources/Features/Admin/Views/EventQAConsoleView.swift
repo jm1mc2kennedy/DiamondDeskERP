@@ -16,6 +16,7 @@ struct EventQAConsoleView: View {
     @State private var isExporting = false
     @State private var showingAlert = false
     @State private var searchText = ""
+    @State private var navigationPath = NavigationPath()
     
     enum ConsoleTab: String, CaseIterable {
         case events = "Events"
@@ -25,7 +26,7 @@ struct EventQAConsoleView: View {
     }
     
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             VStack(spacing: 0) {
                 // Header with controls
                 headerView

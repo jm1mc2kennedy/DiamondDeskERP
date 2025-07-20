@@ -42,6 +42,8 @@ final class DocumentViewModel: ObservableObject {
     @Published var showingAdvancedSearchSheet = false
     @Published var showingUploadProgress = false
     @Published var uploadProgress: Double = 0.0
+    @Published var showingShareSheet = false
+    @Published var shareURL: URL?
     
     // MARK: - Form Properties
     
@@ -469,8 +471,8 @@ final class DocumentViewModel: ObservableObject {
                 
                 // Show share sheet
                 await MainActor.run {
-                    // TODO: Implement share sheet presentation
-                    print("Sharing document: \(document.title)")
+                    shareURL = tempURL
+                    showingShareSheet = true
                 }
                 
             } catch {
@@ -485,8 +487,16 @@ final class DocumentViewModel: ObservableObject {
             do {
                 let data = try await downloadDocument(document)
                 
-                // TODO: Implement document export to Files app
-                print("Exporting document: \(document.title)")
+                // Export to Files app via document picker
+                let tempURL = FileManager.default.temporaryDirectory
+                    .appendingPathComponent(document.fileName)
+                
+                try data.write(to: tempURL)
+                
+                await MainActor.run {
+                    shareURL = tempURL
+                    showingShareSheet = true
+                }
                 
             } catch {
                 handleError(error)

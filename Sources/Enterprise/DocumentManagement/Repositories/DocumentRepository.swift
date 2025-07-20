@@ -378,8 +378,8 @@ final class DocumentRepository: ObservableObject {
     }
     
     private func getCurrentUser() async -> String {
-        // TODO: Integrate with UserProvisioningService
-        return "current-user-id"
+        // Integrate with UserProvisioningService
+        return await UserProvisioningService.shared.getCurrentUserID() ?? "anonymous-user"
     }
     
     /// Clears error state

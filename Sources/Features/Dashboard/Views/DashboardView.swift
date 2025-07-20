@@ -9,10 +9,11 @@ struct DashboardView: View {
     @State private var reports: [StoreReportModel] = []
     @State private var isLoading = true
     @State private var error: Error?
+    @State private var navigationPath = NavigationPath()
     var storeCode: String
 
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             VStack(spacing: 16) {
                 if isLoading {
                     ProgressView()

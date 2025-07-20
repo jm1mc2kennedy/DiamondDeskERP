@@ -537,8 +537,27 @@ final class DocumentSearchService: ObservableObject {
     }
     
     private func loadPopularTags() {
-        // TODO: Load from analytics or document usage statistics
-        popularTags = ["contract", "invoice", "report", "legal", "financial", "hr", "policy"]
+        // Load from analytics and document usage statistics
+        Task {
+            // Get all documents and count tag frequency
+            let allDocuments = await DocumentService.shared.getAllDocuments()
+            let tagFrequency = Dictionary(
+                allDocuments
+                    .flatMap { $0.tags }
+                    .map { ($0, 1) },
+                uniquingKeysWith: +
+            )
+            
+            // Sort by frequency and take top tags
+            let sortedTags = tagFrequency
+                .sorted { $0.value > $1.value }
+                .prefix(10)
+                .map { $0.key }
+            
+            await MainActor.run {
+                popularTags = Array(sortedTags)
+            }
+        }
     }
     
     // MARK: - Search Index Management

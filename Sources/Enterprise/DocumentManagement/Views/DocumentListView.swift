@@ -77,6 +77,12 @@ struct DocumentListView: View {
                 DocumentDetailView(document: document, viewModel: viewModel)
             }
         }
+        .sheet(isPresented: $viewModel.showingShareSheet) {
+            if let shareURL = viewModel.shareURL {
+                ActivityViewController(activityItems: [shareURL])
+                    .presentationDetents([.medium, .large])
+            }
+        }
         .alert("Error", isPresented: $viewModel.showingError) {
             Button("OK") {
                 viewModel.clearError()
@@ -702,6 +708,21 @@ extension DocumentFileType {
         case .other:
             return "doc"
         }
+    }
+}
+
+// MARK: - Activity View Controller Wrapper
+
+struct ActivityViewController: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // No updates needed
     }
 }
 

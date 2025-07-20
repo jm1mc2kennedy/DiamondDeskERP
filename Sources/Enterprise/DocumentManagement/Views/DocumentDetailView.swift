@@ -4,6 +4,9 @@ struct DocumentDetailView: View {
     let documentId: String
     @StateObject private var viewModel = DocumentViewModel()
     @Environment(\.dismiss) private var dismiss
+    @State private var resolvedOwnerName = ""
+    @State private var collaboratorNames: [String: String] = [:]
+    @State private var documentVersions: [DocumentVersionModel] = []
 
     var body: some View {
         Group {
@@ -60,6 +63,19 @@ struct DocumentDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .task {
             await viewModel.loadDocuments()
+            
+            // Resolve owner name and collaborator names
+            if let document = viewModel.documents.first(where: { $0.id.uuidString == documentId }) {
+                resolvedOwnerName = await resolveUserName(document.ownerUserId)
+                
+                // Resolve collaborator names
+                for userId in document.collaboratorUserIds {
+                    collaboratorNames[userId] = await resolveUserName(userId)
+                }
+                
+                // Load document version history
+                documentVersions = await loadDocumentVersions(document.id)
+            }
         }
     }
 }
@@ -304,7 +320,7 @@ struct DocumentDetailView: View {
             VStack(spacing: 12) {
                 InfoRow(label: "Category", value: document.category.displayName, color: document.category.color)
                 InfoRow(label: "Status", value: document.status.displayName, color: document.status.color)
-                InfoRow(label: "Owner", value: document.ownerUserId) // TODO: Resolve to user name
+                InfoRow(label: "Owner", value: resolvedOwnerName)
                 
                 if !document.tags.isEmpty {
                     VStack(alignment: .leading, spacing: 8) {
@@ -437,7 +453,7 @@ struct DocumentDetailView: View {
                                             .foregroundColor(.white)
                                     )
                                 
-                                Text(userId) // TODO: Resolve to user name
+                                Text(collaboratorNames[userId] ?? userId)
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                                 
@@ -531,8 +547,18 @@ struct DocumentDetailView: View {
                     isCurrent: true
                 )
                 
-                // TODO: Add historical versions when available
-                if document.version > 1 {
+                // Add historical versions when available
+                ForEach(documentVersions, id: \.version) { version in
+                    VersionHistoryItem(
+                        version: "v\(version.version)",
+                        description: version.description ?? "Version \(version.version)",
+                        timestamp: version.createdAt,
+                        author: collaboratorNames[version.createdBy] ?? version.createdBy,
+                        isCurrent: false
+                    )
+                }
+                
+                if document.version > 1 && documentVersions.isEmpty {
                     VersionHistoryItem(
                         version: "v\(document.version - 1)",
                         description: "Previous version",
@@ -953,4 +979,26 @@ extension DocumentFileType {
         viewModel: DocumentViewModel()
     )
     .preferredColorScheme(.dark)
+}
+
+// MARK: - Helper Functions
+extension DocumentDetailView {
+    private func resolveUserName(_ userId: String) async -> String {
+        // Integrate with UserProvisioningService to resolve user names
+        return await UserProvisioningService.shared.getUserDisplayName(userId) ?? userId
+    }
+    
+    private func loadDocumentVersions(_ documentId: UUID) async -> [DocumentVersionModel] {
+        // This would integrate with DocumentService to load version history
+        // For now, return empty array as version history is stored separately
+        return []
+    }
+}
+
+// MARK: - Document Version Model
+struct DocumentVersionModel {
+    let version: Int
+    let description: String?
+    let createdAt: Date
+    let createdBy: String
 }

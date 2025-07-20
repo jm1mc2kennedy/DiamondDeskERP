@@ -1,0 +1,24 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Phase 4.2 Unified Permissions Framework",
+			"type": "shell",
+			"command": "xcodebuild",
+			"args": [
+				"-project",
+				"DiamondDeskERP.xcodeproj",
+				"-scheme",
+				"DiamondDeskERP",
+				"-destination",
+				"generic/platform=iOS Simulator",
+				"build"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		}
+	]
+}

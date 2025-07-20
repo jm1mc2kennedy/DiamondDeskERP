@@ -7,9 +7,10 @@ struct AnalyticsConsentDashboard: View {
     @State private var showingDetailedReport = false
     @State private var showingExportSheet = false
     @State private var consentMetrics: ConsentMetrics = .empty
+    @State private var navigationPath = NavigationPath()
     
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             ScrollView {
                 VStack(spacing: 20) {
                     // Header Section

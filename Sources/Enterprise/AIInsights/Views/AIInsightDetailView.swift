@@ -12,16 +12,16 @@ import SwiftUI
 struct AIInsightDetailView: View {
     let insight: AIInsight
     let viewModel: AIInsightsViewModel
-    
     @State private var showingFeedbackSheet = false
     @State private var feedbackRating = 3
     @State private var feedbackComment = ""
     @State private var feedbackHelpful = true
+    @State private var navigationPath = NavigationPath()
     
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationView {
+        SimpleAdaptiveNavigationView(path: $navigationPath) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     // Header Section
@@ -82,7 +82,6 @@ struct AIInsightDetailView: View {
                 feedbackSheet
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     // MARK: - Header Section
