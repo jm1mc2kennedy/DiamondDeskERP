@@ -13,9 +13,10 @@ class ProjectService {
     static let shared = ProjectService()
     private init() {}
 
+    /// Fetch all projects from CloudKit
     func fetchProjects() async throws -> [Project] {
-        // TODO: Query CloudKit for Project records
-        return []
+        let repo = ProjectRepository()
+        return try await repo.fetchAllProjects()
     }
 
     func fetchProject(by id: UUID) async throws -> Project? {

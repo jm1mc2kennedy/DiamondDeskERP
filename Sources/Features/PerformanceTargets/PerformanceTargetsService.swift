@@ -11,11 +11,12 @@ import CloudKit
 @MainActor
 class PerformanceTargetsService {
     static let shared = PerformanceTargetsService()
-    private init() {}
+    /// Internal initializer to allow testing subclassing
+    init() {}
 
     func fetchTargets() async throws -> [PerformanceTarget] {
-        // TODO: Query CloudKit for PerformanceTarget records
-        return []
+        let repo = PerformanceTargetsRepository()
+        return try await repo.fetchAllTargets()
     }
 
     func fetchTarget(by id: UUID) async throws -> PerformanceTarget? {

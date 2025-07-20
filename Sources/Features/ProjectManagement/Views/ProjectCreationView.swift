@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ProjectCreationView: View {
+    @ObservedObject var viewModel: ProjectListViewModel
     @State private var name: String = ""
     @State private var description: String = ""
     @State private var startDate: Date = Date()
     @State private var endDate: Date? = nil
     @State private var status: ProjectStatus = .planning
     @Environment(\.dismiss) private var dismiss
+    @State private var showError = false
 
     var body: some View {
         NavigationView {
@@ -40,9 +42,28 @@ struct ProjectCreationView: View {
             .navigationBarItems(
                 leading: Button("Cancel") { dismiss() },
                 trailing: Button("Save") {
-                    // TODO: Save project
-                    dismiss()
-                }.disabled(name.isEmpty)
+                    Task {
+                        await viewModel.saveNewProject(
+                            name: name,
+                            description: description.isEmpty ? nil : description,
+                            startDate: startDate,
+                            endDate: endDate,
+                            status: status
+                        )
+                        if viewModel.errorMessage != nil {
+                            showError = true
+                        } else {
+                            dismiss()
+                        }
+                    }
+                }
+                .disabled(name.isEmpty)
+            )
+            .alert("Error", isPresented: $showError) {
+                Button("OK", role: .cancel) { showError = false }
+            } message: {
+                Text(viewModel.errorMessage ?? "Unknown error")
+            }
             )
         }
     }

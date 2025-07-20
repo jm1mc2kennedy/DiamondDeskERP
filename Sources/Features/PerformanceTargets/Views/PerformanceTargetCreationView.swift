@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct PerformanceTargetCreationView: View {
+    @ObservedObject var viewModel: PerformanceTargetsViewModel
     @State private var name: String = ""
+    @State private var description: String = ""
     @State private var metricType: MetricType = .custom
     @State private var targetValue: String = ""
     @State private var unit: String = ""
@@ -21,12 +23,13 @@ struct PerformanceTargetCreationView: View {
             Form {
                 Section(header: Text("Target Info")) {
                     TextField("Name", text: $name)
-                    Picker("Metric", selection: $metricType) {
-                        ForEach(MetricType.allCases, id: \.self) { metric in
+                    TextField("Description", text: $description)
+                    Picker("Metric Type", selection: $metricType) {
+                        ForEach(MetricType.allCases, id: \ .self) { metric in
                             Text(metric.rawValue).tag(metric)
                         }
                     }
-                    TextField("Value", text: $targetValue)
+                    TextField("Target Value", text: $targetValue)
                         .keyboardType(.decimalPad)
                     TextField("Unit", text: $unit)
                 }
@@ -47,9 +50,31 @@ struct PerformanceTargetCreationView: View {
             .navigationBarItems(
                 leading: Button("Cancel") { dismiss() },
                 trailing: Button("Save") {
-                    // TODO: Save target
-                    dismiss()
-                }.disabled(name.isEmpty || targetValue.isEmpty || unit.isEmpty)
+                    Task {
+                        let value = Double(targetValue) ?? 0
+                        await viewModel.saveNewTarget(
+                            name: name,
+                            description: description.isEmpty ? nil : description,
+                            metricType: metricType,
+                            targetValue: value,
+                            unit: unit,
+                            period: period,
+                            recurrence: recurrence
+                        )
+                        dismiss()
+                    }
+                }
+                .disabled(name.isEmpty || targetValue.isEmpty || unit.isEmpty)
+            )
+            // Error alert
+            .alert("Error", isPresented: Binding(
+                get: { viewModel.errorMessage != nil },
+                set: { _ in viewModel.errorMessage = nil }
+            )) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(viewModel.errorMessage ?? "Unknown error")
+            }
             )
         }
     }

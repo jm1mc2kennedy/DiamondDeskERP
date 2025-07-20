@@ -7,13 +7,19 @@ struct TaskComment: Identifiable, Hashable {
     var authorRef: CKRecord.Reference
     var body: String
     var createdAt: Date
+    var updatedAt: Date
+    var attachments: [String] // Asset URLs
+    var isEdited: Bool
+    var editedAt: Date?
 
     init?(record: CKRecord) {
         guard
             let taskRef = record["taskRef"] as? CKRecord.Reference,
             let authorRef = record["authorRef"] as? CKRecord.Reference,
             let body = record["body"] as? String,
-            let createdAt = record["createdAt"] as? Date
+            let createdAt = record["createdAt"] as? Date,
+            let updatedAt = record["updatedAt"] as? Date,
+            let isEdited = record["isEdited"] as? Bool
         else {
             return nil
         }
@@ -23,6 +29,12 @@ struct TaskComment: Identifiable, Hashable {
         self.authorRef = authorRef
         self.body = body
         self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.isEdited = isEdited
+        
+        // Optional fields
+        self.attachments = record["attachments"] as? [String] ?? []
+        self.editedAt = record["editedAt"] as? Date
     }
     
     func toRecord() -> CKRecord {
@@ -31,10 +43,33 @@ struct TaskComment: Identifiable, Hashable {
         record["authorRef"] = authorRef as CKRecordValue
         record["body"] = body as CKRecordValue
         record["createdAt"] = createdAt as CKRecordValue
+        record["updatedAt"] = updatedAt as CKRecordValue
+        record["isEdited"] = isEdited as CKRecordValue
+        
+        if !attachments.isEmpty {
+            record["attachments"] = attachments as CKRecordValue
+        }
+        if let editedAt = editedAt {
+            record["editedAt"] = editedAt as CKRecordValue
+        }
+        
         return record
     }
     
     static func from(record: CKRecord) -> TaskComment? {
         return TaskComment(record: record)
+    }
+    
+    // MARK: - Helper Methods
+    
+    mutating func editComment(newBody: String) {
+        body = newBody
+        isEdited = true
+        editedAt = Date()
+        updatedAt = Date()
+    }
+    
+    var hasAttachments: Bool {
+        return !attachments.isEmpty
     }
 }

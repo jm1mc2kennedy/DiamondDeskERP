@@ -1,4 +1,72 @@
-//
+import SwiftUI
+
+struct DocumentDetailView: View {
+    let documentId: String
+    @StateObject private var viewModel = DocumentViewModel()
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        Group {
+            if viewModel.isLoading {
+                ProgressView("Loading Document...")
+            } else if let document = viewModel.documents.first(where: { $0.id.uuidString == documentId }) {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text(document.title)
+                            .font(.title)
+                            .fontWeight(.bold)
+                        if let category = document.category {
+                            HStack {
+                                Text("Category:")
+                                    .fontWeight(.semibold)
+                                Text(category)
+                            }
+                        }
+                        HStack {
+                            Text("Version:")
+                                .fontWeight(.semibold)
+                            Text("\(document.version)")
+                        }
+                        if let url = document.assetURL {
+                            Link(destination: url) {
+                                Text("View Asset")
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                        HStack {
+                            Text("Created By:")
+                                .fontWeight(.semibold)
+                            Text(document.createdBy)
+                        }
+                        HStack {
+                            Text("Created At:")
+                                .fontWeight(.semibold)
+                            Text(document.createdAt, style: .date)
+                        }
+                        HStack {
+                            Text("Updated At:")
+                                .fontWeight(.semibold)
+                            Text(document.updatedAt, style: .date)
+                        }
+                    }
+                    .padding()
+                }
+            } else {
+                Text("Document not found.")
+                    .foregroundColor(.secondary)
+            }
+        }
+        .navigationTitle("Document Details")
+        .navigationBarTitleDisplayMode(.inline)
+        .task {
+            await viewModel.loadDocuments()
+        }
+    }
+}
+
+#Preview {
+    DocumentDetailView(documentId: UUID().uuidString)
+}//
 //  DocumentDetailView.swift
 //  DiamondDeskERP
 //

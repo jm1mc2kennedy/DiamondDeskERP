@@ -41,6 +41,9 @@ struct EmployeeCreationView: View {
                 }
             }
             .navigationTitle("Add Employee")
+            .pickerStyle(MenuPickerStyle())
+            }
+            .listStyle(InsetGroupedListStyle())
             .navigationBarItems(
                 leading: Button("Cancel") { dismiss() },
                 trailing: Button("Save") {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProjectListView: View {
     @StateObject var viewModel: ProjectListViewModel
+    @State private var showingCreation = false
 
     var body: some View {
         NavigationView {
@@ -40,11 +41,14 @@ struct ProjectListView: View {
             }
             .navigationTitle("Projects")
             .toolbar {
-                Button(action: {
-                    NavigationRouter.shared.dashboardPath.append(.projectCreation)
-                }) {
-                    Image(systemName: "plus.circle.fill")
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showingCreation = true }) {
+                        Image(systemName: "plus.circle.fill")
+                    }
                 }
+            }
+            .sheet(isPresented: $showingCreation) {
+                ProjectCreationView(viewModel: viewModel)
             }
             .task {
                 await viewModel.loadProjects()

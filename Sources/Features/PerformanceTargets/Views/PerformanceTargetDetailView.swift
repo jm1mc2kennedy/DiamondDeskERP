@@ -26,7 +26,28 @@ struct PerformanceTargetDetailView: View {
                             .font(.headline)
                         Text(target.description ?? "No description.")
                             .foregroundColor(.secondary)
-                        // TODO: Additional target metadata
+                        // Additional target metadata
+                        HStack {
+                            Text("Period:")
+                                .fontWeight(.semibold)
+                            Text(target.period.rawValue)
+                        }
+                        HStack {
+                            Text("Recurrence:")
+                                .fontWeight(.semibold)
+                            Text(target.recurrence.rawValue)
+                        }
+                        if !target.assignedTo.isEmpty {
+                            VStack(alignment: .leading) {
+                                Text("Assigned To:")
+                                    .fontWeight(.semibold)
+                                ForEach(target.assignedTo, id: \ .self) { id in
+                                    Text(id)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                        }
                     }
                     .padding()
                 }

@@ -1,4 +1,8 @@
-# AI Build Log
+"# AI Build Log"
+
+* 2025-07-20T18:00:00Z - Completed unit tests for PerformanceTargetsViewModel and ProjectListViewModel; enhanced detail views for performance targets and projects; implemented save logic and error alerts in ProjectCreationView.
+* 2025-07-20T18:30:00Z - PLANNED: Implement DocumentListView for DocumentManagement module.
+* 2025-07-20T19:00:00Z - NORMALIZED: Repository structure moved Enterprise modules to Sources/Features/; completed transition to Sources/{Core,Domain,Services,Features,Shared,Resources} + Tests/{Unit,UI} layout. Moved 8 enterprise modules (Directory, PerformanceTargets, ProjectManagement, DocumentManagement, Permissions, AIInsights, ApprovalWorkflows, Audit) and 5 new test files. → Sources/Features/ + Tests/Unit/ → Structured architecture enforced.
 
 * 2025-07-20 12:00:00 - Initializing build process. Creating log, state, and error index files.
 * 2025-07-20 12:00:01 - PLANNED: Start Sprint 0: Core CK schema init scripts, User bootstrap, Store seeding, Role gating scaffolds. First step is creating the Seeder.

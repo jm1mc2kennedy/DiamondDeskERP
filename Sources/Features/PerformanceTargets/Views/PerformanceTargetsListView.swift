@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PerformanceTargetsListView: View {
     @StateObject var viewModel: PerformanceTargetsViewModel
+    @State private var showingCreation = false
 
     var body: some View {
         NavigationView {
@@ -59,11 +60,15 @@ struct PerformanceTargetsListView: View {
             }
             .navigationTitle("Performance Targets")
             .toolbar {
-                Button(action: {
-                    NavigationRouter.shared.tasksPath.append(.performanceTargetCreation)
-                }) {
-                    Image(systemName: "plus.circle.fill")
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showingCreation = true }) {
+                        Image(systemName: "plus.circle.fill")
+                    }
                 }
+            }
+            // Creation sheet
+            .sheet(isPresented: $showingCreation) {
+                PerformanceTargetCreationView(viewModel: viewModel)
             }
             .task {
                 await viewModel.loadTargets()

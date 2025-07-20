@@ -16,7 +16,23 @@ class ProjectRepository {
         return []
     }
 
-    func fetchProjectRecord(id: CKRecord.ID) async throws -> Project? {
+    func fetchAllProjects() async throws -> [Project] {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Project", predicate: predicate)
+        let (matchResults, _) = try await database.records(matching: query)
+        var projects: [Project] = []
+        for result in matchResults {
+            switch result {
+            case .success(_, let record):
+                if let project = Project.fromCloudKitRecord(record) {
+                    projects.append(project)
+                }
+            case .failure(let error, _):
+                throw error
+            }
+        }
+        return projects
+    }
         let record = try await database.record(for: id)
         return Project.fromCloudKitRecord(record)
     }

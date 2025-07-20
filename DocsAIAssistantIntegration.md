@@ -63,12 +63,6 @@ _Note: in prior commits F5 was split into **AI Assistance README** and **CloudK
 
 ### 4.2 Naming Conventions
 
-- **Models**: `EntityModel.swift` (e.g., `TaskModel.swift`, `UserModel.swift`)
-- **Views**: Descriptive names ending in `View.swift` (e.g., `TaskListView.swift`, `CreateTaskView.swift`)
-- **ViewModels**: `EntityViewModel.swift` (e.g., `TaskViewModel.swift`)
-- **Services**: Descriptive names ending in `Service.swift` (e.g., `UserProvisioningService.swift`)
-- **Repositories**: `EntityRepository.swift` (e.g., `TaskRepository.swift`)
-- **Extensions**: `Type+Extension.swift` (e.g., `View+RoleGated.swift`)
 
 ### 4.3 File Organization Rules
 
@@ -80,19 +74,38 @@ _Note: in prior commits F5 was split into **AI Assistance README** and **CloudK
 
 ### 4.4 Future Enforcement Checklist
 
-- [ ] SwiftLint rule for file organization
-- [ ] CI/CD guard against root-level Swift files
-- [ ] Pre-commit hook for naming convention validation
-- [ ] Automated import path validation
-- [ ] Documentation generation from folder structure
 
 ### 4.5 Migration Notes
 
-- Structure implemented: 2025-07-20
-- Legacy flat structure converted to hierarchical
-- All duplicate files removed during migration
-- Import paths updated automatically by Xcode
 
+## Repository Structure Governance
+
+We adopt a standardized layout under `Sources` for clarity and scalability:
+
+```
+Sources/
+  Core/                # App entry, AppDelegate, environment keys, DI setup
+  Domain/              # Business entities and models (shared across features)
+  Services/            # Networking, persistence, CloudKit, auth, logging
+  Features/            # Feature-specific code, each in its own folder:
+    Directory/
+      Models/, Views/, ViewModels/, Components/
+    PerformanceTargets/
+    ProjectManagement/
+    DocumentManagement/
+    Permissions/
+  Shared/              # Reusable UI components, extensions, utilities
+  Resources/           # Assets, Fonts, Config files, Localization keys (future)
+
+Tests/
+  Unit/                # XCTest unit tests aligned by module
+  UI/                  # XCTest UI tests
+```
+
+Enforcement:
+- Follow folder conventions for new code.
+- CI lint and build checks will validate file placement.
+- Feature owners must update import paths after moves.
 ---
 
 ## 5. Development Workflow

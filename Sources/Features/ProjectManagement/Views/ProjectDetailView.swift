@@ -27,7 +27,47 @@ struct ProjectDetailView: View {
                             .foregroundColor(.secondary)
                         Text(project.description ?? "No description provided.")
                             .foregroundColor(.secondary)
-                        // TODO: Additional project details, tasks, milestones
+                        // Additional project details
+                        VStack(alignment: .leading, spacing: 8) {
+                            if let manager = project.managerId {
+                                HStack {
+                                    Text("Manager:")
+                                        .fontWeight(.semibold)
+                                    Text(manager)
+                                }
+                            }
+                            if !project.stakeholderIds.isEmpty {
+                                VStack(alignment: .leading) {
+                                    Text("Stakeholders:")
+                                        .fontWeight(.semibold)
+                                    ForEach(project.stakeholderIds, id: \.self) { id in
+                                        Text(id)
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
+                            }
+                            if !project.tasks.isEmpty {
+                                VStack(alignment: .leading) {
+                                    Text("Tasks:")
+                                        .fontWeight(.semibold)
+                                    ForEach(project.tasks, id: \.self) { taskId in
+                                        Text(taskId)
+                                            .font(.caption)
+                                    }
+                                }
+                            }
+                            if !project.milestoneIds.isEmpty {
+                                VStack(alignment: .leading) {
+                                    Text("Milestones:")
+                                        .fontWeight(.semibold)
+                                    ForEach(project.milestoneIds, id: \.self) { mid in
+                                        Text(mid)
+                                            .font(.caption)
+                                    }
+                                }
+                            }
+                        }
                     }
                     .padding()
                 }

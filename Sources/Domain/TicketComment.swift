@@ -7,7 +7,11 @@ struct TicketComment: Identifiable, Hashable {
     var authorRef: CKRecord.Reference
     var body: String
     var createdAt: Date
-    var attachments: [CKRecord.Reference]
+    var updatedAt: Date
+    var attachments: [String] // Asset URLs/CKAsset references
+    var isEdited: Bool
+    var editedAt: Date?
+    var isInternal: Bool // Internal comments vs customer-facing
 
     init?(record: CKRecord) {
         guard
@@ -15,7 +19,9 @@ struct TicketComment: Identifiable, Hashable {
             let authorRef = record["authorRef"] as? CKRecord.Reference,
             let body = record["body"] as? String,
             let createdAt = record["createdAt"] as? Date,
-            let attachments = record["attachments"] as? [CKRecord.Reference]
+            let updatedAt = record["updatedAt"] as? Date,
+            let isEdited = record["isEdited"] as? Bool,
+            let isInternal = record["isInternal"] as? Bool
         else {
             return nil
         }
@@ -25,7 +31,13 @@ struct TicketComment: Identifiable, Hashable {
         self.authorRef = authorRef
         self.body = body
         self.createdAt = createdAt
-        self.attachments = attachments
+        self.updatedAt = updatedAt
+        self.isEdited = isEdited
+        self.isInternal = isInternal
+        
+        // Optional fields
+        self.attachments = record["attachments"] as? [String] ?? []
+        self.editedAt = record["editedAt"] as? Date
     }
     
     func toRecord() -> CKRecord {
@@ -34,11 +46,38 @@ struct TicketComment: Identifiable, Hashable {
         record["authorRef"] = authorRef as CKRecordValue
         record["body"] = body as CKRecordValue
         record["createdAt"] = createdAt as CKRecordValue
-        record["attachments"] = attachments as CKRecordValue
+        record["updatedAt"] = updatedAt as CKRecordValue
+        record["isEdited"] = isEdited as CKRecordValue
+        record["isInternal"] = isInternal as CKRecordValue
+        
+        if !attachments.isEmpty {
+            record["attachments"] = attachments as CKRecordValue
+        }
+        if let editedAt = editedAt {
+            record["editedAt"] = editedAt as CKRecordValue
+        }
+        
         return record
     }
     
     static func from(record: CKRecord) -> TicketComment? {
         return TicketComment(record: record)
+    }
+    
+    // MARK: - Helper Methods
+    
+    mutating func editComment(newBody: String) {
+        body = newBody
+        isEdited = true
+        editedAt = Date()
+        updatedAt = Date()
+    }
+    
+    var hasAttachments: Bool {
+        return !attachments.isEmpty
+    }
+    
+    var isCustomerFacing: Bool {
+        return !isInternal
     }
 }

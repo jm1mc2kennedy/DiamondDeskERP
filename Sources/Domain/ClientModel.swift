@@ -65,4 +65,40 @@ struct ClientModel: Identifiable, Hashable {
         self.createdAt = record["createdAt"] as? Date
         self.lastInteraction = record["lastInteraction"] as? Date
     }
+    
+    func toRecord() -> CKRecord {
+        let record = CKRecord(recordType: "Client", recordID: id)
+        
+        record["guestAcctNumber"] = guestAcctNumber as CKRecordValue?
+        record["guestName"] = guestName as CKRecordValue
+        record["partnerName"] = partnerName as CKRecordValue?
+        record["dob"] = dob as CKRecordValue?
+        record["partnerDob"] = partnerDob as CKRecordValue?
+        record["address"] = address as CKRecordValue?
+        record["contactPreference"] = contactPreference as CKRecordValue
+        record["accountType"] = accountType as CKRecordValue
+        record["ringSizes"] = ringSizes as CKRecordValue?
+        
+        // Encode JSON for complex fields
+        if let importantDatesData = try? JSONEncoder().encode(importantDates) {
+            record["importantDates"] = importantDatesData as CKRecordValue
+        }
+        
+        record["jewelryPreferences"] = jewelryPreferences as CKRecordValue?
+        record["wishList"] = wishList as CKRecordValue?
+        record["purchaseHistory"] = purchaseHistory as CKRecordValue?
+        record["contactHistory"] = contactHistory as CKRecordValue?
+        record["notes"] = notes as CKRecordValue?
+        record["assignedUserRef"] = assignedUserRef as CKRecordValue
+        record["preferredStoreCode"] = preferredStoreCode as CKRecordValue
+        record["createdByRef"] = createdByRef as CKRecordValue?
+        record["createdAt"] = createdAt as CKRecordValue?
+        record["lastInteraction"] = lastInteraction as CKRecordValue?
+        
+        return record
+    }
+    
+    static func from(record: CKRecord) -> ClientModel? {
+        return ClientModel(record: record)
+    }
 }

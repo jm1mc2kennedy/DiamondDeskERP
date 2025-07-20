@@ -55,133 +55,124 @@ enum TicketPriority: String, Codable, CaseIterable, Identifiable {
 }
 
 struct TicketModel: Identifiable, Hashable, Codable {
-    let id: String
+    let id: CKRecord.ID
     var title: String
     var description: String
-    var priority: TicketPriority
-    var status: TicketStatus
     var category: String
-    var estimatedResolutionTime: TimeInterval
-    var assignee: User?
-    var reporter: User
-    var watchers: [User]
-    var responseDeltas: [TimeInterval]
-    var attachments: [String] // Asset URLs
+    var status: TicketStatus
+    var priority: TicketPriority
+    var department: String
+    var storeCodes: [String]
+    var createdByRef: CKRecord.Reference
+    var assignedUserRef: CKRecord.Reference?
+    var watchers: [CKRecord.Reference]
+    var confidentialFlags: [String]
+    var slaOpenedAt: Date?
+    var lastResponseAt: Date?
+    var responseDeltas: [Double] // SLA metrics array
+    var attachments: [String] // AssetRefs
     var createdAt: Date
     var updatedAt: Date
     
-    init(
-        id: String,
-        title: String,
-        description: String,
-        priority: TicketPriority,
-        status: TicketStatus,
-        category: String,
-        estimatedResolutionTime: TimeInterval,
-        assignee: User?,
-        reporter: User,
-        watchers: [User] = [],
-        responseDeltas: [TimeInterval] = [],
-        attachments: [String] = [],
-        createdAt: Date = Date(),
-        updatedAt: Date = Date()
-    ) {
-        self.id = id
-        self.title = title
-        self.description = description
-        self.priority = priority
-        self.status = status
-        self.category = category
-        self.estimatedResolutionTime = estimatedResolutionTime
-        self.assignee = assignee
-        self.reporter = reporter
-        self.watchers = watchers
-        self.responseDeltas = responseDeltas
-        self.attachments = attachments
-        self.createdAt = createdAt
-        self.updatedAt = updatedAt
-    }
-    
-    // CloudKit integration
     init?(record: CKRecord) {
         guard
-            let id = record["id"] as? String,
             let title = record["title"] as? String,
             let description = record["description"] as? String,
-            let priorityRaw = record["priority"] as? String,
-            let priority = TicketPriority(rawValue: priorityRaw),
+            let category = record["category"] as? String,
             let statusRaw = record["status"] as? String,
             let status = TicketStatus(rawValue: statusRaw),
-            let category = record["category"] as? String,
-            let estimatedResolutionTime = record["estimatedResolutionTime"] as? Double,
-            let reporterData = record["reporter"] as? Data,
-            let reporter = try? JSONDecoder().decode(User.self, from: reporterData),
+            let priorityRaw = record["priority"] as? String,
+            let priority = TicketPriority(rawValue: priorityRaw),
+            let department = record["department"] as? String,
+            let storeCodes = record["storeCodes"] as? [String],
+            let createdByRef = record["createdByRef"] as? CKRecord.Reference,
+            let confidentialFlags = record["confidentialFlags"] as? [String],
             let createdAt = record["createdAt"] as? Date,
             let updatedAt = record["updatedAt"] as? Date
         else {
             return nil
         }
-        
-        self.id = id
+
+        self.id = record.recordID
         self.title = title
         self.description = description
-        self.priority = priority
-        self.status = status
         self.category = category
-        self.estimatedResolutionTime = estimatedResolutionTime
-        self.reporter = reporter
+        self.status = status
+        self.priority = priority
+        self.department = department
+        self.storeCodes = storeCodes
+        self.createdByRef = createdByRef
+        self.confidentialFlags = confidentialFlags
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         
         // Optional fields
-        if let assigneeData = record["assignee"] as? Data,
-           let assignee = try? JSONDecoder().decode(User.self, from: assigneeData) {
-            self.assignee = assignee
-        } else {
-            self.assignee = nil
-        }
-        
-        if let watchersData = record["watchers"] as? Data,
-           let watchers = try? JSONDecoder().decode([User].self, from: watchersData) {
-            self.watchers = watchers
-        } else {
-            self.watchers = []
-        }
-        
+        self.assignedUserRef = record["assignedUserRef"] as? CKRecord.Reference
+        self.watchers = record["watchers"] as? [CKRecord.Reference] ?? []
+        self.slaOpenedAt = record["slaOpenedAt"] as? Date
+        self.lastResponseAt = record["lastResponseAt"] as? Date
         self.responseDeltas = record["responseDeltas"] as? [Double] ?? []
         self.attachments = record["attachments"] as? [String] ?? []
     }
     
-    func toRecord() throws -> CKRecord {
-        let record = CKRecord(recordType: "Ticket", recordID: CKRecord.ID(recordName: id))
+    
+    func toRecord() -> CKRecord {
+        let record = CKRecord(recordType: "Ticket", recordID: id)
         
-        record["id"] = id
-        record["title"] = title
-        record["description"] = description
-        record["priority"] = priority.rawValue
-        record["status"] = status.rawValue
-        record["category"] = category
-        record["estimatedResolutionTime"] = estimatedResolutionTime
-        record["reporter"] = try JSONEncoder().encode(reporter)
-        record["createdAt"] = createdAt
-        record["updatedAt"] = updatedAt
+        record["title"] = title as CKRecordValue
+        record["description"] = description as CKRecordValue
+        record["category"] = category as CKRecordValue
+        record["status"] = status.rawValue as CKRecordValue
+        record["priority"] = priority.rawValue as CKRecordValue
+        record["department"] = department as CKRecordValue
+        record["storeCodes"] = storeCodes as CKRecordValue
+        record["createdByRef"] = createdByRef as CKRecordValue
+        record["confidentialFlags"] = confidentialFlags as CKRecordValue
+        record["createdAt"] = createdAt as CKRecordValue
+        record["updatedAt"] = updatedAt as CKRecordValue
         
-        if let assignee = assignee {
-            record["assignee"] = try JSONEncoder().encode(assignee)
+        // Optional fields
+        if let assignedUserRef = assignedUserRef {
+            record["assignedUserRef"] = assignedUserRef as CKRecordValue
         }
-        
         if !watchers.isEmpty {
-            record["watchers"] = try JSONEncoder().encode(watchers)
+            record["watchers"] = watchers as CKRecordValue
         }
-        
+        if let slaOpenedAt = slaOpenedAt {
+            record["slaOpenedAt"] = slaOpenedAt as CKRecordValue
+        }
+        if let lastResponseAt = lastResponseAt {
+            record["lastResponseAt"] = lastResponseAt as CKRecordValue
+        }
         if !responseDeltas.isEmpty {
-            record["responseDeltas"] = responseDeltas
+            record["responseDeltas"] = responseDeltas as CKRecordValue
         }
-        
         if !attachments.isEmpty {
-            record["attachments"] = attachments
+            record["attachments"] = attachments as CKRecordValue
         }
         
         return record
+    }
+    
+    static func from(record: CKRecord) -> TicketModel? {
+        return TicketModel(record: record)
+    }
+    
+    // MARK: - Computed Properties
+    
+    var isOverdue: Bool {
+        guard let slaOpenedAt = slaOpenedAt else { return false }
+        // Define SLA threshold (e.g., 24 hours for most tickets)
+        let slaThreshold: TimeInterval = 24 * 60 * 60 // 24 hours
+        return Date().timeIntervalSince(slaOpenedAt) > slaThreshold
+    }
+    
+    var isConfidential: Bool {
+        return confidentialFlags.contains("HR") || confidentialFlags.contains("LP")
+    }
+    
+    var averageResponseTime: Double {
+        guard !responseDeltas.isEmpty else { return 0 }
+        return responseDeltas.reduce(0, +) / Double(responseDeltas.count)
     }
 }
