@@ -1,0 +1,634 @@
+//
+//  ProductivityModule.graphql
+//  DiamondDeskERP
+//
+//  Created by AI Assistant on 7/20/25.
+//  Copyright © 2025 Diamond Desk. All rights reserved.
+//
+//  Comprehensive GraphQL schema for the Productivity Module
+//  Supports Project Management, Personal To-Dos, and OKR Tracking
+//  Backend: Apollo GraphQL with SQL via Firebase Data Connect
+
+# Enums for Board and Task Management
+enum BoardViewType {
+  KANBAN
+  TABLE
+  CALENDAR
+  TIMELINE
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  BLOCKED
+  CANCELLED
+}
+
+enum OKRLevel {
+  COMPANY
+  STORE
+  INDIVIDUAL
+}
+
+enum PermissionLevel {
+  OWNER
+  EDITOR
+  VIEWER
+}
+
+# Core Data Types
+
+# Project Management - Board System
+type ProjectBoard {
+  id: ID!
+  name: String!
+  description: String
+  ownerId: String!
+  viewType: BoardViewType!
+  storeCode: String
+  departmentId: String
+  isArchived: Boolean!
+  permissions: [BoardPermission!]!
+  customColumns: [CustomColumn!]!
+  tasks: [ProjectTask!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type BoardPermission {
+  id: ID!
+  boardId: ID!
+  userId: String!
+  permissionLevel: PermissionLevel!
+  grantedBy: String!
+  grantedAt: DateTime!
+}
+
+type CustomColumn {
+  id: ID!
+  boardId: ID!
+  name: String!
+  type: ColumnType!
+  position: Int!
+  isRequired: Boolean!
+  options: String # JSON string for select options, etc.
+}
+
+enum ColumnType {
+  TEXT
+  NUMBER
+  DATE
+  SELECT
+  MULTI_SELECT
+  CHECKBOX
+  USER
+  STATUS
+  PRIORITY
+}
+
+# Project Tasks - Enhanced from current TaskModel
+type ProjectTask {
+  id: ID!
+  boardId: ID!
+  title: String!
+  description: String
+  status: TaskStatus!
+  priority: TaskPriority!
+  assignedTo: [String!]!
+  storeCode: String
+  departmentId: String
+  dueDate: DateTime
+  startDate: DateTime
+  estimatedHours: Float
+  actualHours: Float
+  tags: [String!]!
+  checklist: [ChecklistItem!]!
+  attachments: [TaskAttachment!]!
+  comments: [TaskComment!]!
+  customFields: String # JSON string for custom column values
+  position: Int! # For ordering within status columns
+  parentTaskId: ID # For subtasks
+  dependencies: [TaskDependency!]!
+  createdBy: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ChecklistItem {
+  id: ID!
+  taskId: ID!
+  title: String!
+  isCompleted: Boolean!
+  completedBy: String
+  completedAt: DateTime
+  position: Int!
+  createdAt: DateTime!
+}
+
+type TaskAttachment {
+  id: ID!
+  taskId: ID!
+  fileName: String!
+  fileSize: Int!
+  mimeType: String!
+  url: String!
+  uploadedBy: String!
+  uploadedAt: DateTime!
+}
+
+type TaskComment {
+  id: ID!
+  taskId: ID!
+  authorId: String!
+  content: String!
+  attachments: [TaskAttachment!]!
+  mentions: [String!]!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type TaskDependency {
+  id: ID!
+  taskId: ID!
+  dependsOnTaskId: ID!
+  dependencyType: DependencyType!
+  createdAt: DateTime!
+}
+
+enum DependencyType {
+  BLOCKS
+  BLOCKED_BY
+  RELATES_TO
+}
+
+# Personal To-Do System
+type PersonalTodo {
+  id: ID!
+  userId: String!
+  title: String!
+  notes: String
+  dueDate: DateTime
+  reminderDate: DateTime
+  isCompleted: Boolean!
+  completedAt: DateTime
+  isRecurring: Boolean!
+  recurringPattern: String # JSON string for recurrence rules
+  hasReminder: Boolean!
+  reminderOffset: Int # Minutes before due date
+  tags: [String!]!
+  priority: TaskPriority!
+  estimatedMinutes: Int
+  actualMinutes: Int
+  parentBoardId: ID # Optional link to project board
+  parentTaskId: ID # Optional link to project task
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# OKR (Objectives & Key Results) System
+type Objective {
+  id: ID!
+  title: String!
+  description: String
+  ownerId: String!
+  level: OKRLevel!
+  storeCode: String
+  departmentId: String
+  quarter: String! # Format: "2025-Q1"
+  year: Int!
+  parentObjectiveId: ID # For hierarchical OKRs
+  keyResults: [KeyResult!]!
+  linkedTasks: [ProjectTask!]! # Tasks that contribute to this objective
+  progress: Float! # Calculated from key results
+  status: OKRStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum OKRStatus {
+  DRAFT
+  ACTIVE
+  AT_RISK
+  COMPLETED
+  CANCELLED
+}
+
+type KeyResult {
+  id: ID!
+  objectiveId: ID!
+  title: String!
+  description: String
+  targetValue: Float!
+  currentValue: Float!
+  unit: String! # %, $, count, etc.
+  valueType: ValueType!
+  measurementMethod: String
+  dueDate: DateTime
+  isCompleted: Boolean!
+  completedAt: DateTime
+  milestones: [KRMilestone!]!
+  linkedTasks: [ProjectTask!]!
+  progress: Float! # currentValue / targetValue * 100
+  lastUpdatedBy: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum ValueType {
+  PERCENTAGE
+  CURRENCY
+  COUNT
+  DECIMAL
+  BINARY
+}
+
+type KRMilestone {
+  id: ID!
+  keyResultId: ID!
+  title: String!
+  targetValue: Float!
+  targetDate: DateTime!
+  isAchieved: Boolean!
+  achievedAt: DateTime
+  achievedValue: Float
+  notes: String
+  createdAt: DateTime!
+}
+
+# Progress Tracking and Analytics
+type BoardAnalytics {
+  boardId: ID!
+  totalTasks: Int!
+  completedTasks: Int!
+  overdueTasks: Int!
+  tasksInProgress: Int!
+  averageCompletionTime: Float # In hours
+  productivityTrend: [DailyProductivity!]!
+  userContributions: [UserContribution!]!
+  statusDistribution: [StatusCount!]!
+  burndownData: [BurndownPoint!]!
+}
+
+type DailyProductivity {
+  date: Date!
+  tasksCompleted: Int!
+  tasksCreated: Int!
+  averageTime: Float
+}
+
+type UserContribution {
+  userId: String!
+  tasksAssigned: Int!
+  tasksCompleted: Int!
+  averageCompletionTime: Float
+  productivityScore: Float
+}
+
+type StatusCount {
+  status: TaskStatus!
+  count: Int!
+  percentage: Float!
+}
+
+type BurndownPoint {
+  date: Date!
+  remainingTasks: Int!
+  completedTasks: Int!
+  projectedCompletion: Date
+}
+
+type OKRProgress {
+  objectiveId: ID!
+  overallProgress: Float!
+  keyResultsOnTrack: Int!
+  keyResultsAtRisk: Int!
+  keyResultsCompleted: Int!
+  progressTrend: [ProgressPoint!]!
+  contributingUsers: [String!]!
+}
+
+type ProgressPoint {
+  date: Date!
+  progress: Float!
+  notes: String
+}
+
+# Activity and Notifications
+type Activity {
+  id: ID!
+  type: ActivityType!
+  entityType: EntityType!
+  entityId: ID!
+  userId: String!
+  description: String!
+  metadata: String # JSON string for additional data
+  createdAt: DateTime!
+}
+
+enum ActivityType {
+  CREATED
+  UPDATED
+  COMPLETED
+  ASSIGNED
+  COMMENTED
+  MENTIONED
+  DEADLINE_APPROACHING
+  OVERDUE
+}
+
+enum EntityType {
+  PROJECT_BOARD
+  PROJECT_TASK
+  PERSONAL_TODO
+  OBJECTIVE
+  KEY_RESULT
+}
+
+# Queries
+type Query {
+  # Project Management Queries
+  boards(storeCode: String, departmentId: String, userId: String): [ProjectBoard!]!
+  board(id: ID!): ProjectBoard
+  boardTasks(boardId: ID!, status: TaskStatus, assignedTo: String): [ProjectTask!]!
+  task(id: ID!): ProjectTask
+  boardAnalytics(boardId: ID!, dateRange: DateRangeInput): BoardAnalytics
+  
+  # Personal To-Do Queries
+  personalTodos(userId: String!, isCompleted: Boolean, dueDate: DateRangeInput): [PersonalTodo!]!
+  personalTodo(id: ID!): PersonalTodo
+  
+  # OKR Queries
+  objectives(level: OKRLevel, storeCode: String, quarter: String, year: Int): [Objective!]!
+  objective(id: ID!): Objective
+  keyResult(id: ID!): KeyResult
+  okrProgress(objectiveId: ID!, dateRange: DateRangeInput): OKRProgress
+  
+  # Analytics and Reporting
+  userActivity(userId: String!, dateRange: DateRangeInput): [Activity!]!
+  boardsOverview(storeCode: String, departmentId: String): [BoardAnalytics!]!
+  okrOverview(level: OKRLevel, storeCode: String, quarter: String): [OKRProgress!]!
+  
+  # Search and Filtering
+  searchTasks(query: String!, boardIds: [ID!], filters: TaskFiltersInput): [ProjectTask!]!
+  searchTodos(userId: String!, query: String!): [PersonalTodo!]!
+  searchObjectives(query: String!, level: OKRLevel): [Objective!]!
+}
+
+# Mutations
+type Mutation {
+  # Project Board Management
+  createBoard(input: CreateBoardInput!): ProjectBoard!
+  updateBoard(id: ID!, input: UpdateBoardInput!): ProjectBoard!
+  deleteBoard(id: ID!): Boolean!
+  archiveBoard(id: ID!): ProjectBoard!
+  duplicateBoard(id: ID!, name: String!): ProjectBoard!
+  
+  # Board Permissions
+  addBoardPermission(input: AddBoardPermissionInput!): BoardPermission!
+  updateBoardPermission(id: ID!, permissionLevel: PermissionLevel!): BoardPermission!
+  removeBoardPermission(id: ID!): Boolean!
+  
+  # Task Management
+  createTask(input: CreateTaskInput!): ProjectTask!
+  updateTask(id: ID!, input: UpdateTaskInput!): ProjectTask!
+  deleteTask(id: ID!): Boolean!
+  moveTask(id: ID!, newStatus: TaskStatus!, newPosition: Int!): ProjectTask!
+  assignTask(id: ID!, userIds: [String!]!): ProjectTask!
+  completeTask(id: ID!): ProjectTask!
+  
+  # Checklist Management
+  addChecklistItem(input: AddChecklistItemInput!): ChecklistItem!
+  updateChecklistItem(id: ID!, input: UpdateChecklistItemInput!): ChecklistItem!
+  deleteChecklistItem(id: ID!): Boolean!
+  reorderChecklist(taskId: ID!, itemIds: [ID!]!): [ChecklistItem!]!
+  
+  # Comments and Attachments
+  addTaskComment(input: AddTaskCommentInput!): TaskComment!
+  updateTaskComment(id: ID!, content: String!): TaskComment!
+  deleteTaskComment(id: ID!): Boolean!
+  addTaskAttachment(input: AddTaskAttachmentInput!): TaskAttachment!
+  deleteTaskAttachment(id: ID!): Boolean!
+  
+  # Personal To-Do Management
+  createPersonalTodo(input: CreatePersonalTodoInput!): PersonalTodo!
+  updatePersonalTodo(id: ID!, input: UpdatePersonalTodoInput!): PersonalTodo!
+  deletePersonalTodo(id: ID!): Boolean!
+  completePersonalTodo(id: ID!): PersonalTodo!
+  
+  # OKR Management
+  createObjective(input: CreateObjectiveInput!): Objective!
+  updateObjective(id: ID!, input: UpdateObjectiveInput!): Objective!
+  deleteObjective(id: ID!): Boolean!
+  createKeyResult(input: CreateKeyResultInput!): KeyResult!
+  updateKeyResult(id: ID!, input: UpdateKeyResultInput!): KeyResult!
+  deleteKeyResult(id: ID!): Boolean!
+  updateKeyResultProgress(id: ID!, currentValue: Float!, notes: String): KeyResult!
+  
+  # Bulk Operations
+  bulkUpdateTasks(taskIds: [ID!]!, updates: BulkTaskUpdateInput!): [ProjectTask!]!
+  bulkMoveTasks(taskIds: [ID!]!, newStatus: TaskStatus!): [ProjectTask!]!
+  bulkAssignTasks(taskIds: [ID!]!, userIds: [String!]!): [ProjectTask!]!
+}
+
+# Input Types
+input CreateBoardInput {
+  name: String!
+  description: String
+  viewType: BoardViewType!
+  storeCode: String
+  departmentId: String
+  customColumns: [CreateCustomColumnInput!]
+}
+
+input UpdateBoardInput {
+  name: String
+  description: String
+  viewType: BoardViewType
+  customColumns: [UpdateCustomColumnInput!]
+}
+
+input CreateCustomColumnInput {
+  name: String!
+  type: ColumnType!
+  position: Int!
+  isRequired: Boolean!
+  options: String
+}
+
+input UpdateCustomColumnInput {
+  id: ID
+  name: String
+  type: ColumnType
+  position: Int
+  isRequired: Boolean
+  options: String
+}
+
+input AddBoardPermissionInput {
+  boardId: ID!
+  userId: String!
+  permissionLevel: PermissionLevel!
+}
+
+input CreateTaskInput {
+  boardId: ID!
+  title: String!
+  description: String
+  status: TaskStatus!
+  priority: TaskPriority!
+  assignedTo: [String!]
+  storeCode: String
+  departmentId: String
+  dueDate: DateTime
+  startDate: DateTime
+  estimatedHours: Float
+  tags: [String!]
+  customFields: String
+  position: Int
+  parentTaskId: ID
+}
+
+input UpdateTaskInput {
+  title: String
+  description: String
+  status: TaskStatus
+  priority: TaskPriority
+  assignedTo: [String!]
+  dueDate: DateTime
+  startDate: DateTime
+  estimatedHours: Float
+  actualHours: Float
+  tags: [String!]
+  customFields: String
+  position: Int
+}
+
+input AddChecklistItemInput {
+  taskId: ID!
+  title: String!
+  position: Int!
+}
+
+input UpdateChecklistItemInput {
+  title: String
+  isCompleted: Boolean
+  position: Int
+}
+
+input AddTaskCommentInput {
+  taskId: ID!
+  content: String!
+  mentions: [String!]
+}
+
+input AddTaskAttachmentInput {
+  taskId: ID!
+  fileName: String!
+  fileSize: Int!
+  mimeType: String!
+  url: String!
+}
+
+input CreatePersonalTodoInput {
+  title: String!
+  notes: String
+  dueDate: DateTime
+  reminderDate: DateTime
+  isRecurring: Boolean!
+  recurringPattern: String
+  hasReminder: Boolean!
+  reminderOffset: Int
+  tags: [String!]
+  priority: TaskPriority!
+  estimatedMinutes: Int
+  parentBoardId: ID
+  parentTaskId: ID
+}
+
+input UpdatePersonalTodoInput {
+  title: String
+  notes: String
+  dueDate: DateTime
+  reminderDate: DateTime
+  isRecurring: Boolean
+  recurringPattern: String
+  hasReminder: Boolean
+  reminderOffset: Int
+  tags: [String!]
+  priority: TaskPriority
+  estimatedMinutes: Int
+  actualMinutes: Int
+}
+
+input CreateObjectiveInput {
+  title: String!
+  description: String
+  level: OKRLevel!
+  storeCode: String
+  departmentId: String
+  quarter: String!
+  year: Int!
+  parentObjectiveId: ID
+}
+
+input UpdateObjectiveInput {
+  title: String
+  description: String
+  status: OKRStatus
+}
+
+input CreateKeyResultInput {
+  objectiveId: ID!
+  title: String!
+  description: String
+  targetValue: Float!
+  unit: String!
+  valueType: ValueType!
+  measurementMethod: String
+  dueDate: DateTime
+}
+
+input UpdateKeyResultInput {
+  title: String
+  description: String
+  targetValue: Float
+  unit: String
+  valueType: ValueType
+  measurementMethod: String
+  dueDate: DateTime
+}
+
+input BulkTaskUpdateInput {
+  status: TaskStatus
+  priority: TaskPriority
+  assignedTo: [String!]
+  tags: [String!]
+  dueDate: DateTime
+}
+
+input TaskFiltersInput {
+  status: [TaskStatus!]
+  priority: [TaskPriority!]
+  assignedTo: [String!]
+  tags: [String!]
+  dueDate: DateRangeInput
+  storeCode: String
+  departmentId: String
+}
+
+input DateRangeInput {
+  start: DateTime!
+  end: DateTime!
+}
+
+# Scalar Types
+scalar DateTime
+scalar Date
