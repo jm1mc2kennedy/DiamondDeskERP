@@ -602,3 +602,7 @@ extension DashboardModel {
         )
     }
 }
+
+public typealias WidgetConfig = WidgetConfiguration
+
+public typealias UserDashboard = DashboardModel
