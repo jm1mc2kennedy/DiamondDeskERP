@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24270" systemVersion="25A5306g" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="ActionStep" representedClassName="ActionStep" syncable="YES" codeGenerationType="class">
+    <entity name="ActionStep" representedClassName="ActionStepEntity" syncable="YES" codeGenerationType="class">
         <attribute name="configuration" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774795960" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String" defaultValueString="unknown"/>
@@ -12,7 +12,7 @@
         <attribute name="stepType" attributeType="String" defaultValueString="unknown"/>
         <attribute name="workflowId" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="AppIconOption" representedClassName="AppIconOption" syncable="YES" codeGenerationType="class">
+    <entity name="AppIconOption" representedClassName="AppIconOptionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="alternateIconName" optional="YES" attributeType="String"/>
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774796080" usesScalarValueType="NO"/>
@@ -25,7 +25,7 @@
         <attribute name="name" attributeType="String" defaultValueString="unknown"/>
         <attribute name="requiredVersion" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Asset" representedClassName="Asset" syncable="YES" codeGenerationType="class">
+    <entity name="Asset" representedClassName="AssetEntity" syncable="YES" codeGenerationType="class">
         <attribute name="assetType" attributeType="String" defaultValueString="unknown"/>
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="fileSize" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -36,7 +36,7 @@
         <attribute name="uploadedBy" attributeType="String" defaultValueString="unknown"/>
         <attribute name="usageCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="AssetCategory" representedClassName="AssetCategory" syncable="YES" codeGenerationType="class">
+    <entity name="AssetCategory" representedClassName="AssetCategoryEntity" syncable="YES" codeGenerationType="class">
         <attribute name="categoryDescription" optional="YES" attributeType="String"/>
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774796320" usesScalarValueType="NO"/>
@@ -48,7 +48,7 @@
         <attribute name="name" attributeType="String" defaultValueString="unknown"/>
         <attribute name="parentCategoryId" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="AssetTag" representedClassName="AssetTag" syncable="YES" codeGenerationType="class">
+    <entity name="AssetTag" representedClassName="AssetTagEntity" syncable="YES" codeGenerationType="class">
         <attribute name="backgroundColor" optional="YES" attributeType="String"/>
         <attribute name="color" attributeType="String" defaultValueString="unknown"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774796380" usesScalarValueType="NO"/>
@@ -59,7 +59,7 @@
         <attribute name="tagDescription" optional="YES" attributeType="String"/>
         <attribute name="usageCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="AssetUsageLog" representedClassName="AssetUsageLog" syncable="YES" codeGenerationType="class">
+    <entity name="AssetUsageLog" representedClassName="AssetUsageLogEntity" syncable="YES" codeGenerationType="class">
         <attribute name="action" attributeType="String" defaultValueString="unknown"/>
         <attribute name="assetId" attributeType="String" defaultValueString="unknown"/>
         <attribute name="context" optional="YES" attributeType="String"/>
@@ -71,7 +71,7 @@
         <attribute name="userAgent" optional="YES" attributeType="String"/>
         <attribute name="userId" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="CalendarEvent" representedClassName="CalendarEvent" syncable="YES" codeGenerationType="class">
+    <entity name="CalendarEvent" representedClassName="CalendarEventEntity" syncable="YES" codeGenerationType="class">
         <attribute name="attendees" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="calendarId" attributeType="String" defaultValueString="unknown"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774796560" usesScalarValueType="NO"/>
@@ -87,7 +87,7 @@
         <attribute name="title" attributeType="String" defaultValueString="unknown"/>
         <attribute name="visibility" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="CalendarGroup" representedClassName="CalendarGroup" syncable="YES" codeGenerationType="class">
+    <entity name="CalendarGroup" representedClassName="CalendarGroupEntity" syncable="YES" codeGenerationType="class">
         <attribute name="allowMemberInvites" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774796620" usesScalarValueType="NO"/>
@@ -105,7 +105,7 @@
         <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="timezone" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="CustomReport" representedClassName="CustomReport" syncable="YES" codeGenerationType="class">
+    <entity name="CustomReport" representedClassName="CustomReportEntity" syncable="YES" codeGenerationType="class">
         <attribute name="accessLevel" attributeType="String" defaultValueString="unknown"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774796680" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String" defaultValueString="unknown"/>
@@ -117,7 +117,7 @@
         <attribute name="reportDescription" optional="YES" attributeType="String"/>
         <attribute name="reportType" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="Dashboard" representedClassName="Dashboard" syncable="YES" codeGenerationType="class">
+    <entity name="Dashboard" representedClassName="DashboardEntity" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774796740" usesScalarValueType="NO"/>
         <attribute name="dashboardDescription" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String" defaultValueString="unknown"/>
@@ -128,7 +128,7 @@
         <attribute name="ownerId" attributeType="String" defaultValueString="unknown"/>
         <attribute name="viewCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="DashboardWidget" representedClassName="DashboardWidget" syncable="YES" codeGenerationType="class">
+    <entity name="DashboardWidget" representedClassName="DashboardWidgetEntity" syncable="YES" codeGenerationType="class">
         <attribute name="configuration" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774796800" usesScalarValueType="NO"/>
         <attribute name="dashboardId" attributeType="String" defaultValueString="unknown"/>
@@ -187,7 +187,7 @@
         <attribute name="status" attributeType="String" defaultValueString="unknown"/>
         <attribute name="userId" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+    <entity name="Item" representedClassName="ItemEntity" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="LinkableRecord" representedClassName="LinkableRecordEntity" syncable="YES" codeGenerationType="class">
@@ -203,7 +203,7 @@
         <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="title" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="MicrosoftGraphSync" representedClassName="MicrosoftGraphSync" syncable="YES" codeGenerationType="class">
+    <entity name="MicrosoftGraphSync" representedClassName="MicrosoftGraphSyncEntity" syncable="YES" codeGenerationType="class">
         <attribute name="configuration" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774797340" usesScalarValueType="NO"/>
         <attribute name="deltaToken" optional="YES" attributeType="String"/>
@@ -215,7 +215,7 @@
         <attribute name="syncStatus" attributeType="String" defaultValueString="unknown"/>
         <attribute name="userId" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="Office365Integration" representedClassName="Office365Integration" syncable="YES" codeGenerationType="class">
+    <entity name="Office365Integration" representedClassName="Office365IntegrationEntity" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774797340" usesScalarValueType="NO"/>
         <attribute name="id" attributeType="String" defaultValueString="unknown"/>
         <attribute name="isActive" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -223,7 +223,7 @@
         <attribute name="tenantId" attributeType="String" defaultValueString="unknown"/>
         <attribute name="userId" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="Office365Token" representedClassName="Office365Token" syncable="YES" codeGenerationType="class">
+    <entity name="Office365Token" representedClassName="Office365TokenEntity" syncable="YES" codeGenerationType="class">
         <attribute name="accessToken" attributeType="String" defaultValueString="unknown"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774797400" usesScalarValueType="NO"/>
         <attribute name="expiresAt" attributeType="Date" defaultDateTimeInterval="774797400" usesScalarValueType="NO"/>
@@ -289,7 +289,7 @@
         <attribute name="sourceModule" attributeType="String" defaultValueString="unknown"/>
         <attribute name="targetModule" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="ReportLog" representedClassName="ReportLog" syncable="YES" codeGenerationType="class">
+    <entity name="ReportLog" representedClassName="ReportLogEntity" syncable="YES" codeGenerationType="class">
         <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="errorMessage" optional="YES" attributeType="String"/>
         <attribute name="executedBy" attributeType="String" defaultValueString="unknown"/>
@@ -302,7 +302,7 @@
         <attribute name="reportId" attributeType="String" defaultValueString="unknown"/>
         <attribute name="startTime" attributeType="Date" defaultDateTimeInterval="774797820" usesScalarValueType="NO"/>
     </entity>
-    <entity name="SharePointResource" representedClassName="SharePointResource" syncable="YES" codeGenerationType="class">
+    <entity name="SharePointResource" representedClassName="SharePointResourceEntity" syncable="YES" codeGenerationType="class">
         <attribute name="etag" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String" defaultValueString="unknown"/>
         <attribute name="lastModified" attributeType="Date" defaultDateTimeInterval="774797820" usesScalarValueType="NO"/>
@@ -315,7 +315,7 @@
         <attribute name="syncedAt" attributeType="Date" defaultDateTimeInterval="774797820" usesScalarValueType="NO"/>
         <attribute name="webUrl" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
+    <entity name="Task" representedClassName="TaskEntity" syncable="YES" codeGenerationType="class">
         <attribute name="completionMode" attributeType="String" defaultValueString="unknown"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774795780" usesScalarValueType="NO"/>
         <attribute name="departments" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
@@ -332,7 +332,7 @@
         <attribute name="title" attributeType="String" defaultValueString="unknown"/>
         <attribute name="updatedAt" attributeType="Date" defaultDateTimeInterval="774795960" usesScalarValueType="NO"/>
     </entity>
-    <entity name="ThemeOption" representedClassName="ThemeOption" syncable="YES" codeGenerationType="class">
+    <entity name="ThemeOption" representedClassName="ThemeOptionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="accentColor" optional="YES" attributeType="String"/>
         <attribute name="backgroundColor" attributeType="String" defaultValueString="unknown"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774797880" usesScalarValueType="NO"/>
@@ -348,7 +348,7 @@
         <attribute name="textColor" attributeType="String" defaultValueString="unknown"/>
         <attribute name="themeDescription" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="Ticket" representedClassName="Ticket" syncable="YES" codeGenerationType="class">
+    <entity name="Ticket" representedClassName="TicketEntity" syncable="YES" codeGenerationType="class">
         <attribute name="attachments" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
         <attribute name="category" attributeType="String" defaultValueString="unknown"/>
         <attribute name="confidentialFlags" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
@@ -365,7 +365,7 @@
         <attribute name="title" attributeType="String" defaultValueString="unknown"/>
         <attribute name="updatedAt" attributeType="Date" defaultDateTimeInterval="774797940" usesScalarValueType="NO"/>
     </entity>
-    <entity name="TriggerCondition" representedClassName="TriggerCondition" syncable="YES" codeGenerationType="class">
+    <entity name="TriggerCondition" representedClassName="TriggerConditionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="conditionOperator" attributeType="String" defaultValueString="unknown"/>
         <attribute name="conditionType" attributeType="String" defaultValueString="unknown"/>
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774798000" usesScalarValueType="NO"/>
@@ -377,7 +377,7 @@
         <attribute name="value" optional="YES" attributeType="String"/>
         <attribute name="workflowId" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="UploadRecord" representedClassName="UploadRecord" syncable="YES" codeGenerationType="class">
+    <entity name="UploadRecord" representedClassName="UploadRecordEntity" syncable="YES" codeGenerationType="class">
         <attribute name="checksum" optional="YES" attributeType="String"/>
         <attribute name="fileName" attributeType="String" defaultValueString="unknown"/>
         <attribute name="fileSize" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -392,7 +392,7 @@
         <attribute name="uploadedBy" attributeType="String" defaultValueString="unknown"/>
         <attribute name="uploadStatus" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="UserPreferences" representedClassName="UserPreferences" syncable="YES" codeGenerationType="class">
+    <entity name="UserPreferences" representedClassName="UserPreferencesEntity" syncable="YES" codeGenerationType="class">
         <attribute name="colorScheme" attributeType="String" defaultValueString="unknown"/>
         <attribute name="id" attributeType="String" defaultValueString="unknown"/>
         <attribute name="isSystemDefault" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -401,7 +401,7 @@
         <attribute name="themeId" attributeType="String" defaultValueString="unknown"/>
         <attribute name="userId" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="WidgetConfig" representedClassName="WidgetConfig" syncable="YES" codeGenerationType="class">
+    <entity name="WidgetConfig" representedClassName="WidgetConfigEntity" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String"/>
         <attribute name="configDescription" optional="YES" attributeType="String"/>
         <attribute name="configName" attributeType="String" defaultValueString="unknown"/>
@@ -425,7 +425,7 @@
         <attribute name="triggerType" attributeType="String" defaultValueString="unknown"/>
         <attribute name="workflowDescription" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="WorkflowExecution" representedClassName="WorkflowExecution" syncable="YES" codeGenerationType="class">
+    <entity name="WorkflowExecution" representedClassName="WorkflowExecutionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="errorMessage" optional="YES" attributeType="String"/>
         <attribute name="executionContext" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>

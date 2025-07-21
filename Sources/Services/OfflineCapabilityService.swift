@@ -6,7 +6,7 @@ import Network
 @MainActor
 class OfflineCapabilityService: ObservableObject {
     @Published var isOffline = false
-    @Published var syncStatus: SyncStatus = .idle
+    @Published var syncStatus: LocalSyncStatus = .idle
     @Published var pendingSyncItems: Int = 0
     @Published var lastSyncDate: Date?
     
@@ -390,13 +390,13 @@ enum OperationType: String, Codable {
     case deleteClient
 }
 
-enum SyncStatus: Equatable {
+enum LocalSyncStatus: Equatable {
     case idle
     case syncing
     case completed
     case failed(Error)
     
-    static func == (lhs: SyncStatus, rhs: SyncStatus) -> Bool {
+    static func == (lhs: LocalSyncStatus, rhs: LocalSyncStatus) -> Bool {
         switch (lhs, rhs) {
         case (.idle, .idle), (.syncing, .syncing), (.completed, .completed):
             return true
