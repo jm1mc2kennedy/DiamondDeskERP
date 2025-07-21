@@ -188,21 +188,11 @@
 			path = DiamondDeskERPTests;
 			sourceTree = "<group>";
 		};
-	   B3417E8B2E2B1CCC0018A3C7 /* DiamondDeskERPUITests */ = {
-		   isa = PBXFileSystemSynchronizedRootGroup;
-		   path = DiamondDeskERPUITests;
-		   sourceTree = "<group>";
-	   };
-	   B3F4A1002E2C5FFF00BCCA03 /* Sources */ = {
-		   isa = PBXFileSystemSynchronizedRootGroup;
-		   path = Sources;
-		   sourceTree = "<group>";
-	   };
-	   B3F4A1004E2C5FFF00BCCA03 /* Services */ = {
-		   isa = PBXFileSystemSynchronizedRootGroup;
-		   path = Services;
-		   sourceTree = "<group>";
-	   };
+		B3417E8B2E2B1CCC0018A3C7 /* DiamondDeskERPUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DiamondDeskERPUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,11 +283,9 @@
 				B3DC48512E2C43ED00BCCA03 /* StoreReportRepository.swift */,
 				B3DC48532E2C43F100BCCA03 /* StoreReportViewModel.swift */,
 				B3DC48552E2C43F800BCCA03 /* StoreReportListView.swift */,
-			   B3DC48572E2C45AD00BCCA03 /* AnalyticsService.swift */, 
-			   B3DC48592E2C45B800BCCA03 /* DashboardView.swift */, 
-			   B3F4A1002E2C5FFF00BCCA03 /* Sources */,
-			   B3F4A1004E2C5FFF00BCCA03 /* Services */, 
-		   );
+				B3DC48572E2C45AD00BCCA03 /* AnalyticsService.swift */,
+				B3DC48592E2C45B800BCCA03 /* DashboardView.swift */,
+			);
 			sourceTree = "<group>";
 		};
 		B3417E6B2E2B1CC90018A3C7 /* Products */ = {
