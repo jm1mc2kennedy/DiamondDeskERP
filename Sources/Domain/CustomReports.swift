@@ -696,7 +696,15 @@ extension ReportLog {
               let status = record["status"] as? String else { return nil }
         let executionTime = record["executionTime"] as? Double
         let errorDetails = record["errorDetails"] as? String
-        return ReportLog(id: record.recordID.recordName, reportId: reportId, entryDate: entryDate, summary: summary, executionTime: executionTime, status: status, errorDetails: errorDetails)
+        return ReportLog(
+            id: record.recordID.recordName,
+            reportId: reportId,
+            entryDate: entryDate,
+            summary: summary,
+            executionTime: executionTime,
+            status: status,
+            errorDetails: errorDetails
+        )
     }
 }
 #endif
