@@ -1,0 +1,956 @@
+#
+# Unified External API GraphQL Schema
+# DiamondDeskERP - Enterprise Edition
+# Complete schema for third-party integrations and external API consistency
+# Supports all modules: Productivity, Document Management, Vendor Directory, Asset Management
+#
+
+scalar Date
+scalar DateTime
+scalar JSON
+scalar Upload
+
+# Core Enums
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum TaskStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  BLOCKED
+  CANCELLED
+}
+
+enum DocumentStatus {
+  DRAFT
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  ARCHIVED
+}
+
+enum VendorStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+  SUSPENDED
+}
+
+enum AssetType {
+  IMAGE
+  VIDEO
+  DOCUMENT
+  AUDIO
+  ARCHIVE
+  OTHER
+}
+
+enum IntegrationType {
+  OFFICE365
+  SHAREPOINT
+  TEAMS
+  OUTLOOK
+  ONEDRIVE
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  EMPLOYEE
+  VIEWER
+  GUEST
+}
+
+enum PermissionLevel {
+  OWNER
+  EDITOR
+  VIEWER
+  NONE
+}
+
+# Input Types for Mutations
+
+input CreateTaskInput {
+  title: String!
+  description: String
+  priority: TaskPriority = MEDIUM
+  assigneeId: String
+  dueDate: DateTime
+  projectId: String
+  tags: [String!]
+  dependencies: [String!]
+  estimatedHours: Float
+  boardId: String
+}
+
+input UpdateTaskInput {
+  id: ID!
+  title: String
+  description: String
+  priority: TaskPriority
+  assigneeId: String
+  dueDate: DateTime
+  status: TaskStatus
+  tags: [String!]
+  completedAt: DateTime
+  actualHours: Float
+}
+
+input CreateDocumentInput {
+  title: String!
+  content: String
+  parentFolderId: String
+  tags: [String!]
+  isPrivate: Boolean = false
+  templateId: String
+  metadata: JSON
+}
+
+input CreateVendorInput {
+  name: String!
+  contactEmail: String!
+  phone: String
+  address: String
+  website: String
+  category: String
+  description: String
+  preferredPaymentTerms: String
+}
+
+input CreateAssetInput {
+  name: String!
+  file: Upload!
+  category: String
+  tags: [String!]
+  description: String
+  isPublic: Boolean = false
+}
+
+input Office365IntegrationInput {
+  tenantId: String!
+  clientId: String!
+  scopes: [String!]!
+  configuration: JSON
+}
+
+# Core Types
+
+type User {
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  role: UserRole!
+  avatar: String
+  isActive: Boolean!
+  lastLoginAt: DateTime
+  createdAt: DateTime!
+  
+  # Relationships
+  assignedTasks: [Task!]!
+  createdTasks: [Task!]!
+  documents: [Document!]!
+  assets: [Asset!]!
+  permissions: [Permission!]!
+}
+
+type Task {
+  id: ID!
+  title: String!
+  description: String
+  priority: TaskPriority!
+  status: TaskStatus!
+  assigneeId: String
+  assignee: User
+  creatorId: String!
+  creator: User!
+  dueDate: DateTime
+  completedAt: DateTime
+  estimatedHours: Float
+  actualHours: Float
+  projectId: String
+  project: Project
+  boardId: String
+  board: ProjectBoard
+  tags: [String!]!
+  dependencies: [Task!]!
+  dependents: [Task!]!
+  comments: [TaskComment!]!
+  attachments: [Asset!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Project {
+  id: ID!
+  name: String!
+  description: String
+  ownerId: String!
+  owner: User!
+  status: String!
+  startDate: Date
+  endDate: Date
+  budget: Float
+  actualCost: Float
+  tasks: [Task!]!
+  boards: [ProjectBoard!]!
+  documents: [Document!]!
+  assets: [Asset!]!
+  team: [User!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ProjectBoard {
+  id: ID!
+  name: String!
+  description: String
+  projectId: String!
+  project: Project!
+  ownerId: String!
+  owner: User!
+  viewType: String!
+  isArchived: Boolean!
+  tasks: [Task!]!
+  permissions: [BoardPermission!]!
+  customColumns: [CustomColumn!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type BoardPermission {
+  id: ID!
+  boardId: ID!
+  board: ProjectBoard!
+  userId: String!
+  user: User!
+  permissionLevel: PermissionLevel!
+  grantedBy: String!
+  grantedAt: DateTime!
+}
+
+type CustomColumn {
+  id: ID!
+  boardId: ID!
+  name: String!
+  type: String!
+  position: Int!
+  isRequired: Boolean!
+  options: JSON
+}
+
+type TaskComment {
+  id: ID!
+  taskId: ID!
+  task: Task!
+  authorId: String!
+  author: User!
+  content: String!
+  isInternal: Boolean!
+  mentions: [User!]!
+  attachments: [Asset!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Document {
+  id: ID!
+  title: String!
+  content: String
+  fileSize: Int
+  mimeType: String
+  status: DocumentStatus!
+  ownerId: String!
+  owner: User!
+  parentFolderId: String
+  parentFolder: DocumentFolder
+  tags: [String!]!
+  isPrivate: Boolean!
+  version: Int!
+  templateId: String
+  template: DocumentTemplate
+  metadata: JSON
+  shareUrl: String
+  downloadCount: Int!
+  lastAccessedAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  
+  # Relationships
+  versions: [DocumentVersion!]!
+  permissions: [DocumentPermission!]!
+  comments: [DocumentComment!]!
+  linkedRecords: [RecordLink!]!
+}
+
+type DocumentFolder {
+  id: ID!
+  name: String!
+  parentId: String
+  parent: DocumentFolder
+  ownerId: String!
+  owner: User!
+  isPrivate: Boolean!
+  children: [DocumentFolder!]!
+  documents: [Document!]!
+  path: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DocumentTemplate {
+  id: ID!
+  name: String!
+  description: String
+  content: String!
+  category: String
+  isPublic: Boolean!
+  createdBy: String!
+  creator: User!
+  usageCount: Int!
+  tags: [String!]!
+  fields: [TemplateField!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type TemplateField {
+  id: ID!
+  name: String!
+  label: String!
+  type: String!
+  isRequired: Boolean!
+  defaultValue: String
+  options: [String!]
+  validation: JSON
+}
+
+type DocumentVersion {
+  id: ID!
+  documentId: ID!
+  document: Document!
+  versionNumber: Int!
+  content: String!
+  changeNote: String
+  createdBy: String!
+  creator: User!
+  fileSize: Int
+  createdAt: DateTime!
+}
+
+type DocumentPermission {
+  id: ID!
+  documentId: ID!
+  document: Document!
+  userId: String!
+  user: User!
+  permissionLevel: PermissionLevel!
+  grantedBy: String!
+  grantedAt: DateTime!
+  expiresAt: DateTime
+}
+
+type DocumentComment {
+  id: ID!
+  documentId: ID!
+  document: Document!
+  authorId: String!
+  author: User!
+  content: String!
+  position: JSON # For inline comments
+  isResolved: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Vendor {
+  id: ID!
+  name: String!
+  contactEmail: String!
+  phone: String
+  address: String
+  website: String
+  category: String
+  description: String
+  status: VendorStatus!
+  rating: Float
+  preferredPaymentTerms: String
+  taxId: String
+  
+  # Relationships
+  contacts: [VendorContact!]!
+  contracts: [VendorContract!]!
+  invoices: [VendorInvoice!]!
+  documents: [Document!]!
+  
+  # Metadata
+  tags: [String!]!
+  customFields: JSON
+  createdBy: String!
+  creator: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type VendorContact {
+  id: ID!
+  vendorId: ID!
+  vendor: Vendor!
+  name: String!
+  email: String!
+  phone: String
+  position: String
+  isPrimary: Boolean!
+  department: String
+  notes: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type VendorContract {
+  id: ID!
+  vendorId: ID!
+  vendor: Vendor!
+  title: String!
+  contractNumber: String
+  startDate: Date!
+  endDate: Date
+  value: Float
+  currency: String!
+  status: String!
+  terms: String
+  documentId: String
+  document: Document
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type VendorInvoice {
+  id: ID!
+  vendorId: ID!
+  vendor: Vendor!
+  invoiceNumber: String!
+  amount: Float!
+  currency: String!
+  dueDate: Date!
+  paidDate: Date
+  status: String!
+  description: String
+  documentId: String
+  document: Document
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Asset {
+  id: ID!
+  name: String!
+  fileName: String!
+  fileSize: Int!
+  mimeType: String!
+  assetType: AssetType!
+  category: String
+  description: String
+  isPublic: Boolean!
+  uploadedBy: String!
+  uploader: User!
+  storagePath: String!
+  downloadUrl: String!
+  thumbnailUrl: String
+  tags: [String!]!
+  metadata: JSON
+  usageCount: Int!
+  lastAccessedAt: DateTime
+  uploadDate: DateTime!
+  
+  # Relationships
+  linkedTasks: [Task!]!
+  linkedDocuments: [Document!]!
+  linkedVendors: [Vendor!]!
+  usageLogs: [AssetUsageLog!]!
+}
+
+type AssetUsageLog {
+  id: ID!
+  assetId: ID!
+  asset: Asset!
+  userId: String!
+  user: User!
+  action: String!
+  context: String
+  metadata: JSON
+  ipAddress: String
+  userAgent: String
+  timestamp: DateTime!
+}
+
+type Office365Integration {
+  id: ID!
+  userId: String!
+  user: User!
+  tenantId: String!
+  isActive: Boolean!
+  lastSyncAt: DateTime
+  configuration: JSON
+  
+  # Sync Status
+  outlookSync: OutlookSync
+  sharePointSync: SharePointSync
+  teamsSync: TeamsSync
+  
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type OutlookSync {
+  id: ID!
+  integrationId: ID!
+  integration: Office365Integration!
+  isEnabled: Boolean!
+  lastSyncAt: DateTime
+  syncInterval: Int! # minutes
+  filters: JSON
+  errorCount: Int!
+  lastError: String
+}
+
+type SharePointSync {
+  id: ID!
+  integrationId: ID!
+  integration: Office365Integration!
+  siteUrl: String!
+  isEnabled: Boolean!
+  lastSyncAt: DateTime
+  deltaToken: String
+  syncedDocuments: Int!
+  errorCount: Int!
+  lastError: String
+}
+
+type TeamsSync {
+  id: ID!
+  integrationId: ID!
+  integration: Office365Integration!
+  isEnabled: Boolean!
+  lastSyncAt: DateTime
+  syncedChannels: Int!
+  syncedMessages: Int!
+  errorCount: Int!
+  lastError: String
+}
+
+type RecordLink {
+  id: ID!
+  sourceModule: String!
+  sourceRecordId: String!
+  targetModule: String!
+  targetRecordId: String!
+  linkType: String!
+  isActive: Boolean!
+  createdBy: String!
+  creator: User!
+  createdAt: DateTime!
+  
+  # Dynamic resolution based on modules
+  sourceRecord: JSON
+  targetRecord: JSON
+}
+
+type Permission {
+  id: ID!
+  userId: String!
+  user: User!
+  resourceType: String!
+  resourceId: String!
+  permissionLevel: PermissionLevel!
+  grantedBy: String!
+  grantor: User!
+  grantedAt: DateTime!
+  expiresAt: DateTime
+  isActive: Boolean!
+}
+
+type PerformanceMetric {
+  id: ID!
+  metricName: String!
+  metricType: String!
+  value: Float!
+  unit: String!
+  userId: String
+  user: User
+  resourceId: String
+  resourceType: String
+  context: JSON
+  measuredAt: DateTime!
+}
+
+# Query Root
+type Query {
+  # User queries
+  me: User
+  user(id: ID!): User
+  users(
+    filter: String
+    role: UserRole
+    isActive: Boolean
+    first: Int = 20
+    after: String
+  ): UserConnection!
+  
+  # Task queries
+  task(id: ID!): Task
+  tasks(
+    filter: String
+    status: TaskStatus
+    priority: TaskPriority
+    assigneeId: String
+    projectId: String
+    boardId: String
+    dueDate: Date
+    first: Int = 20
+    after: String
+  ): TaskConnection!
+  
+  # Project queries
+  project(id: ID!): Project
+  projects(
+    filter: String
+    status: String
+    ownerId: String
+    first: Int = 20
+    after: String
+  ): ProjectConnection!
+  
+  # Document queries
+  document(id: ID!): Document
+  documents(
+    filter: String
+    status: DocumentStatus
+    ownerId: String
+    folderId: String
+    tags: [String!]
+    first: Int = 20
+    after: String
+  ): DocumentConnection!
+  
+  # Vendor queries
+  vendor(id: ID!): Vendor
+  vendors(
+    filter: String
+    status: VendorStatus
+    category: String
+    first: Int = 20
+    after: String
+  ): VendorConnection!
+  
+  # Asset queries
+  asset(id: ID!): Asset
+  assets(
+    filter: String
+    assetType: AssetType
+    category: String
+    uploadedBy: String
+    tags: [String!]
+    first: Int = 20
+    after: String
+  ): AssetConnection!
+  
+  # Integration queries
+  office365Integration(userId: String!): Office365Integration
+  office365Integrations: [Office365Integration!]!
+  
+  # Record linking queries
+  recordLinks(
+    sourceModule: String
+    targetModule: String
+    sourceRecordId: String
+    targetRecordId: String
+    linkType: String
+    first: Int = 20
+    after: String
+  ): RecordLinkConnection!
+  
+  # Performance queries
+  performanceMetrics(
+    metricName: String
+    metricType: String
+    resourceType: String
+    resourceId: String
+    userId: String
+    from: DateTime
+    to: DateTime
+    first: Int = 100
+    after: String
+  ): PerformanceMetricConnection!
+  
+  # Search queries
+  search(
+    query: String!
+    modules: [String!]
+    resourceTypes: [String!]
+    first: Int = 20
+    after: String
+  ): SearchConnection!
+}
+
+# Mutation Root
+type Mutation {
+  # Task mutations
+  createTask(input: CreateTaskInput!): TaskPayload!
+  updateTask(input: UpdateTaskInput!): TaskPayload!
+  deleteTask(id: ID!): DeletePayload!
+  
+  # Document mutations
+  createDocument(input: CreateDocumentInput!): DocumentPayload!
+  updateDocument(id: ID!, input: CreateDocumentInput!): DocumentPayload!
+  deleteDocument(id: ID!): DeletePayload!
+  
+  # Vendor mutations
+  createVendor(input: CreateVendorInput!): VendorPayload!
+  updateVendor(id: ID!, input: CreateVendorInput!): VendorPayload!
+  deleteVendor(id: ID!): DeletePayload!
+  
+  # Asset mutations
+  createAsset(input: CreateAssetInput!): AssetPayload!
+  deleteAsset(id: ID!): DeletePayload!
+  
+  # Integration mutations
+  createOffice365Integration(input: Office365IntegrationInput!): Office365IntegrationPayload!
+  updateOffice365Integration(id: ID!, input: Office365IntegrationInput!): Office365IntegrationPayload!
+  deleteOffice365Integration(id: ID!): DeletePayload!
+  syncOffice365Data(integrationId: ID!): SyncPayload!
+  
+  # Record linking mutations
+  createRecordLink(
+    sourceModule: String!
+    sourceRecordId: String!
+    targetModule: String!
+    targetRecordId: String!
+    linkType: String!
+  ): RecordLinkPayload!
+  deleteRecordLink(id: ID!): DeletePayload!
+  
+  # Permission mutations
+  grantPermission(
+    userId: String!
+    resourceType: String!
+    resourceId: String!
+    permissionLevel: PermissionLevel!
+    expiresAt: DateTime
+  ): PermissionPayload!
+  revokePermission(id: ID!): DeletePayload!
+  
+  # Performance mutations
+  recordPerformanceMetric(
+    metricName: String!
+    metricType: String!
+    value: Float!
+    unit: String!
+    resourceId: String
+    resourceType: String
+    context: JSON
+  ): PerformanceMetricPayload!
+}
+
+# Subscription Root
+type Subscription {
+  # Real-time task updates
+  taskUpdated(taskId: ID): Task!
+  taskStatusChanged(projectId: ID): Task!
+  
+  # Real-time document updates
+  documentUpdated(documentId: ID): Document!
+  documentCommentAdded(documentId: ID!): DocumentComment!
+  
+  # Real-time integration updates
+  office365SyncStatus(integrationId: ID!): Office365Integration!
+  
+  # Real-time performance metrics
+  performanceMetricRecorded(
+    metricName: String
+    resourceType: String
+    resourceId: String
+  ): PerformanceMetric!
+}
+
+# Connection Types (for pagination)
+type UserConnection {
+  edges: [UserEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+type TaskConnection {
+  edges: [TaskEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type TaskEdge {
+  node: Task!
+  cursor: String!
+}
+
+type ProjectConnection {
+  edges: [ProjectEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ProjectEdge {
+  node: Project!
+  cursor: String!
+}
+
+type DocumentConnection {
+  edges: [DocumentEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type DocumentEdge {
+  node: Document!
+  cursor: String!
+}
+
+type VendorConnection {
+  edges: [VendorEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type VendorEdge {
+  node: Vendor!
+  cursor: String!
+}
+
+type AssetConnection {
+  edges: [AssetEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AssetEdge {
+  node: Asset!
+  cursor: String!
+}
+
+type RecordLinkConnection {
+  edges: [RecordLinkEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type RecordLinkEdge {
+  node: RecordLink!
+  cursor: String!
+}
+
+type PerformanceMetricConnection {
+  edges: [PerformanceMetricEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PerformanceMetricEdge {
+  node: PerformanceMetric!
+  cursor: String!
+}
+
+type SearchConnection {
+  edges: [SearchEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SearchEdge {
+  node: SearchResult!
+  cursor: String!
+}
+
+type SearchResult {
+  resourceType: String!
+  resourceId: String!
+  title: String!
+  description: String
+  score: Float!
+  highlightedContent: String
+  url: String!
+  metadata: JSON
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+# Payload Types (for mutations)
+type TaskPayload {
+  task: Task
+  errors: [UserError!]!
+}
+
+type DocumentPayload {
+  document: Document
+  errors: [UserError!]!
+}
+
+type VendorPayload {
+  vendor: Vendor
+  errors: [UserError!]!
+}
+
+type AssetPayload {
+  asset: Asset
+  errors: [UserError!]!
+}
+
+type Office365IntegrationPayload {
+  integration: Office365Integration
+  errors: [UserError!]!
+}
+
+type RecordLinkPayload {
+  recordLink: RecordLink
+  errors: [UserError!]!
+}
+
+type PermissionPayload {
+  permission: Permission
+  errors: [UserError!]!
+}
+
+type PerformanceMetricPayload {
+  metric: PerformanceMetric
+  errors: [UserError!]!
+}
+
+type SyncPayload {
+  success: Boolean!
+  syncedItems: Int!
+  errors: [UserError!]!
+}
+
+type DeletePayload {
+  success: Boolean!
+  deletedId: ID
+  errors: [UserError!]!
+}
+
+type UserError {
+  field: String
+  message: String!
+  code: String
+}

@@ -211,7 +211,9 @@ All 27 PT3VS1 models now have complete implementation with:
 
 ### 📋 **Near-term (Optional)**
 
-1.
+1. Add remaining Core Data entities for offline optimization
+2. Implement GraphQL schema for external API consistency  
+3. Add performance benchmarks for complex workflows
 
 ### 🔄 **Continuous**
 
