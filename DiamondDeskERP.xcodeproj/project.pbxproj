@@ -12,15 +12,7 @@
 		B355CE612E2C7A26005D1145 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE602E2C7A26005D1145 /* AsyncAlgorithms */; };
 		B355CE632E2C7A3D005D1145 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE622E2C7A3D005D1145 /* AsyncAlgorithms */; };
 		B355CE652E2C7A49005D1145 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE642E2C7A49005D1145 /* AsyncAlgorithms */; };
-		B355CE682E2C7A8F005D1145 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE672E2C7A8F005D1145 /* ArgumentParser */; };
-		B355CE6A2E2C7A8F005D1145 /* generate-docc-reference in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE692E2C7A8F005D1145 /* generate-docc-reference */; };
-		B355CE6C2E2C7A8F005D1145 /* generate-manual in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE6B2E2C7A8F005D1145 /* generate-manual */; };
-		B355CE6E2E2C7AA5005D1145 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE6D2E2C7AA5005D1145 /* ArgumentParser */; };
-		B355CE702E2C7AA5005D1145 /* generate-docc-reference in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE6F2E2C7AA5005D1145 /* generate-docc-reference */; };
-		B355CE722E2C7AA5005D1145 /* generate-manual in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE712E2C7AA5005D1145 /* generate-manual */; };
-		B355CE742E2C7AC9005D1145 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE732E2C7AC9005D1145 /* ArgumentParser */; };
-		B355CE762E2C7AC9005D1145 /* generate-docc-reference in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE752E2C7AC9005D1145 /* generate-docc-reference */; };
-		B355CE782E2C7AC9005D1145 /* generate-manual in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE772E2C7AC9005D1145 /* generate-manual */; };
+		B3C872AA2E2E6ABC00FA275E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = B3C872A92E2E6ABC00FA275E /* ArgumentParser */; };
 		B3CC8CA72E2DE23500EE9262 /* Phase4.2_UnifiedPermissions_TestPlan.md in Resources */ = {isa = PBXBuildFile; fileRef = B3CC8C962E2DE23500EE9262 /* Phase4.2_UnifiedPermissions_TestPlan.md */; };
 		B3CC8CA82E2DE23500EE9262 /* CONFLICT_LOGGING_IMPLEMENTATION.md in Resources */ = {isa = PBXBuildFile; fileRef = B3CC8C872E2DE23500EE9262 /* CONFLICT_LOGGING_IMPLEMENTATION.md */; };
 		B3CC8CAA2E2DE23500EE9262 /* WEEK1_P0_COMPLETION_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = B3CC8C9F2E2DE23500EE9262 /* WEEK1_P0_COMPLETION_SUMMARY.md */; };
@@ -483,7 +475,6 @@
 		B3CC90AB2E2DE24500EE9262 /* TaskCompletionBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EC72E2DE24500EE9262 /* TaskCompletionBreakdownView.swift */; };
 		B3CC90AC2E2DE24500EE9262 /* KnowledgeArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D4F2E2DE24500EE9262 /* KnowledgeArticle.swift */; };
 		B3CC90AD2E2DE24500EE9262 /* DocumentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E6F2E2DE24500EE9262 /* DocumentDetailView.swift */; };
-		B3CC90AE2E2DE24500EE9262 /* CollaborationAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E6A2E2DE24500EE9262 /* CollaborationAnalyticsView.swift */; };
 		B3CC90AF2E2DE24500EE9262 /* ReportingDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E082E2DE24500EE9262 /* ReportingDashboardView.swift */; };
 		B3CC90B02E2DE24500EE9262 /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8ED22E2DE24500EE9262 /* CreateTaskView.swift */; };
 		B3CC90B12E2DE24500EE9262 /* AssetManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D8A2E2DE24500EE9262 /* AssetManagementViewModel.swift */; };
@@ -521,7 +512,6 @@
 		B3CC90D32E2DE24500EE9262 /* DirectoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E5A2E2DE24500EE9262 /* DirectoryRepository.swift */; };
 		B3CC90D52E2DE24500EE9262 /* TimelineBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EA92E2DE24500EE9262 /* TimelineBoardView.swift */; };
 		B3CC90D62E2DE24500EE9262 /* CreateProjectBoardSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EAD2E2DE24500EE9262 /* CreateProjectBoardSheet.swift */; };
-		B3CC90D72E2DE24500EE9262 /* ProjectRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DFB2E2DE24500EE9262 /* ProjectRepository.swift */; };
 		B3CC90D82E2DE24500EE9262 /* DocumentCollaborationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E6C2E2DE24500EE9262 /* DocumentCollaborationView.swift */; };
 		B3CC90D92E2DE24500EE9262 /* PerformanceTargetsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DE12E2DE24500EE9262 /* PerformanceTargetsViewModel.swift */; };
 		B3CC90DA2E2DE24500EE9262 /* TaskCompletionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D652E2DE24500EE9262 /* TaskCompletionLog.swift */; };
@@ -541,7 +531,6 @@
 		B3CC90E92E2DE24500EE9262 /* ClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E482E2DE24500EE9262 /* ClientViewModel.swift */; };
 		B3CC90EA2E2DE24500EE9262 /* AIInsightDetailByIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E272E2DE24500EE9262 /* AIInsightDetailByIdView.swift */; };
 		B3CC90EB2E2DE24500EE9262 /* AnalyticsConsentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EF32E2DE24500EE9262 /* AnalyticsConsentService.swift */; };
-		B3CC90EC2E2DE24500EE9262 /* DirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E5B2E2DE24500EE9262 /* DirectoryService.swift */; };
 		B3CC90ED2E2DE24500EE9262 /* DocumentDetailByIdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DC32E2DE24500EE9262 /* DocumentDetailByIdView.swift */; };
 		B3CC90EE2E2DE24500EE9262 /* ProjectModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DF42E2DE24500EE9262 /* ProjectModels.swift */; };
 		B3CC90F02E2DE24500EE9262 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8ED02E2DE24500EE9262 /* TaskViewModel.swift */; };
@@ -590,19 +579,16 @@
 		B3CC91242E2DE24500EE9262 /* InviteUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DC72E2DE24500EE9262 /* InviteUsersView.swift */; };
 		B3CC91262E2DE24500EE9262 /* AcknowledgmentTrackingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EF22E2DE24500EE9262 /* AcknowledgmentTrackingService.swift */; };
 		B3CC91272E2DE24500EE9262 /* FinancialFormsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DD62E2DE24500EE9262 /* FinancialFormsView.swift */; };
-		B3CC91282E2DE24500EE9262 /* MLInsightsProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D792E2DE24500EE9262 /* MLInsightsProcessor.swift */; };
 		B3CC91292E2DE24500EE9262 /* ProjectTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D5B2E2DE24500EE9262 /* ProjectTask.swift */; };
 		B3CC912A2E2DE24500EE9262 /* ProjectCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DF62E2DE24500EE9262 /* ProjectCreationView.swift */; };
 		B3CC912B2E2DE24500EE9262 /* ModernContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D3B2E2DE24500EE9262 /* ModernContentView.swift */; };
 		B3CC912C2E2DE24500EE9262 /* AssigneePickerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EAB2E2DE24500EE9262 /* AssigneePickerSheet.swift */; };
 		B3CC912D2E2DE24500EE9262 /* SalesTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D5F2E2DE24500EE9262 /* SalesTarget.swift */; };
-		B3CC912E2E2DE24500EE9262 /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DFC2E2DE24500EE9262 /* ProjectService.swift */; };
 		B3CC912F2E2DE24500EE9262 /* DashboardFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E4F2E2DE24500EE9262 /* DashboardFiltersView.swift */; };
 		B3CC91302E2DE24500EE9262 /* ReportViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E092E2DE24500EE9262 /* ReportViewerView.swift */; };
 		B3CC91312E2DE24500EE9262 /* FinancialAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DD42E2DE24500EE9262 /* FinancialAnalyticsView.swift */; };
 		B3CC91322E2DE24500EE9262 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E882E2DE24500EE9262 /* MessageViewModel.swift */; };
 		B3CC91342E2DE24500EE9262 /* EmployeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E792E2DE24500EE9262 /* EmployeeViewModel.swift */; };
-		B3CC91352E2DE24500EE9262 /* WorkflowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E0C2E2DE24500EE9262 /* WorkflowService.swift */; };
 		B3CC91362E2DE24500EE9262 /* CalendarModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D942E2DE24500EE9262 /* CalendarModels.swift */; };
 		B3CC91372E2DE24500EE9262 /* AIInsightsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D742E2DE24500EE9262 /* AIInsightsModels.swift */; };
 		B3CC91382E2DE24500EE9262 /* FinancialModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DCE2E2DE24500EE9262 /* FinancialModels.swift */; };
@@ -629,20 +615,14 @@
 		B3CC91542E2DE24500EE9262 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D992E2DE24500EE9262 /* CalendarViewModel.swift */; };
 		B3CC91552E2DE24500EE9262 /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E652E2DE24500EE9262 /* DocumentService.swift */; };
 		B3CC91562E2DE24500EE9262 /* CRMDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E4A2E2DE24500EE9262 /* CRMDashboardView.swift */; };
-		B3CC91572E2DE24500EE9262 /* Sequence+Unique.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DB22E2DE24500EE9262 /* Sequence+Unique.swift */; };
 		B3CC91582E2DE24500EE9262 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E4D2E2DE24500EE9262 /* OnboardingView.swift */; };
 		B3CC91592E2DE24500EE9262 /* DocumentCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DC22E2DE24500EE9262 /* DocumentCreationView.swift */; };
-		B3CC915B2E2DE24500EE9262 /* DirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DB02E2DE24500EE9262 /* DirectoryService.swift */; };
-		B3CC915E2E2DE24500EE9262 /* DirectoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E532E2DE24500EE9262 /* DirectoryModels.swift */; };
-		B3CC915F2E2DE24500EE9262 /* DirectoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E562E2DE24500EE9262 /* DirectoryListView.swift */; };
 		B3CC91602E2DE24500EE9262 /* TicketListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EE32E2DE24500EE9262 /* TicketListView.swift */; };
-		B3CC91642E2DE24500EE9262 /* DirectoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DAF2E2DE24500EE9262 /* DirectoryRepository.swift */; };
 		B3CC91682E2DE24500EE9262 /* UserAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DF02E2DE24500EE9262 /* UserAssignmentView.swift */; };
 		B3CC916A2E2DE24500EE9262 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D332E2DE24500EE9262 /* SecurityManager.swift */; };
 		B3CC916B2E2DE24500EE9262 /* CreatePersonalTodoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EAC2E2DE24500EE9262 /* CreatePersonalTodoSheet.swift */; };
 		B3CC916C2E2DE24500EE9262 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8F0E2E2DE24500EE9262 /* TaskRepository.swift */; };
 		B3CC916D2E2DE24500EE9262 /* DiamondDeskAIAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E1B2E2DE24500EE9262 /* DiamondDeskAIAssistant.swift */; };
-		B3CC916E2E2DE24500EE9262 /* AssetManagementService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EF52E2DE24500EE9262 /* AssetManagementService.swift */; };
 		B3CC91702E2DE24500EE9262 /* TimelineSettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EB32E2DE24500EE9262 /* TimelineSettingsSheet.swift */; };
 		B3CC91712E2DE24500EE9262 /* RoleManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DE92E2DE24500EE9262 /* RoleManagementViewModel.swift */; };
 		B3CC91742E2DE24500EE9262 /* Objective.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D542E2DE24500EE9262 /* Objective.swift */; };
@@ -655,7 +635,6 @@
 		B3CC917B2E2DE24500EE9262 /* AuditRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EF62E2DE24500EE9262 /* AuditRepository.swift */; };
 		B3CC917C2E2DE24500EE9262 /* LocalizationValidationDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E182E2DE24500EE9262 /* LocalizationValidationDashboard.swift */; };
 		B3CC917D2E2DE24500EE9262 /* PermissionMatrixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DED2E2DE24500EE9262 /* PermissionMatrixView.swift */; };
-		B3CC917E2E2DE24500EE9262 /* ProjectModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EB92E2DE24500EE9262 /* ProjectModels.swift */; };
 		B3CC917F2E2DE24500EE9262 /* AdaptiveNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D2C2E2DE24500EE9262 /* AdaptiveNavigationView.swift */; };
 		B3CC91802E2DE24500EE9262 /* ClientRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EF72E2DE24500EE9262 /* ClientRepository.swift */; };
 		B3CC91812E2DE24500EE9262 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8F112E2DE24500EE9262 /* UserService.swift */; };
@@ -668,18 +647,15 @@
 		B3CC91892E2DE24500EE9262 /* PublicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D5C2E2DE24500EE9262 /* PublicMessage.swift */; };
 		B3CC918D2E2DE24500EE9262 /* TrainingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D692E2DE24500EE9262 /* TrainingModel.swift */; };
 		B3CC918E2E2DE24500EE9262 /* VisualMerchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D712E2DE24500EE9262 /* VisualMerchUpload.swift */; };
-		B3CC918F2E2DE24500EE9262 /* DirectoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DA92E2DE24500EE9262 /* DirectoryFilterView.swift */; };
 		B3CC91912E2DE24500EE9262 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8F042E2DE24500EE9262 /* Persistence.swift */; };
 		B3CC91922E2DE24500EE9262 /* ProjectListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DFA2E2DE24500EE9262 /* ProjectListViewModel.swift */; };
 		B3CC91932E2DE24500EE9262 /* EditTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8ED32E2DE24500EE9262 /* EditTaskView.swift */; };
 		B3CC91962E2DE24500EE9262 /* PerformanceMonitoringService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8F012E2DE24500EE9262 /* PerformanceMonitoringService.swift */; };
-		B3CC91972E2DE24500EE9262 /* DirectoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E5C2E2DE24500EE9262 /* DirectoryViewModel.swift */; };
 		B3CC91992E2DE24500EE9262 /* AnalyticsConsentBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8ECD2E2DE24500EE9262 /* AnalyticsConsentBanner.swift */; };
 		B3CC919A2E2DE24500EE9262 /* AIInsightsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E222E2DE24500EE9262 /* AIInsightsService.swift */; };
 		B3CC919B2E2DE24500EE9262 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8ED52E2DE24500EE9262 /* TaskListView.swift */; };
 		B3CC919C2E2DE24500EE9262 /* SecurityDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8ECB2E2DE24500EE9262 /* SecurityDashboardView.swift */; };
 		B3CC919F2E2DE24500EE9262 /* EditTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EDF2E2DE24500EE9262 /* EditTicketView.swift */; };
-		B3CC91A02E2DE24500EE9262 /* DirectoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DB12E2DE24500EE9262 /* DirectoryViewModel.swift */; };
 		B3CC91A12E2DE24500EE9262 /* AssetUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E362E2DE24500EE9262 /* AssetUploadView.swift */; };
 		B3CC91A22E2DE24500EE9262 /* StoreReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D612E2DE24500EE9262 /* StoreReportModel.swift */; };
 		B3CC91A32E2DE24500EE9262 /* ClientMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D462E2DE24500EE9262 /* ClientMedia.swift */; };
@@ -693,15 +669,12 @@
 		B3CC91B22E2DE24500EE9262 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D602E2DE24500EE9262 /* Store.swift */; };
 		B3CC91B32E2DE24500EE9262 /* Audit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D402E2DE24500EE9262 /* Audit.swift */; };
 		B3CC91B42E2DE24500EE9262 /* VendorLifecycleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8F122E2DE24500EE9262 /* VendorLifecycleService.swift */; };
-		B3CC91B52E2DE24500EE9262 /* ClientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E412E2DE24500EE9262 /* ClientViewModel.swift */; };
-		B3CC91B62E2DE24500EE9262 /* ClientListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E462E2DE24500EE9262 /* ClientListView.swift */; };
 		B3CC91B72E2DE24500EE9262 /* CreateProjectTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EA22E2DE24500EE9262 /* CreateProjectTaskViewModel.swift */; };
 		B3CC91B82E2DE24500EE9262 /* UserProvisioningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8F102E2DE24500EE9262 /* UserProvisioningService.swift */; };
 		B3CC91B92E2DE24500EE9262 /* CreateFollowUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E492E2DE24500EE9262 /* CreateFollowUpView.swift */; };
 		B3CC91BC2E2DE24500EE9262 /* ProjectPortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EBE2E2DE24500EE9262 /* ProjectPortfolioView.swift */; };
 		B3CC91BD2E2DE24500EE9262 /* WorkflowCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E102E2DE24500EE9262 /* WorkflowCreationView.swift */; };
 		B3CC91BE2E2DE24500EE9262 /* CreditReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D482E2DE24500EE9262 /* CreditReport.swift */; };
-		B3CC91C12E2DE24500EE9262 /* ClientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E472E2DE24500EE9262 /* ClientModel.swift */; };
 		B3CC91C22E2DE24500EE9262 /* ProjectBoardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EB62E2DE24500EE9262 /* ProjectBoardDetailView.swift */; };
 		B3CC91C52E2DE24500EE9262 /* MessageReadBreakdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EC62E2DE24500EE9262 /* MessageReadBreakdownView.swift */; };
 		B3CC91C62E2DE24500EE9262 /* ReportingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E042E2DE24500EE9262 /* ReportingViewModel.swift */; };
@@ -710,12 +683,10 @@
 		B3CC91CB2E2DE24500EE9262 /* ProductivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8F062E2DE24500EE9262 /* ProductivityService.swift */; };
 		B3CC91CE2E2DE24500EE9262 /* ReportBuilderComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8E062E2DE24500EE9262 /* ReportBuilderComponents.swift */; };
 		B3CC91CF2E2DE24500EE9262 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D622E2DE24500EE9262 /* Survey.swift */; };
-		B3CC91D02E2DE24500EE9262 /* View+RoleGated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D3D2E2DE24500EE9262 /* View+RoleGated.swift */; };
 		B3CC91D22E2DE24500EE9262 /* EmployeeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DA12E2DE24500EE9262 /* EmployeeModels.swift */; };
 		B3CC91D32E2DE24500EE9262 /* ReportingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8DFE2E2DE24500EE9262 /* ReportingModels.swift */; };
 		B3CC91D42E2DE24500EE9262 /* RecordLinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D5D2E2DE24500EE9262 /* RecordLinking.swift */; };
 		B3CC91D62E2DE24500EE9262 /* StoreReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8F0D2E2DE24500EE9262 /* StoreReportRepository.swift */; };
-		B3CC91D72E2DE24500EE9262 /* ProjectCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8EBB2E2DE24500EE9262 /* ProjectCreationView.swift */; };
 		B3CC91D82E2DE24500EE9262 /* NavigationDestinationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D2E2E2DE24500EE9262 /* NavigationDestinationHandler.swift */; };
 		B3CC91DA2E2DE24500EE9262 /* UnifiedAPISchema.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B3CC8EE92E2DE24500EE9262 /* UnifiedAPISchema.graphql */; };
 		B3CC91DB2E2DE24500EE9262 /* ProductivityModule.graphql in Resources */ = {isa = PBXBuildFile; fileRef = B3CC8EE82E2DE24500EE9262 /* ProductivityModule.graphql */; };
@@ -1078,7 +1049,6 @@
 		B3CC93822E2DE24E00EE9262 /* UnifiedPermissionsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93582E2DE24E00EE9262 /* UnifiedPermissionsServiceTests.swift */; };
 		B3CC93832E2DE24E00EE9262 /* UIPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC934A2E2DE24E00EE9262 /* UIPerformanceTests.swift */; };
 		B3CC93842E2DE24E00EE9262 /* RoleHierarchyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC936F2E2DE24E00EE9262 /* RoleHierarchyTests.swift */; };
-		B3CC93852E2DE24E00EE9262 /* DirectoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC933E2E2DE24E00EE9262 /* DirectoryViewModelTests.swift */; };
 		B3CC93862E2DE24E00EE9262 /* WorkflowServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93552E2DE24E00EE9262 /* WorkflowServiceTests.swift */; };
 		B3CC93872E2DE24E00EE9262 /* PerformanceRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93472E2DE24E00EE9262 /* PerformanceRegressionTests.swift */; };
 		B3CC93882E2DE24E00EE9262 /* DiamondDeskERPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93622E2DE24E00EE9262 /* DiamondDeskERPTests.swift */; };
@@ -1671,12 +1641,20 @@
 			);
 			target = B3417E872E2B1CCC0018A3C7 /* DiamondDeskERPUITests */;
 		};
+		B3C872A72E2E67B900FA275E /* Exceptions for "DiamondDeskERP" folder in "DiamondDeskERP" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				DiamondDeskERPApp.swift,
+			);
+			target = B3417E692E2B1CC90018A3C7 /* DiamondDeskERP */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B3417E6C2E2B1CC90018A3C7 /* DiamondDeskERP */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				B3C872A72E2E67B900FA275E /* Exceptions for "DiamondDeskERP" folder in "DiamondDeskERP" target */,
 				B3C1DCEE2E2C0CB200EC7FA8 /* Exceptions for "DiamondDeskERP" folder in "DiamondDeskERPTests" target */,
 				B3C1DCEF2E2C0CB200EC7FA8 /* Exceptions for "DiamondDeskERP" folder in "DiamondDeskERPUITests" target */,
 			);
@@ -1694,28 +1672,20 @@
 		B3417E672E2B1CC90018A3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				B355CE682E2C7A8F005D1145 /* ArgumentParser in Frameworks */,
-				B355CE6C2E2C7A8F005D1145 /* generate-manual in Frameworks */,
+				B3C872AA2E2E6ABC00FA275E /* ArgumentParser in Frameworks */,
 				B355CE612E2C7A26005D1145 /* AsyncAlgorithms in Frameworks */,
-				B355CE6A2E2C7A8F005D1145 /* generate-docc-reference in Frameworks */,
 			);
 		};
 		B3417E7B2E2B1CCC0018A3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				B355CE6E2E2C7AA5005D1145 /* ArgumentParser in Frameworks */,
-				B355CE722E2C7AA5005D1145 /* generate-manual in Frameworks */,
 				B355CE632E2C7A3D005D1145 /* AsyncAlgorithms in Frameworks */,
-				B355CE702E2C7AA5005D1145 /* generate-docc-reference in Frameworks */,
 			);
 		};
 		B3417E852E2B1CCC0018A3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
-				B355CE742E2C7AC9005D1145 /* ArgumentParser in Frameworks */,
-				B355CE782E2C7AC9005D1145 /* generate-manual in Frameworks */,
 				B355CE652E2C7A49005D1145 /* AsyncAlgorithms in Frameworks */,
-				B355CE762E2C7AC9005D1145 /* generate-docc-reference in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -3473,9 +3443,7 @@
 			name = DiamondDeskERP;
 			packageProductDependencies = (
 				B355CE602E2C7A26005D1145 /* AsyncAlgorithms */,
-				B355CE672E2C7A8F005D1145 /* ArgumentParser */,
-				B355CE692E2C7A8F005D1145 /* generate-docc-reference */,
-				B355CE6B2E2C7A8F005D1145 /* generate-manual */,
+				B3C872A92E2E6ABC00FA275E /* ArgumentParser */,
 			);
 			productName = DiamondDeskERP;
 			productReference = B3417E6A2E2B1CC90018A3C7 /* DiamondDeskERP.app */;
@@ -3500,9 +3468,6 @@
 			name = DiamondDeskERPTests;
 			packageProductDependencies = (
 				B355CE622E2C7A3D005D1145 /* AsyncAlgorithms */,
-				B355CE6D2E2C7AA5005D1145 /* ArgumentParser */,
-				B355CE6F2E2C7AA5005D1145 /* generate-docc-reference */,
-				B355CE712E2C7AA5005D1145 /* generate-manual */,
 			);
 			productName = DiamondDeskERPTests;
 			productReference = B3417E7E2E2B1CCC0018A3C7 /* DiamondDeskERPTests.xctest */;
@@ -3524,9 +3489,6 @@
 			name = DiamondDeskERPUITests;
 			packageProductDependencies = (
 				B355CE642E2C7A49005D1145 /* AsyncAlgorithms */,
-				B355CE732E2C7AC9005D1145 /* ArgumentParser */,
-				B355CE752E2C7AC9005D1145 /* generate-docc-reference */,
-				B355CE772E2C7AC9005D1145 /* generate-manual */,
 			);
 			productName = DiamondDeskERPUITests;
 			productReference = B3417E882E2B1CCC0018A3C7 /* DiamondDeskERPUITests.xctest */;
@@ -3566,7 +3528,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				B355CE5F2E2C7A26005D1145 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
-				B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+				B3C872A82E2E6ABC00FA275E /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
 			);
 			preferredProjectObjectVersion = 90;
 			productRefGroup = B3417E6B2E2B1CC90018A3C7 /* Products */;
@@ -3710,7 +3672,6 @@
 				B3CC90AB2E2DE24500EE9262 /* TaskCompletionBreakdownView.swift in Sources */,
 				B3CC90AC2E2DE24500EE9262 /* KnowledgeArticle.swift in Sources */,
 				B3CC90AD2E2DE24500EE9262 /* DocumentDetailView.swift in Sources */,
-				B3CC90AE2E2DE24500EE9262 /* CollaborationAnalyticsView.swift in Sources */,
 				B3CC90AF2E2DE24500EE9262 /* ReportingDashboardView.swift in Sources */,
 				B3CC90B02E2DE24500EE9262 /* CreateTaskView.swift in Sources */,
 				B3CC90B12E2DE24500EE9262 /* AssetManagementViewModel.swift in Sources */,
@@ -3744,7 +3705,6 @@
 				B3CC93822E2DE24E00EE9262 /* UnifiedPermissionsServiceTests.swift in Sources */,
 				B3CC93832E2DE24E00EE9262 /* UIPerformanceTests.swift in Sources */,
 				B3CC93842E2DE24E00EE9262 /* RoleHierarchyTests.swift in Sources */,
-				B3CC93852E2DE24E00EE9262 /* DirectoryViewModelTests.swift in Sources */,
 				B3CC93862E2DE24E00EE9262 /* WorkflowServiceTests.swift in Sources */,
 				B3CC93872E2DE24E00EE9262 /* PerformanceRegressionTests.swift in Sources */,
 				B3CC93882E2DE24E00EE9262 /* DiamondDeskERPTests.swift in Sources */,
@@ -3792,7 +3752,6 @@
 				B3CC90D32E2DE24500EE9262 /* DirectoryRepository.swift in Sources */,
 				B3CC90D52E2DE24500EE9262 /* TimelineBoardView.swift in Sources */,
 				B3CC90D62E2DE24500EE9262 /* CreateProjectBoardSheet.swift in Sources */,
-				B3CC90D72E2DE24500EE9262 /* ProjectRepository.swift in Sources */,
 				B3CC90D82E2DE24500EE9262 /* DocumentCollaborationView.swift in Sources */,
 				B3CC90D92E2DE24500EE9262 /* PerformanceTargetsViewModel.swift in Sources */,
 				B3CC90DA2E2DE24500EE9262 /* TaskCompletionLog.swift in Sources */,
@@ -3812,7 +3771,6 @@
 				B3CC90E92E2DE24500EE9262 /* ClientViewModel.swift in Sources */,
 				B3CC90EA2E2DE24500EE9262 /* AIInsightDetailByIdView.swift in Sources */,
 				B3CC90EB2E2DE24500EE9262 /* AnalyticsConsentService.swift in Sources */,
-				B3CC90EC2E2DE24500EE9262 /* DirectoryService.swift in Sources */,
 				B3CC90ED2E2DE24500EE9262 /* DocumentDetailByIdView.swift in Sources */,
 				B3CC90EE2E2DE24500EE9262 /* ProjectModels.swift in Sources */,
 				B3CC90F02E2DE24500EE9262 /* TaskViewModel.swift in Sources */,
@@ -3861,19 +3819,16 @@
 				B3CC91242E2DE24500EE9262 /* InviteUsersView.swift in Sources */,
 				B3CC91262E2DE24500EE9262 /* AcknowledgmentTrackingService.swift in Sources */,
 				B3CC91272E2DE24500EE9262 /* FinancialFormsView.swift in Sources */,
-				B3CC91282E2DE24500EE9262 /* MLInsightsProcessor.swift in Sources */,
 				B3CC91292E2DE24500EE9262 /* ProjectTask.swift in Sources */,
 				B3CC912A2E2DE24500EE9262 /* ProjectCreationView.swift in Sources */,
 				B3CC912B2E2DE24500EE9262 /* ModernContentView.swift in Sources */,
 				B3CC912C2E2DE24500EE9262 /* AssigneePickerSheet.swift in Sources */,
 				B3CC912D2E2DE24500EE9262 /* SalesTarget.swift in Sources */,
-				B3CC912E2E2DE24500EE9262 /* ProjectService.swift in Sources */,
 				B3CC912F2E2DE24500EE9262 /* DashboardFiltersView.swift in Sources */,
 				B3CC91302E2DE24500EE9262 /* ReportViewerView.swift in Sources */,
 				B3CC91312E2DE24500EE9262 /* FinancialAnalyticsView.swift in Sources */,
 				B3CC91322E2DE24500EE9262 /* MessageViewModel.swift in Sources */,
 				B3CC91342E2DE24500EE9262 /* EmployeeViewModel.swift in Sources */,
-				B3CC91352E2DE24500EE9262 /* WorkflowService.swift in Sources */,
 				B3CC91362E2DE24500EE9262 /* CalendarModels.swift in Sources */,
 				B3CC91372E2DE24500EE9262 /* AIInsightsModels.swift in Sources */,
 				B3CC91382E2DE24500EE9262 /* FinancialModels.swift in Sources */,
@@ -3900,20 +3855,14 @@
 				B3CC91542E2DE24500EE9262 /* CalendarViewModel.swift in Sources */,
 				B3CC91552E2DE24500EE9262 /* DocumentService.swift in Sources */,
 				B3CC91562E2DE24500EE9262 /* CRMDashboardView.swift in Sources */,
-				B3CC91572E2DE24500EE9262 /* Sequence+Unique.swift in Sources */,
 				B3CC91582E2DE24500EE9262 /* OnboardingView.swift in Sources */,
 				B3CC91592E2DE24500EE9262 /* DocumentCreationView.swift in Sources */,
-				B3CC915B2E2DE24500EE9262 /* DirectoryService.swift in Sources */,
-				B3CC915E2E2DE24500EE9262 /* DirectoryModels.swift in Sources */,
-				B3CC915F2E2DE24500EE9262 /* DirectoryListView.swift in Sources */,
 				B3CC91602E2DE24500EE9262 /* TicketListView.swift in Sources */,
-				B3CC91642E2DE24500EE9262 /* DirectoryRepository.swift in Sources */,
 				B3CC91682E2DE24500EE9262 /* UserAssignmentView.swift in Sources */,
 				B3CC916A2E2DE24500EE9262 /* SecurityManager.swift in Sources */,
 				B3CC916B2E2DE24500EE9262 /* CreatePersonalTodoSheet.swift in Sources */,
 				B3CC916C2E2DE24500EE9262 /* TaskRepository.swift in Sources */,
 				B3CC916D2E2DE24500EE9262 /* DiamondDeskAIAssistant.swift in Sources */,
-				B3CC916E2E2DE24500EE9262 /* AssetManagementService.swift in Sources */,
 				B3CC91702E2DE24500EE9262 /* TimelineSettingsSheet.swift in Sources */,
 				B3CC91712E2DE24500EE9262 /* RoleManagementViewModel.swift in Sources */,
 				B3CC91742E2DE24500EE9262 /* Objective.swift in Sources */,
@@ -3926,7 +3875,6 @@
 				B3CC917B2E2DE24500EE9262 /* AuditRepository.swift in Sources */,
 				B3CC917C2E2DE24500EE9262 /* LocalizationValidationDashboard.swift in Sources */,
 				B3CC917D2E2DE24500EE9262 /* PermissionMatrixView.swift in Sources */,
-				B3CC917E2E2DE24500EE9262 /* ProjectModels.swift in Sources */,
 				B3CC917F2E2DE24500EE9262 /* AdaptiveNavigationView.swift in Sources */,
 				B3CC91802E2DE24500EE9262 /* ClientRepository.swift in Sources */,
 				B3CC91812E2DE24500EE9262 /* UserService.swift in Sources */,
@@ -3939,18 +3887,15 @@
 				B3CC91892E2DE24500EE9262 /* PublicMessage.swift in Sources */,
 				B3CC918D2E2DE24500EE9262 /* TrainingModel.swift in Sources */,
 				B3CC918E2E2DE24500EE9262 /* VisualMerchUpload.swift in Sources */,
-				B3CC918F2E2DE24500EE9262 /* DirectoryFilterView.swift in Sources */,
 				B3CC91912E2DE24500EE9262 /* Persistence.swift in Sources */,
 				B3CC91922E2DE24500EE9262 /* ProjectListViewModel.swift in Sources */,
 				B3CC91932E2DE24500EE9262 /* EditTaskView.swift in Sources */,
 				B3CC91962E2DE24500EE9262 /* PerformanceMonitoringService.swift in Sources */,
-				B3CC91972E2DE24500EE9262 /* DirectoryViewModel.swift in Sources */,
 				B3CC91992E2DE24500EE9262 /* AnalyticsConsentBanner.swift in Sources */,
 				B3CC919A2E2DE24500EE9262 /* AIInsightsService.swift in Sources */,
 				B3CC919B2E2DE24500EE9262 /* TaskListView.swift in Sources */,
 				B3CC919C2E2DE24500EE9262 /* SecurityDashboardView.swift in Sources */,
 				B3CC919F2E2DE24500EE9262 /* EditTicketView.swift in Sources */,
-				B3CC91A02E2DE24500EE9262 /* DirectoryViewModel.swift in Sources */,
 				B3CC91A12E2DE24500EE9262 /* AssetUploadView.swift in Sources */,
 				B3CC91A22E2DE24500EE9262 /* StoreReportModel.swift in Sources */,
 				B3CC91A32E2DE24500EE9262 /* ClientMedia.swift in Sources */,
@@ -3964,15 +3909,12 @@
 				B3CC91B22E2DE24500EE9262 /* Store.swift in Sources */,
 				B3CC91B32E2DE24500EE9262 /* Audit.swift in Sources */,
 				B3CC91B42E2DE24500EE9262 /* VendorLifecycleService.swift in Sources */,
-				B3CC91B52E2DE24500EE9262 /* ClientViewModel.swift in Sources */,
-				B3CC91B62E2DE24500EE9262 /* ClientListView.swift in Sources */,
 				B3CC91B72E2DE24500EE9262 /* CreateProjectTaskViewModel.swift in Sources */,
 				B3CC91B82E2DE24500EE9262 /* UserProvisioningService.swift in Sources */,
 				B3CC91B92E2DE24500EE9262 /* CreateFollowUpView.swift in Sources */,
 				B3CC91BC2E2DE24500EE9262 /* ProjectPortfolioView.swift in Sources */,
 				B3CC91BD2E2DE24500EE9262 /* WorkflowCreationView.swift in Sources */,
 				B3CC91BE2E2DE24500EE9262 /* CreditReport.swift in Sources */,
-				B3CC91C12E2DE24500EE9262 /* ClientModel.swift in Sources */,
 				B3CC91C22E2DE24500EE9262 /* ProjectBoardDetailView.swift in Sources */,
 				B3CC91C52E2DE24500EE9262 /* MessageReadBreakdownView.swift in Sources */,
 				B3CC91C62E2DE24500EE9262 /* ReportingViewModel.swift in Sources */,
@@ -3981,12 +3923,10 @@
 				B3CC91CB2E2DE24500EE9262 /* ProductivityService.swift in Sources */,
 				B3CC91CE2E2DE24500EE9262 /* ReportBuilderComponents.swift in Sources */,
 				B3CC91CF2E2DE24500EE9262 /* Survey.swift in Sources */,
-				B3CC91D02E2DE24500EE9262 /* View+RoleGated.swift in Sources */,
 				B3CC91D22E2DE24500EE9262 /* EmployeeModels.swift in Sources */,
 				B3CC91D32E2DE24500EE9262 /* ReportingModels.swift in Sources */,
 				B3CC91D42E2DE24500EE9262 /* RecordLinking.swift in Sources */,
 				B3CC91D62E2DE24500EE9262 /* StoreReportRepository.swift in Sources */,
-				B3CC91D72E2DE24500EE9262 /* ProjectCreationView.swift in Sources */,
 				B3CC91D82E2DE24500EE9262 /* NavigationDestinationHandler.swift in Sources */,
 				B3CC8D2A2E2DE23E00EE9262 /* ConflictViewer.swift in Sources */,
 				B3CC8D2B2E2DE23E00EE9262 /* ConflictLoggingIntegration.swift in Sources */,
@@ -5212,7 +5152,7 @@
 				minimumVersion = 1.0.4;
 			};
 		};
-		B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+		B3C872A82E2E6ABC00FA275E /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
 			requirement = {
@@ -5238,50 +5178,10 @@
 			package = B355CE5F2E2C7A26005D1145 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
 			productName = AsyncAlgorithms;
 		};
-		B355CE672E2C7A8F005D1145 /* ArgumentParser */ = {
+		B3C872A92E2E6ABC00FA275E /* ArgumentParser */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			package = B3C872A82E2E6ABC00FA275E /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
 			productName = ArgumentParser;
-		};
-		B355CE692E2C7A8F005D1145 /* generate-docc-reference */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = "generate-docc-reference";
-		};
-		B355CE6B2E2C7A8F005D1145 /* generate-manual */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = "generate-manual";
-		};
-		B355CE6D2E2C7AA5005D1145 /* ArgumentParser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = ArgumentParser;
-		};
-		B355CE6F2E2C7AA5005D1145 /* generate-docc-reference */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = "generate-docc-reference";
-		};
-		B355CE712E2C7AA5005D1145 /* generate-manual */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = "generate-manual";
-		};
-		B355CE732E2C7AC9005D1145 /* ArgumentParser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = ArgumentParser;
-		};
-		B355CE752E2C7AC9005D1145 /* generate-docc-reference */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = "generate-docc-reference";
-		};
-		B355CE772E2C7AC9005D1145 /* generate-manual */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B355CE662E2C7A8F005D1145 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
-			productName = "generate-manual";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
