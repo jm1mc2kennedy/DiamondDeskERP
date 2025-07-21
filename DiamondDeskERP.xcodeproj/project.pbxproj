@@ -446,28 +446,11 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		B3417E682E2B1CC90018A3C7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-				B3DC48082E2C3C3800BCCA03 /* SeedStores.json in Resources */,
-				B3DC47FA2E2C314900BCCA03 /* AppPojectBuildoutPlanPT2VS1.md in Resources */,
-				B3DC480A2E2C3C4A00BCCA03 /* SeedStores 2.json in Resources */,
-				B381FF082E2C130E004624AC /* iOSSwifitUIReferences.md in Resources */,
-				B3DC48002E2C387800BCCA03 /* DocsAI_Error_Index.md in Resources */,
-				B3DC47FE2E2C384C00BCCA03 /* DocsAIAssistantIntegration.md in Resources */,
-				B3DC47F62E2C2E0200BCCA03 /* AppProjectBuildoutPlanVS1.md in Resources */,
-			);
-		};
-		B3417E7C2E2B1CCC0018A3C7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
-		B3417E862E2B1CCC0018A3C7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
+	   B3417E682E2B1CC90018A3C7 /* Resources */ = {
+		   isa = PBXResourcesBuildPhase;
+		   children = ();
+		   files = ();
+	   };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
