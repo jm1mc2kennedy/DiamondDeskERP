@@ -1,8 +1,8 @@
 import Foundation
 import CloudKit
 
-// MARK: - User Interface Preferences Model
-public struct UserInterfacePreferences: Identifiable, Codable, Hashable {
+// MARK: - User Interface Preferences Model (PT3VS1 Specification)
+public struct UserInterfacePreferencesModel: Identifiable, Codable, Hashable {
     public let id: String
     public var userId: String
     public var themeConfiguration: ThemeConfiguration
@@ -41,6 +41,9 @@ public struct UserInterfacePreferences: Identifiable, Codable, Hashable {
         self.syncAcrossDevices = syncAcrossDevices
     }
 }
+
+// MARK: - Legacy Alias for Compatibility
+public typealias UserPreferences = UserInterfacePreferencesModel
 
 // MARK: - Theme Configuration
 public struct ThemeConfiguration: Codable, Hashable {
@@ -500,7 +503,7 @@ public enum ApprovalStatus: String, CaseIterable, Codable, Identifiable {
 }
 
 // MARK: - CloudKit Extensions
-extension UserInterfacePreferences {
+extension UserPreferences {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "UserInterfacePreferences", recordID: CKRecord.ID(recordName: id))
         record["userId"] = userId
@@ -531,7 +534,7 @@ extension UserInterfacePreferences {
         return record
     }
     
-    public static func from(record: CKRecord) -> UserInterfacePreferences? {
+    public static func from(record: CKRecord) -> UserPreferences? {
         guard let userId = record["userId"] as? String else {
             return nil
         }
@@ -575,7 +578,7 @@ extension UserInterfacePreferences {
             personalizations = (try? JSONDecoder().decode([PersonalizationSetting].self, from: data)) ?? []
         }
         
-        return UserInterfacePreferences(
+        return UserPreferences(
             id: record.recordID.recordName,
             userId: userId,
             themeConfiguration: themeConfiguration,

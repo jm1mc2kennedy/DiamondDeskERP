@@ -666,12 +666,13 @@ extension BoardViewType {
     }
 }
 
-extension TodoPriority {
+extension TaskPriority {
     var color: Color {
         switch self {
         case .low: return .green
         case .medium: return .orange
         case .high: return .red
+        case .urgent: return .red
         }
     }
 }

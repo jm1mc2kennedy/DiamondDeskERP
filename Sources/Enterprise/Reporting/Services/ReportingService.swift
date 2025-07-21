@@ -14,13 +14,13 @@ public final class ReportingService: ObservableObject {
     
     // MARK: - Published Properties
     @Published public var reports: [Report] = []
-    @Published public var dashboards: [Dashboard] = []
+    @Published public var dashboards: [DashboardModel] = []
     @Published public var isLoading = false
     @Published public var error: Error?
     
     // MARK: - Data Caches
     private var reportCache: [UUID: Report] = [:]
-    private var dashboardCache: [UUID: Dashboard] = [:]
+    private var dashboardCache: [UUID: DashboardModel] = [:]
     private var dataCache: [String: [String: Any]] = [:]
     private var reportDataCache: [UUID: [[String: Any]]] = [:]
     
@@ -190,7 +190,7 @@ public final class ReportingService: ObservableObject {
     
     // MARK: - Dashboard CRUD Operations
     
-    public func fetchDashboards() async throws -> [Dashboard] {
+    public func fetchDashboards() async throws -> [DashboardModel] {
         isLoading = true
         error = nil
         
@@ -200,11 +200,11 @@ public final class ReportingService: ObservableObject {
             
             let (records, _) = try await database.records(matching: query)
             
-            var fetchedDashboards: [Dashboard] = []
+            var fetchedDashboards: [DashboardModel] = []
             for (_, result) in records {
                 switch result {
                 case .success(let record):
-                    let dashboard = try Dashboard.fromCKRecord(record)
+                    let dashboard = try DashboardModel.fromCKRecord(record)
                     fetchedDashboards.append(dashboard)
                     dashboardCache[dashboard.id] = dashboard
                 case .failure(let error):
@@ -225,14 +225,14 @@ public final class ReportingService: ObservableObject {
         }
     }
     
-    public func createDashboard(_ dashboard: Dashboard) async throws -> Dashboard {
+    public func createDashboard(_ dashboard: DashboardModel) async throws -> DashboardModel {
         isLoading = true
         error = nil
         
         do {
             let record = dashboard.toCKRecord()
             let savedRecord = try await database.save(record)
-            let savedDashboard = try Dashboard.fromCKRecord(savedRecord)
+            let savedDashboard = try DashboardModel.fromCKRecord(savedRecord)
             
             dashboards.append(savedDashboard)
             dashboardCache[savedDashboard.id] = savedDashboard
@@ -248,17 +248,17 @@ public final class ReportingService: ObservableObject {
         }
     }
     
-    public func updateDashboard(_ dashboard: Dashboard) async throws -> Dashboard {
+    public func updateDashboard(_ dashboard: DashboardModel) async throws -> DashboardModel {
         isLoading = true
         error = nil
         
         do {
             var updatedDashboard = dashboard
-            updatedDashboard.updatedAt = Date()
+            updatedDashboard.modifiedAt = Date()
             
             let record = updatedDashboard.toCKRecord()
             let savedRecord = try await database.save(record)
-            let savedDashboard = try Dashboard.fromCKRecord(savedRecord)
+            let savedDashboard = try DashboardModel.fromCKRecord(savedRecord)
             
             if let index = dashboards.firstIndex(where: { $0.id == savedDashboard.id }) {
                 dashboards[index] = savedDashboard
@@ -276,7 +276,7 @@ public final class ReportingService: ObservableObject {
         }
     }
     
-    public func deleteDashboard(_ dashboard: Dashboard) async throws {
+    public func deleteDashboard(_ dashboard: DashboardModel) async throws {
         isLoading = true
         error = nil
         

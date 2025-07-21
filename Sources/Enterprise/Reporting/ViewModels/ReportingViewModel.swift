@@ -26,9 +26,9 @@ public final class ReportingViewModel: ObservableObject {
     @Published public var showingReportEditor = false
     
     // MARK: - Dashboard Properties
-    @Published public var dashboards: [Dashboard] = []
-    @Published public var filteredDashboards: [Dashboard] = []
-    @Published public var selectedDashboard: Dashboard?
+    @Published public var dashboards: [DashboardModel] = []
+    @Published public var filteredDashboards: [DashboardModel] = []
+    @Published public var selectedDashboard: DashboardModel?
     @Published public var showingCreateDashboard = false
     @Published public var showingDashboardEditor = false
     
@@ -148,7 +148,7 @@ public final class ReportingViewModel: ObservableObject {
         filteredReports = filtered
     }
     
-    private func updateFilteredDashboards(dashboards: [Dashboard], searchText: String) async {
+    private func updateFilteredDashboards(dashboards: [DashboardModel], searchText: String) async {
         var filtered = dashboards
         
         // Apply search filter for dashboards
@@ -251,7 +251,7 @@ public final class ReportingViewModel: ObservableObject {
     
     // MARK: - Dashboard Operations
     
-    public func createDashboard(_ dashboard: Dashboard) async {
+    public func createDashboard(_ dashboard: DashboardModel) async {
         do {
             _ = try await reportingService.createDashboard(dashboard)
             showingCreateDashboard = false
@@ -260,7 +260,7 @@ public final class ReportingViewModel: ObservableObject {
         }
     }
     
-    public func updateDashboard(_ dashboard: Dashboard) async {
+    public func updateDashboard(_ dashboard: DashboardModel) async {
         do {
             _ = try await reportingService.updateDashboard(dashboard)
         } catch {
@@ -268,7 +268,7 @@ public final class ReportingViewModel: ObservableObject {
         }
     }
     
-    public func deleteDashboard(_ dashboard: Dashboard) async {
+    public func deleteDashboard(_ dashboard: DashboardModel) async {
         do {
             try await reportingService.deleteDashboard(dashboard)
             selectedDashboard = nil
@@ -277,7 +277,7 @@ public final class ReportingViewModel: ObservableObject {
         }
     }
     
-    public func selectDashboard(_ dashboard: Dashboard) {
+    public func selectDashboard(_ dashboard: DashboardModel) {
         selectedDashboard = dashboard
     }
     

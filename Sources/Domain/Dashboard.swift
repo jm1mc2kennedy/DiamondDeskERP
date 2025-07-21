@@ -1,8 +1,8 @@
 import Foundation
 import CloudKit
 
-// MARK: - Dashboard Models (Phase 4.11+ Placeholder)
-public struct Dashboard: Identifiable, Codable, Hashable {
+// MARK: - Dashboard Models (Phase 4.12+ Implementation)
+public struct DashboardModel: Identifiable, Codable, Hashable {
     public let id: String
     public var name: String
     public var description: String?
@@ -533,7 +533,7 @@ public struct WidgetStyling: Codable, Hashable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
-extension Dashboard {
+extension DashboardModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "Dashboard", recordID: CKRecord.ID(recordName: id))
         record["name"] = name
@@ -561,7 +561,7 @@ extension Dashboard {
         return record
     }
     
-    public static func from(record: CKRecord) -> Dashboard? {
+    public static func from(record: CKRecord) -> DashboardModel? {
         guard let name = record["name"] as? String,
               let ownerId = record["ownerId"] as? String else {
             return nil
@@ -582,7 +582,7 @@ extension Dashboard {
             widgets = (try? JSONDecoder().decode([DashboardWidgetInstance].self, from: data)) ?? []
         }
         
-        return Dashboard(
+        return DashboardModel(
             id: record.recordID.recordName,
             name: name,
             description: record["description"] as? String,

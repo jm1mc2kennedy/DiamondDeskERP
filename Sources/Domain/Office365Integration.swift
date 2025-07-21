@@ -1,8 +1,12 @@
 import Foundation
 import CloudKit
 
+// MARK: - Office365 Integration Models (Phase 4.13+ Implementation)
+public struct Office365IntegrationModel: Identifiable, Codable, Hashable {t Foundation
+import CloudKit
+
 // MARK: - Office 365 Integration Models (Phase 4.13+ Placeholder)
-public struct Office365Integration: Identifiable, Codable, Hashable {
+public struct Office365IntegrationModel: Identifiable, Codable, Hashable {
     public let id: String
     public var userId: String
     public var tenantId: String
@@ -542,7 +546,7 @@ public struct OutlookMetrics: Codable, Hashable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
-extension Office365Integration {
+extension Office365IntegrationModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "Office365Integration", recordID: CKRecord.ID(recordName: id))
         record["userId"] = userId
@@ -576,7 +580,7 @@ extension Office365Integration {
         return record
     }
     
-    public static func from(record: CKRecord) -> Office365Integration? {
+    public static func from(record: CKRecord) -> Office365IntegrationModel? {
         guard let userId = record["userId"] as? String,
               let tenantId = record["tenantId"] as? String,
               let applicationId = record["applicationId"] as? String else {
@@ -624,7 +628,7 @@ extension Office365Integration {
             permissionGrants = (try? JSONDecoder().decode([PermissionGrant].self, from: data)) ?? []
         }
         
-        return Office365Integration(
+        return Office365IntegrationModel(
             id: record.recordID.recordName,
             userId: userId,
             tenantId: tenantId,

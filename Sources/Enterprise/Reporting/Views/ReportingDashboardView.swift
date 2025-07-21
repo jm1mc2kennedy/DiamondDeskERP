@@ -529,7 +529,7 @@ public struct DashboardListView: View {
 // MARK: - Dashboard Row View
 
 public struct DashboardRowView: View {
-    let dashboard: Dashboard
+    let dashboard: DashboardModel
     let onTap: () -> Void
     
     public var body: some View {

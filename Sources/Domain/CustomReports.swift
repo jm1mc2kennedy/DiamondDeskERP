@@ -1,8 +1,8 @@
 import Foundation
 import CloudKit
 
-// MARK: - Custom Report Models (Phase 4.11+ Business Logic Placeholder)
-public struct CustomReport: Identifiable, Codable, Hashable {
+// MARK: - Custom Report Models (Phase 4.11+ Implementation)
+public struct CustomReportModel: Identifiable, Codable, Hashable {
     public let id: String
     public var name: String
     public var description: String?
@@ -521,7 +521,7 @@ public enum TriggerMethod: String, CaseIterable, Codable, Identifiable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
-extension CustomReport {
+extension CustomReportModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "CustomReport", recordID: CKRecord.ID(recordName: id))
         record["name"] = name
@@ -553,7 +553,7 @@ extension CustomReport {
         return record
     }
     
-    public static func from(record: CKRecord) -> CustomReport? {
+    public static func from(record: CKRecord) -> CustomReportModel? {
         guard let name = record["name"] as? String,
               let ownerId = record["ownerId"] as? String,
               let parserTemplateId = record["parserTemplateId"] as? String,
@@ -585,7 +585,7 @@ extension CustomReport {
             retentionPolicy = (try? JSONDecoder().decode(RetentionPolicy.self, from: data)) ?? RetentionPolicy()
         }
         
-        return CustomReport(
+        return CustomReportModel(
             id: record.recordID.recordName,
             name: name,
             description: record["description"] as? String,

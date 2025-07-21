@@ -323,3 +323,312 @@ extension CalendarEvent {
         )
     }
 }
+
+// MARK: - EventAttendee Model (PT3VS1 Compliance)
+public struct EventAttendee: Identifiable, Codable, Hashable {
+    public let id: String
+    public var eventId: String
+    public var userId: String
+    public var status: AttendeeStatus
+    public var responseDate: Date?
+    public var role: AttendeeRole
+    public var isOptional: Bool
+    public var email: String?
+    public var displayName: String?
+    public var invitedAt: Date
+    public var lastModified: Date
+    
+    public init(
+        id: String = UUID().uuidString,
+        eventId: String,
+        userId: String,
+        status: AttendeeStatus = .pending,
+        responseDate: Date? = nil,
+        role: AttendeeRole = .attendee,
+        isOptional: Bool = false,
+        email: String? = nil,
+        displayName: String? = nil,
+        invitedAt: Date = Date(),
+        lastModified: Date = Date()
+    ) {
+        self.id = id
+        self.eventId = eventId
+        self.userId = userId
+        self.status = status
+        self.responseDate = responseDate
+        self.role = role
+        self.isOptional = isOptional
+        self.email = email
+        self.displayName = displayName
+        self.invitedAt = invitedAt
+        self.lastModified = lastModified
+    }
+}
+
+public enum AttendeeStatus: String, CaseIterable, Codable, Identifiable {
+    case pending = "PENDING"
+    case accepted = "ACCEPTED"
+    case declined = "DECLINED"
+    case tentative = "TENTATIVE"
+    case noResponse = "NO_RESPONSE"
+    
+    public var id: String { rawValue }
+    
+    public var displayName: String {
+        switch self {
+        case .pending: return "Pending"
+        case .accepted: return "Accepted"
+        case .declined: return "Declined"
+        case .tentative: return "Tentative"
+        case .noResponse: return "No Response"
+        }
+    }
+}
+
+public enum AttendeeRole: String, CaseIterable, Codable, Identifiable {
+    case organizer = "ORGANIZER"
+    case attendee = "ATTENDEE"
+    case presenter = "PRESENTER"
+    case moderator = "MODERATOR"
+    case optional = "OPTIONAL"
+    
+    public var id: String { rawValue }
+    
+    public var displayName: String {
+        switch self {
+        case .organizer: return "Organizer"
+        case .attendee: return "Attendee"
+        case .presenter: return "Presenter"
+        case .moderator: return "Moderator"
+        case .optional: return "Optional"
+        }
+    }
+}
+
+// MARK: - CalendarGroup Model (PT3VS1 Compliance)
+public struct CalendarGroup: Identifiable, Codable, Hashable {
+    public let id: String
+    public var name: String
+    public var description: String?
+    public var ownerId: String
+    public var members: [String]
+    public var isPublic: Bool
+    public var permissions: [CalendarPermission]
+    public var color: String?
+    public var timezone: String
+    public var defaultVisibility: EventVisibility
+    public var allowMemberInvites: Bool
+    public var requireApproval: Bool
+    public var tags: [String]
+    public var createdAt: Date
+    public var modifiedAt: Date
+    public var isActive: Bool
+    
+    public init(
+        id: String = UUID().uuidString,
+        name: String,
+        description: String? = nil,
+        ownerId: String,
+        members: [String] = [],
+        isPublic: Bool = false,
+        permissions: [CalendarPermission] = [],
+        color: String? = nil,
+        timezone: String = TimeZone.current.identifier,
+        defaultVisibility: EventVisibility = .private,
+        allowMemberInvites: Bool = true,
+        requireApproval: Bool = false,
+        tags: [String] = [],
+        createdAt: Date = Date(),
+        modifiedAt: Date = Date(),
+        isActive: Bool = true
+    ) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.ownerId = ownerId
+        self.members = members
+        self.isPublic = isPublic
+        self.permissions = permissions
+        self.color = color
+        self.timezone = timezone
+        self.defaultVisibility = defaultVisibility
+        self.allowMemberInvites = allowMemberInvites
+        self.requireApproval = requireApproval
+        self.tags = tags
+        self.createdAt = createdAt
+        self.modifiedAt = modifiedAt
+        self.isActive = isActive
+    }
+}
+
+public struct CalendarPermission: Identifiable, Codable, Hashable {
+    public let id: String
+    public var userId: String
+    public var permission: PermissionLevel
+    public var grantedBy: String
+    public var grantedAt: Date
+    public var expiresAt: Date?
+    public var conditions: [String]
+    
+    public init(
+        id: String = UUID().uuidString,
+        userId: String,
+        permission: PermissionLevel,
+        grantedBy: String,
+        grantedAt: Date = Date(),
+        expiresAt: Date? = nil,
+        conditions: [String] = []
+    ) {
+        self.id = id
+        self.userId = userId
+        self.permission = permission
+        self.grantedBy = grantedBy
+        self.grantedAt = grantedAt
+        self.expiresAt = expiresAt
+        self.conditions = conditions
+    }
+}
+
+public enum PermissionLevel: String, CaseIterable, Codable, Identifiable {
+    case owner = "OWNER"
+    case admin = "ADMIN"
+    case editor = "EDITOR"
+    case contributor = "CONTRIBUTOR"
+    case viewer = "VIEWER"
+    case invited = "INVITED"
+    
+    public var id: String { rawValue }
+    
+    public var displayName: String {
+        switch self {
+        case .owner: return "Owner"
+        case .admin: return "Administrator"
+        case .editor: return "Editor"
+        case .contributor: return "Contributor"
+        case .viewer: return "Viewer"
+        case .invited: return "Invited"
+        }
+    }
+    
+    public var canEdit: Bool {
+        switch self {
+        case .owner, .admin, .editor, .contributor: return true
+        case .viewer, .invited: return false
+        }
+    }
+    
+    public var canInvite: Bool {
+        switch self {
+        case .owner, .admin, .editor: return true
+        case .contributor, .viewer, .invited: return false
+        }
+    }
+}
+
+// MARK: - CloudKit Extensions for New Models
+extension EventAttendee {
+    public func toRecord() -> CKRecord {
+        let record = CKRecord(recordType: "EventAttendee", recordID: CKRecord.ID(recordName: id))
+        record["eventId"] = eventId
+        record["userId"] = userId
+        record["status"] = status.rawValue
+        record["responseDate"] = responseDate
+        record["role"] = role.rawValue
+        record["isOptional"] = isOptional ? 1 : 0
+        record["email"] = email
+        record["displayName"] = displayName
+        record["invitedAt"] = invitedAt
+        record["lastModified"] = lastModified
+        return record
+    }
+    
+    public static func from(record: CKRecord) -> EventAttendee? {
+        guard let eventId = record["eventId"] as? String,
+              let userId = record["userId"] as? String else {
+            return nil
+        }
+        
+        let status = AttendeeStatus(rawValue: record["status"] as? String ?? "PENDING") ?? .pending
+        let role = AttendeeRole(rawValue: record["role"] as? String ?? "ATTENDEE") ?? .attendee
+        let isOptional = (record["isOptional"] as? Int) == 1
+        
+        return EventAttendee(
+            id: record.recordID.recordName,
+            eventId: eventId,
+            userId: userId,
+            status: status,
+            responseDate: record["responseDate"] as? Date,
+            role: role,
+            isOptional: isOptional,
+            email: record["email"] as? String,
+            displayName: record["displayName"] as? String,
+            invitedAt: record["invitedAt"] as? Date ?? Date(),
+            lastModified: record["lastModified"] as? Date ?? Date()
+        )
+    }
+}
+
+extension CalendarGroup {
+    public func toRecord() -> CKRecord {
+        let record = CKRecord(recordType: "CalendarGroup", recordID: CKRecord.ID(recordName: id))
+        record["name"] = name
+        record["description"] = description
+        record["ownerId"] = ownerId
+        record["members"] = members
+        record["isPublic"] = isPublic ? 1 : 0
+        record["color"] = color
+        record["timezone"] = timezone
+        record["defaultVisibility"] = defaultVisibility.rawValue
+        record["allowMemberInvites"] = allowMemberInvites ? 1 : 0
+        record["requireApproval"] = requireApproval ? 1 : 0
+        record["tags"] = tags
+        record["createdAt"] = createdAt
+        record["modifiedAt"] = modifiedAt
+        record["isActive"] = isActive ? 1 : 0
+        
+        // Store permissions as JSON
+        if let data = try? JSONEncoder().encode(permissions) {
+            record["permissions"] = String(data: data, encoding: .utf8)
+        }
+        
+        return record
+    }
+    
+    public static func from(record: CKRecord) -> CalendarGroup? {
+        guard let name = record["name"] as? String,
+              let ownerId = record["ownerId"] as? String else {
+            return nil
+        }
+        
+        let isPublic = (record["isPublic"] as? Int) == 1
+        let allowMemberInvites = (record["allowMemberInvites"] as? Int) == 1
+        let requireApproval = (record["requireApproval"] as? Int) == 1
+        let isActive = (record["isActive"] as? Int) ?? 1 == 1
+        let defaultVisibility = EventVisibility(rawValue: record["defaultVisibility"] as? String ?? "PRIVATE") ?? .private
+        
+        var permissions: [CalendarPermission] = []
+        if let permissionsData = record["permissions"] as? String,
+           let data = permissionsData.data(using: .utf8) {
+            permissions = (try? JSONDecoder().decode([CalendarPermission].self, from: data)) ?? []
+        }
+        
+        return CalendarGroup(
+            id: record.recordID.recordName,
+            name: name,
+            description: record["description"] as? String,
+            ownerId: ownerId,
+            members: record["members"] as? [String] ?? [],
+            isPublic: isPublic,
+            permissions: permissions,
+            color: record["color"] as? String,
+            timezone: record["timezone"] as? String ?? TimeZone.current.identifier,
+            defaultVisibility: defaultVisibility,
+            allowMemberInvites: allowMemberInvites,
+            requireApproval: requireApproval,
+            tags: record["tags"] as? [String] ?? [],
+            createdAt: record["createdAt"] as? Date ?? Date(),
+            modifiedAt: record["modifiedAt"] as? Date ?? Date(),
+            isActive: isActive
+        )
+    }
+}

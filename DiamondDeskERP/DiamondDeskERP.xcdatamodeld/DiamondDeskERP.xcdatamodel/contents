@@ -1,9 +1,542 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
+    <!-- Core Business Entities -->
+    <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="title" optional="NO" attributeType="String"/>
+        <attribute name="taskDescription" optional="YES" attributeType="String"/>
+        <attribute name="status" optional="NO" attributeType="String"/>
+        <attribute name="priority" optional="YES" attributeType="String"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="estimatedHours" optional="YES" attributeType="Double" defaultValue="0.0" usesScalarValueType="YES"/>
+        <attribute name="isGroupTask" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="requiresAcknowledgment" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="completionMode" optional="NO" attributeType="String" defaultValue="individual"/>
+        <attribute name="storeCodes" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="departments" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <entity name="Ticket" representedClassName="Ticket" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="title" optional="NO" attributeType="String"/>
+        <attribute name="ticketDescription" optional="YES" attributeType="String"/>
+        <attribute name="category" optional="NO" attributeType="String"/>
+        <attribute name="status" optional="NO" attributeType="String"/>
+        <attribute name="priority" optional="NO" attributeType="String"/>
+        <attribute name="department" optional="NO" attributeType="String"/>
+        <attribute name="storeCodes" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="confidentialFlags" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="slaOpenedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastResponseAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="responseDeltas" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="attachments" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <entity name="Employee" representedClassName="Employee" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="employeeNumber" optional="NO" attributeType="String"/>
+        <attribute name="firstName" optional="NO" attributeType="String"/>
+        <attribute name="lastName" optional="NO" attributeType="String"/>
+        <attribute name="email" optional="NO" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="department" optional="NO" attributeType="String"/>
+        <attribute name="title" optional="NO" attributeType="String"/>
+        <attribute name="manager" optional="YES" attributeType="String"/>
+        <attribute name="directReports" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="hireDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="birthDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="workLocation" optional="NO" attributeType="String"/>
+        <attribute name="employmentType" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Document Management -->
+    <entity name="Document" representedClassName="Document" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="title" optional="NO" attributeType="String"/>
+        <attribute name="fileName" optional="NO" attributeType="String"/>
+        <attribute name="fileType" optional="NO" attributeType="String"/>
+        <attribute name="fileSize" optional="NO" attributeType="Integer 64" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="version" optional="NO" attributeType="String"/>
+        <attribute name="accessLevel" optional="NO" attributeType="String"/>
+        <attribute name="documentPath" optional="NO" attributeType="String"/>
+        <attribute name="createdBy" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifiedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Calendar System -->
+    <entity name="CalendarEvent" representedClassName="CalendarEvent" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="title" optional="NO" attributeType="String"/>
+        <attribute name="eventDescription" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="endDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isAllDay" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="location" optional="YES" attributeType="String"/>
+        <attribute name="attendees" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="organizerId" optional="NO" attributeType="String"/>
+        <attribute name="calendarId" optional="NO" attributeType="String"/>
+        <attribute name="eventType" optional="NO" attributeType="String"/>
+        <attribute name="visibility" optional="NO" attributeType="String"/>
+        <attribute name="status" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Calendar Group (PT3VS1 Compliance) -->
+    <entity name="CalendarGroup" representedClassName="CalendarGroup" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="groupDescription" optional="YES" attributeType="String"/>
+        <attribute name="ownerId" optional="NO" attributeType="String"/>
+        <attribute name="members" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="isPublic" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="permissions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="timezone" optional="NO" attributeType="String"/>
+        <attribute name="defaultVisibility" optional="NO" attributeType="String"/>
+        <attribute name="allowMemberInvites" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="requireApproval" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifiedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+    </entity>
+    
+    <!-- Event Attendee (PT3VS1 Compliance) -->
+    <entity name="EventAttendee" representedClassName="EventAttendee" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="eventId" optional="NO" attributeType="String"/>
+        <attribute name="userId" optional="NO" attributeType="String"/>
+        <attribute name="status" optional="NO" attributeType="String"/>
+        <attribute name="responseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="role" optional="NO" attributeType="String"/>
+        <attribute name="isOptional" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="displayName" optional="YES" attributeType="String"/>
+        <attribute name="invitedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastModified" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Reports & Analytics -->
+    <entity name="CustomReport" representedClassName="CustomReport" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="reportDescription" optional="YES" attributeType="String"/>
+        <attribute name="ownerId" optional="NO" attributeType="String"/>
+        <attribute name="reportType" optional="NO" attributeType="String"/>
+        <attribute name="outputFormat" optional="NO" attributeType="String"/>
+        <attribute name="accessLevel" optional="NO" attributeType="String"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastExecuted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Parser Template -->
+    <entity name="ParserTemplate" representedClassName="ParserTemplate" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="templateDescription" optional="YES" attributeType="String"/>
+        <attribute name="fileType" optional="NO" attributeType="String"/>
+        <attribute name="parserEngine" optional="NO" attributeType="String"/>
+        <attribute name="configuration" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="pythonScript" optional="YES" attributeType="String"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="version" optional="NO" attributeType="String"/>
+        <attribute name="createdBy" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifiedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Upload Record -->
+    <entity name="UploadRecord" representedClassName="UploadRecord" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="fileName" optional="NO" attributeType="String"/>
+        <attribute name="originalName" optional="NO" attributeType="String"/>
+        <attribute name="fileSize" optional="NO" attributeType="Integer 64" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="mimeType" optional="NO" attributeType="String"/>
+        <attribute name="uploadedBy" optional="NO" attributeType="String"/>
+        <attribute name="uploadStatus" optional="NO" attributeType="String"/>
+        <attribute name="processingStatus" optional="YES" attributeType="String"/>
+        <attribute name="storagePath" optional="NO" attributeType="String"/>
+        <attribute name="checksum" optional="YES" attributeType="String"/>
+        <attribute name="metadata" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="uploadedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="processedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Report Log -->
+    <entity name="ReportLog" representedClassName="ReportLog" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="reportId" optional="NO" attributeType="String"/>
+        <attribute name="executedBy" optional="NO" attributeType="String"/>
+        <attribute name="executionStatus" optional="NO" attributeType="String"/>
+        <attribute name="startTime" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="recordsProcessed" optional="YES" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="outputPath" optional="YES" attributeType="String"/>
+        <attribute name="errorMessage" optional="YES" attributeType="String"/>
+        <attribute name="executionTime" optional="YES" attributeType="Double" defaultValue="0.0" usesScalarValueType="YES"/>
+        <attribute name="parameters" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+    </entity>
+    
+    <!-- Dashboard Configuration -->
+    <entity name="Dashboard" representedClassName="Dashboard" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="dashboardDescription" optional="YES" attributeType="String"/>
+        <attribute name="ownerId" optional="NO" attributeType="String"/>
+        <attribute name="isPublic" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="isTemplate" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="viewCount" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifiedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Dashboard Widget -->
+    <entity name="DashboardWidget" representedClassName="DashboardWidget" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="dashboardId" optional="NO" attributeType="String"/>
+        <attribute name="widgetType" optional="NO" attributeType="String"/>
+        <attribute name="title" optional="NO" attributeType="String"/>
+        <attribute name="position" optional="NO" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="size" optional="NO" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="configuration" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="dataSource" optional="YES" attributeType="String"/>
+        <attribute name="refreshInterval" optional="YES" attributeType="Integer 32" defaultValue="300" usesScalarValueType="YES"/>
+        <attribute name="isVisible" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifiedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Widget Config -->
+    <entity name="WidgetConfig" representedClassName="WidgetConfig" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="widgetType" optional="NO" attributeType="String"/>
+        <attribute name="configName" optional="NO" attributeType="String"/>
+        <attribute name="configDescription" optional="YES" attributeType="String"/>
+        <attribute name="defaultSettings" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="supportedSizes" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="requiredPermissions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="isSystemWidget" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="version" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Workflow Automation -->
+    <entity name="Workflow" representedClassName="Workflow" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="workflowDescription" optional="YES" attributeType="String"/>
+        <attribute name="triggerType" optional="NO" attributeType="String"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="createdBy" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastExecuted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="executionCount" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+    </entity>
+    
+    <!-- Trigger Condition -->
+    <entity name="TriggerCondition" representedClassName="TriggerCondition" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="workflowId" optional="NO" attributeType="String"/>
+        <attribute name="conditionType" optional="NO" attributeType="String"/>
+        <attribute name="fieldName" optional="NO" attributeType="String"/>
+        <attribute name="operator" optional="NO" attributeType="String"/>
+        <attribute name="value" optional="YES" attributeType="String"/>
+        <attribute name="logicalOperator" optional="YES" attributeType="String"/>
+        <attribute name="orderIndex" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Action Step -->
+    <entity name="ActionStep" representedClassName="ActionStep" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="workflowId" optional="NO" attributeType="String"/>
+        <attribute name="stepType" optional="NO" attributeType="String"/>
+        <attribute name="stepName" optional="NO" attributeType="String"/>
+        <attribute name="configuration" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="orderIndex" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="retryCount" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="maxRetries" optional="NO" attributeType="Integer 32" defaultValue="3" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Workflow Execution -->
+    <entity name="WorkflowExecution" representedClassName="WorkflowExecution" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="workflowId" optional="NO" attributeType="String"/>
+        <attribute name="triggeredBy" optional="NO" attributeType="String"/>
+        <attribute name="status" optional="NO" attributeType="String"/>
+        <attribute name="startTime" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="endTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="errorMessage" optional="YES" attributeType="String"/>
+        <attribute name="executionContext" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="stepResults" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="performanceMetrics" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+    </entity>
+    
+    <!-- User Interface Preferences -->
+    <entity name="UserPreferences" representedClassName="UserPreferences" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="userId" optional="NO" attributeType="String"/>
+        <attribute name="themeId" optional="NO" attributeType="String"/>
+        <attribute name="colorScheme" optional="NO" attributeType="String"/>
+        <attribute name="isSystemDefault" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="syncAcrossDevices" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="lastModified" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Theme Option -->
+    <entity name="ThemeOption" representedClassName="ThemeOption" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="themeDescription" optional="YES" attributeType="String"/>
+        <attribute name="primaryColor" optional="NO" attributeType="String"/>
+        <attribute name="secondaryColor" optional="YES" attributeType="String"/>
+        <attribute name="accentColor" optional="YES" attributeType="String"/>
+        <attribute name="backgroundColor" optional="NO" attributeType="String"/>
+        <attribute name="textColor" optional="NO" attributeType="String"/>
+        <attribute name="isDarkMode" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="isSystemTheme" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="displayOrder" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="previewImage" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- App Icon Option -->
+    <entity name="AppIconOption" representedClassName="AppIconOption" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="iconDescription" optional="YES" attributeType="String"/>
+        <attribute name="iconPath" optional="NO" attributeType="String"/>
+        <attribute name="alternateIconName" optional="YES" attributeType="String"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="isDefault" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="isPremium" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="displayOrder" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="requiredVersion" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Office365 Integration -->
+    <entity name="Office365Integration" representedClassName="Office365Integration" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="userId" optional="NO" attributeType="String"/>
+        <attribute name="tenantId" optional="NO" attributeType="String"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastSyncAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Office365 Token -->
+    <entity name="Office365Token" representedClassName="Office365Token" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="userId" optional="NO" attributeType="String"/>
+        <attribute name="tokenType" optional="NO" attributeType="String"/>
+        <attribute name="accessToken" optional="NO" attributeType="String"/>
+        <attribute name="refreshToken" optional="YES" attributeType="String"/>
+        <attribute name="expiresAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="scope" optional="YES" attributeType="String"/>
+        <attribute name="tenantId" optional="NO" attributeType="String"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastUsed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- SharePoint Resource -->
+    <entity name="SharePointResource" representedClassName="SharePointResource" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="resourceType" optional="NO" attributeType="String"/>
+        <attribute name="siteId" optional="NO" attributeType="String"/>
+        <attribute name="webUrl" optional="NO" attributeType="String"/>
+        <attribute name="parentId" optional="YES" attributeType="String"/>
+        <attribute name="size" optional="YES" attributeType="Integer 64" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="mimeType" optional="YES" attributeType="String"/>
+        <attribute name="etag" optional="YES" attributeType="String"/>
+        <attribute name="lastModified" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="syncedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Microsoft Graph Sync -->
+    <entity name="MicrosoftGraphSync" representedClassName="MicrosoftGraphSync" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="userId" optional="NO" attributeType="String"/>
+        <attribute name="resourceType" optional="NO" attributeType="String"/>
+        <attribute name="deltaToken" optional="YES" attributeType="String"/>
+        <attribute name="lastSyncAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="syncStatus" optional="NO" attributeType="String"/>
+        <attribute name="errorCount" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="lastError" optional="YES" attributeType="String"/>
+        <attribute name="configuration" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Asset Management -->
+    <entity name="Asset" representedClassName="Asset" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="assetType" optional="NO" attributeType="String"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="fileSize" optional="NO" attributeType="Integer 64" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="uploadedBy" optional="NO" attributeType="String"/>
+        <attribute name="uploadDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="storagePath" optional="NO" attributeType="String"/>
+        <attribute name="usageCount" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+    </entity>
+    
+    <!-- Asset Category -->
+    <entity name="AssetCategory" representedClassName="AssetCategory" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="categoryDescription" optional="YES" attributeType="String"/>
+        <attribute name="parentCategoryId" optional="YES" attributeType="String"/>
+        <attribute name="displayOrder" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifiedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Asset Tag -->
+    <entity name="AssetTag" representedClassName="AssetTag" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="color" optional="NO" attributeType="String"/>
+        <attribute name="backgroundColor" optional="YES" attributeType="String"/>
+        <attribute name="tagDescription" optional="YES" attributeType="String"/>
+        <attribute name="isSystemTag" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="usageCount" optional="NO" attributeType="Integer 32" defaultValue="0" usesScalarValueType="YES"/>
+        <attribute name="createdBy" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Asset Usage Log -->
+    <entity name="AssetUsageLog" representedClassName="AssetUsageLog" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="assetId" optional="NO" attributeType="String"/>
+        <attribute name="userId" optional="NO" attributeType="String"/>
+        <attribute name="action" optional="NO" attributeType="String"/>
+        <attribute name="context" optional="YES" attributeType="String"/>
+        <attribute name="metadata" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="ipAddress" optional="YES" attributeType="String"/>
+        <attribute name="userAgent" optional="YES" attributeType="String"/>
+        <attribute name="sessionId" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Cross-Module Record Linking -->
+    <entity name="RecordLink" representedClassName="RecordLink" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="sourceModule" optional="NO" attributeType="String"/>
+        <attribute name="sourceRecordId" optional="NO" attributeType="String"/>
+        <attribute name="targetModule" optional="NO" attributeType="String"/>
+        <attribute name="targetRecordId" optional="NO" attributeType="String"/>
+        <attribute name="linkType" optional="NO" attributeType="String"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="createdBy" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Linkable Record -->
+    <entity name="LinkableRecord" representedClassName="LinkableRecord" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="recordId" optional="NO" attributeType="String"/>
+        <attribute name="module" optional="NO" attributeType="String"/>
+        <attribute name="recordType" optional="NO" attributeType="String"/>
+        <attribute name="title" optional="NO" attributeType="String"/>
+        <attribute name="searchableContent" optional="YES" attributeType="String"/>
+        <attribute name="metadata" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="isPublic" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="lastModified" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="indexedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Record Link Rule -->
+    <entity name="RecordLinkRule" representedClassName="RecordLinkRule" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="name" optional="NO" attributeType="String"/>
+        <attribute name="ruleDescription" optional="YES" attributeType="String"/>
+        <attribute name="sourceModule" optional="NO" attributeType="String"/>
+        <attribute name="targetModule" optional="NO" attributeType="String"/>
+        <attribute name="linkType" optional="NO" attributeType="String"/>
+        <attribute name="conditions" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="isAutomatic" optional="NO" attributeType="Boolean" defaultValue="NO" usesScalarValueType="YES"/>
+        <attribute name="isActive" optional="NO" attributeType="Boolean" defaultValue="YES" usesScalarValueType="YES"/>
+        <attribute name="confidence" optional="YES" attributeType="Double" defaultValue="0.0" usesScalarValueType="YES"/>
+        <attribute name="priority" optional="NO" attributeType="Integer 32" defaultValue="50" usesScalarValueType="YES"/>
+        <attribute name="createdBy" optional="NO" attributeType="String"/>
+        <attribute name="createdAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="modifiedAt" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    
+    <!-- Performance Goals -->
+    <entity name="PerformanceGoal" representedClassName="PerformanceGoal" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="title" optional="NO" attributeType="String"/>
+        <attribute name="goalDescription" optional="YES" attributeType="String"/>
+        <attribute name="goalType" optional="NO" attributeType="String"/>
+        <attribute name="targetValue" optional="NO" attributeType="Double" defaultValue="0.0" usesScalarValueType="YES"/>
+        <attribute name="currentValue" optional="NO" attributeType="Double" defaultValue="0.0" usesScalarValueType="YES"/>
+        <attribute name="assignedTo" optional="NO" attributeType="String"/>
+        <attribute name="startDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="endDate" optional="NO" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" optional="NO" attributeType="String"/>
+    </entity>
+    
+    <!-- Legacy Item Entity (kept for backwards compatibility) -->
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
+    
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
+        <element name="Task" positionX="-63" positionY="-18" width="128" height="269"/>
+        <element name="Ticket" positionX="90" positionY="-18" width="128" height="269"/>
+        <element name="Employee" positionX="243" positionY="-18" width="128" height="299"/>
+        <element name="Document" positionX="396" positionY="-18" width="128" height="179"/>
+        <element name="CalendarEvent" positionX="549" positionY="-18" width="128" height="239"/>
+        <element name="CalendarGroup" positionX="549" positionY="250" width="128" height="284"/>
+        <element name="EventAttendee" positionX="702" positionY="250" width="128" height="194"/>
+        <element name="CustomReport" positionX="702" positionY="-18" width="128" height="179"/>
+        <element name="ParserTemplate" positionX="855" positionY="400" width="128" height="224"/>
+        <element name="UploadRecord" positionX="1008" positionY="400" width="128" height="239"/>
+        <element name="ReportLog" positionX="1161" positionY="400" width="128" height="194"/>
+        <element name="Dashboard" positionX="855" positionY="-18" width="128" height="164"/>
+        <element name="DashboardWidget" positionX="1314" positionY="400" width="128" height="224"/>
+        <element name="WidgetConfig" positionX="1467" positionY="400" width="128" height="194"/>
+        <element name="Workflow" positionX="1008" positionY="-18" width="128" height="149"/>
+        <element name="TriggerCondition" positionX="1620" positionY="400" width="128" height="179"/>
+        <element name="ActionStep" positionX="1773" positionY="400" width="128" height="194"/>
+        <element name="WorkflowExecution" positionX="1926" positionY="400" width="128" height="194"/>
+        <element name="UserPreferences" positionX="1161" positionY="-18" width="128" height="134"/>
+        <element name="ThemeOption" positionX="2079" positionY="400" width="128" height="254"/>
+        <element name="AppIconOption" positionX="2232" positionY="400" width="128" height="194"/>
+        <element name="Office365Integration" positionX="1314" positionY="-18" width="128" height="119"/>
+        <element name="Office365Token" positionX="2385" positionY="400" width="128" height="194"/>
+        <element name="SharePointResource" positionX="2538" positionY="400" width="128" height="194"/>
+        <element name="MicrosoftGraphSync" positionX="2691" positionY="400" width="128" height="179"/>
+        <element name="Asset" positionX="1467" positionY="-18" width="128" height="149"/>
+        <element name="AssetCategory" positionX="2844" positionY="400" width="128" height="179"/>
+        <element name="AssetTag" positionX="2997" positionY="400" width="128" height="164"/>
+        <element name="AssetUsageLog" positionX="3150" positionY="400" width="128" height="179"/>
+        <element name="RecordLink" positionX="1620" positionY="-18" width="128" height="164"/>
+        <element name="LinkableRecord" positionX="3303" positionY="400" width="128" height="194"/>
+        <element name="RecordLinkRule" positionX="3456" positionY="400" width="128" height="239"/>
+        <element name="PerformanceGoal" positionX="1773" positionY="-18" width="128" height="179"/>
+        <element name="Item" positionX="-63" positionY="300" width="128" height="44"/>
     </elements>
 </model>

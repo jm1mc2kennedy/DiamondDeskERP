@@ -315,7 +315,7 @@ final class ProductivityViewModel: ObservableObject {
         title: String,
         notes: String = "",
         dueDate: Date? = nil,
-        priority: TodoPriority = .medium,
+        priority: TaskPriority = .medium,
         recurringPattern: RecurringPattern? = nil
     ) async {
         do {
@@ -646,7 +646,7 @@ struct ProductivityFilters {
     var departments: [String] = []
     var taskStatuses: [TaskStatus] = []
     var taskPriorities: [TaskPriority] = []
-    var todoPriorities: [TodoPriority] = []
+    var todoPriorities: [TaskPriority] = []
     var okrLevels: [OKRLevel] = []
     var okrStatuses: [OKRStatus] = []
     var quarters: [String] = []

@@ -215,7 +215,7 @@ final class ProductivityService: ObservableObject {
         title: String,
         notes: String = "",
         dueDate: Date? = nil,
-        priority: TodoPriority = .medium,
+        priority: TaskPriority = .medium,
         recurringPattern: RecurringPattern? = nil,
         projectTaskId: String? = nil
     ) async throws -> PersonalTodo {
@@ -607,7 +607,7 @@ extension PersonalTodo {
               let title = record["title"] as? String,
               let isCompleted = record["isCompleted"] as? Bool,
               let priorityRaw = record["priority"] as? String,
-              let priority = TodoPriority(rawValue: priorityRaw),
+              let priority = TaskPriority(rawValue: priorityRaw),
               let createdAt = record["createdAt"] as? Date,
               let updatedAt = record["updatedAt"] as? Date else {
             return nil
