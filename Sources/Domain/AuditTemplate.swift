@@ -1,4 +1,5 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
 
 /// Enhanced audit template with advanced features for comprehensive store audits
@@ -648,3 +649,8 @@ public struct AuditTemplate: Identifiable, Codable {
         )
     }
 }
+
+public typealias AuditItem = AuditQuestion
+
+#endif
+

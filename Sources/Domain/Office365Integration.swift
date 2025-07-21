@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
+#endif
 
 // MARK: - Office 365 Integration Models (Phase 4.13+ Implementation)
 public struct Office365IntegrationModel: Identifiable, Codable, Hashable {
@@ -542,6 +544,7 @@ public struct OutlookMetrics: Codable, Hashable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
+#if canImport(CloudKit)
 extension Office365IntegrationModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "Office365Integration", recordID: CKRecord.ID(recordName: id))
@@ -642,3 +645,49 @@ extension Office365IntegrationModel {
         )
     }
 }
+#endif
+
+// MARK: - Microsoft Graph Sync
+public struct MicrosoftGraphSync: Identifiable, Codable, Hashable {
+    public let id: String
+    public var userId: String
+    public var resourceType: String
+    public var lastSyncToken: String?
+    public var syncStatus: String
+    public var errorCount: Int
+    public init(id: String = UUID().uuidString, userId: String, resourceType: String, lastSyncToken: String? = nil, syncStatus: String = "PENDING", errorCount: Int = 0) {
+        self.id = id
+        self.userId = userId
+        self.resourceType = resourceType
+        self.lastSyncToken = lastSyncToken
+        self.syncStatus = syncStatus
+        self.errorCount = errorCount
+    }
+}
+
+#if canImport(CloudKit)
+extension MicrosoftGraphSync {
+    public func toRecord() -> CKRecord {
+        let record = CKRecord(recordType: "MicrosoftGraphSync", recordID: CKRecord.ID(recordName: id))
+        record["userId"] = userId
+        record["resourceType"] = resourceType
+        record["lastSyncToken"] = lastSyncToken
+        record["syncStatus"] = syncStatus
+        record["errorCount"] = errorCount as NSNumber
+        return record
+    }
+    public static func from(record: CKRecord) -> MicrosoftGraphSync? {
+        guard let userId = record["userId"] as? String,
+              let resourceType = record["resourceType"] as? String,
+              let syncStatus = record["syncStatus"] as? String,
+              let errorCount = record["errorCount"] as? Int else { return nil }
+        let lastSyncToken = record["lastSyncToken"] as? String
+        return MicrosoftGraphSync(id: record.recordID.recordName,
+                                  userId: userId,
+                                  resourceType: resourceType,
+                                  lastSyncToken: lastSyncToken,
+                                  syncStatus: syncStatus,
+                                  errorCount: errorCount)
+    }
+}
+#endif

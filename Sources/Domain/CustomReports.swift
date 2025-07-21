@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
+#endif
 
 // MARK: - Custom Report Models (Phase 4.11+ Implementation)
 public struct CustomReportModel: Identifiable, Codable, Hashable {
@@ -521,6 +523,7 @@ public enum TriggerMethod: String, CaseIterable, Codable, Identifiable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
+#if canImport(CloudKit)
 extension CustomReportModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "CustomReport", recordID: CKRecord.ID(recordName: id))
@@ -606,3 +609,94 @@ extension CustomReportModel {
         )
     }
 }
+#endif
+
+// MARK: - Upload Record
+public struct UploadRecord: Identifiable, Codable, Hashable {
+    public let id: String
+    public var reportId: String
+    public var filename: String
+    public var version: Int
+    public var uploadDate: Date
+    public var fileSize: Int
+    public var processedRows: Int?
+    public var errorCount: Int?
+    public init(id: String = UUID().uuidString, reportId: String, filename: String, version: Int = 1, uploadDate: Date = Date(), fileSize: Int = 0, processedRows: Int? = nil, errorCount: Int? = nil) {
+        self.id = id
+        self.reportId = reportId
+        self.filename = filename
+        self.version = version
+        self.uploadDate = uploadDate
+        self.fileSize = fileSize
+        self.processedRows = processedRows
+        self.errorCount = errorCount
+    }
+}
+
+// MARK: - Report Log
+public struct ReportLog: Identifiable, Codable, Hashable {
+    public let id: String
+    public var reportId: String
+    public var entryDate: Date
+    public var summary: String
+    public var executionTime: Double?
+    public var status: String
+    public var errorDetails: String?
+    public init(id: String = UUID().uuidString, reportId: String, entryDate: Date = Date(), summary: String, executionTime: Double? = nil, status: String = "SUCCESS", errorDetails: String? = nil) {
+        self.id = id
+        self.reportId = reportId
+        self.entryDate = entryDate
+        self.summary = summary
+        self.executionTime = executionTime
+        self.status = status
+        self.errorDetails = errorDetails
+    }
+}
+
+
+#if canImport(CloudKit)
+extension UploadRecord {
+    public func toRecord() -> CKRecord {
+        let record = CKRecord(recordType: "UploadRecord", recordID: CKRecord.ID(recordName: id))
+        record["reportId"] = reportId
+        record["filename"] = filename
+        record["version"] = version as NSNumber
+        record["uploadDate"] = uploadDate
+        record["fileSize"] = fileSize as NSNumber
+        record["processedRows"] = processedRows as NSNumber?
+        record["errorCount"] = errorCount as NSNumber?
+        return record
+    }
+    public static func from(record: CKRecord) -> UploadRecord? {
+        guard let reportId = record["reportId"] as? String,
+              let filename = record["filename"] as? String,
+              let version = record["version"] as? Int,
+              let uploadDate = record["uploadDate"] as? Date,
+              let fileSize = record["fileSize"] as? Int else { return nil }
+        let processedRows = record["processedRows"] as? Int
+        let errorCount = record["errorCount"] as? Int
+        return UploadRecord(id: record.recordID.recordName, reportId: reportId, filename: filename, version: version, uploadDate: uploadDate, fileSize: fileSize, processedRows: processedRows, errorCount: errorCount)
+    }
+}
+extension ReportLog {
+    public func toRecord() -> CKRecord {
+        let record = CKRecord(recordType: "ReportLog", recordID: CKRecord.ID(recordName: id))
+        record["reportId"] = reportId
+        record["entryDate"] = entryDate
+        record["summary"] = summary
+        if let executionTime = executionTime { record["executionTime"] = executionTime as NSNumber }
+        record["status"] = status
+        record["errorDetails"] = errorDetails
+        return record
+    }
+    public static func from(record: CKRecord) -> ReportLog? {
+        guard let reportId = record["reportId"] as? String,
+              let entryDate = record["entryDate"] as? Date,
+              let summary = record["summary"] as? String,
+              let status = record["status"] as? String else { return nil }
+        let executionTime = record["executionTime"] as? Double
+        let errorDetails = record["errorDetails"] as? String
+        return ReportLog(id: record.recordID.recordName, reportId: reportId, entryDate: entryDate, summary: summary, executionTime: executionTime, status: status, errorDetails: errorDetails)
+    }
+}
+#endif

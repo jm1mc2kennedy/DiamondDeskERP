@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
+#endif
 
 // MARK: - Dashboard Models (Phase 4.12+ Implementation)
 public struct DashboardModel: Identifiable, Codable, Hashable {
@@ -483,18 +485,18 @@ public struct RefreshSettings: Codable, Hashable {
 
 public struct ConditionalDisplayRule: Codable, Hashable {
     public var condition: String
-    public var Conditionaloperator: ConditionalOperator
+    public var comparisonOperator: ConditionalOperator
     public var value: String
     public var isEnabled: Bool
     
     public init(
         condition: String,
-        operator: ConditionalOperator,
+        comparisonOperator: ConditionalOperator,
         value: String,
         isEnabled: Bool = true
     ) {
         self.condition = condition
-        self.operator = Conditionaloperator
+        self.comparisonOperator = comparisonOperator
         self.value = value
         self.isEnabled = isEnabled
     }
@@ -533,6 +535,7 @@ public struct WidgetStyling: Codable, Hashable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
+#if canImport(CloudKit)
 extension DashboardModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "Dashboard", recordID: CKRecord.ID(recordName: id))
@@ -602,3 +605,8 @@ extension DashboardModel {
         )
     }
 }
+#endif
+
+public typealias WidgetConfig = WidgetConfiguration
+
+public typealias UserDashboard = DashboardModel
