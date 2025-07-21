@@ -7,6 +7,7 @@
 
 import CloudKit
 import Combine
+import XCTest
 
 /// Service-specific tests for UnifiedPermissionsService implementation
 /// Tests: Service lifecycle, CloudKit integration, caching, and enterprise features

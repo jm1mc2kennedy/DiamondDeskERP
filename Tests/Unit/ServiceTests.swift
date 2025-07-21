@@ -6,6 +6,7 @@
 //
 
 import CloudKit
+import XCTest
 import UserNotifications
 
 @MainActor final class ServiceTests: XCTestCase {

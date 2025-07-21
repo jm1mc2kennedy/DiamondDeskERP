@@ -1,5 +1,6 @@
 import Foundation
 import CloudKit
+import XCTest
 
 /// Complex Workflow Performance Benchmarks
 /// Implements comprehensive performance testing for multi-module workflows

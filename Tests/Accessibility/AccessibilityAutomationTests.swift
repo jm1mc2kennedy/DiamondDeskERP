@@ -1,4 +1,5 @@
 import SwiftUI
+import XCTest
 
 /// Accessibility Automation with Dynamic Type harness and snapshot diff validation
 /// Implements automated accessibility testing across all Dynamic Type content size categories

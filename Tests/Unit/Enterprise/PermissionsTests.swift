@@ -6,6 +6,7 @@
 //
 
 import CloudKit
+import XCTest
 
 /// Comprehensive test suite for Phase 4.2 Unified Permissions Framework
 /// Tests: RBAC, permission inheritance, audit trails, and enterprise security
