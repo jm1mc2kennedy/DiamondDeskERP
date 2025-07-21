@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B355CE612E2C7A26005D1145 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = B355CE602E2C7A26005D1145 /* AsyncAlgorithms */; };
 		B3C872AA2E2E6ABC00FA275E /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = B3C872A92E2E6ABC00FA275E /* ArgumentParser */; };
-		B3C872AE2E2E7CE600FA275E /* TriggerCondition+CoreDataProperties 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C872AD2E2E7CE600FA275E /* TriggerCondition+CoreDataProperties 2.swift */; };
 		B3CC8D282E2DE23E00EE9262 /* ConflictLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D162E2DE23E00EE9262 /* ConflictLog.swift */; };
 		B3CC8D292E2DE23E00EE9262 /* ConflictLoggingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D182E2DE23E00EE9262 /* ConflictLoggingService.swift */; };
 		B3CC8D2A2E2DE23E00EE9262 /* ConflictViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D192E2DE23E00EE9262 /* ConflictViewer.swift */; };
@@ -278,7 +277,6 @@
 /* Begin PBXFileReference section */
 		B3417E6A2E2B1CC90018A3C7 /* DiamondDeskERP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiamondDeskERP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C872AB2E2E7C3E00FA275E /* TriggerCondition+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TriggerCondition+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		B3C872AD2E2E7CE600FA275E /* TriggerCondition+CoreDataProperties 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TriggerCondition+CoreDataProperties 2.swift"; sourceTree = "<group>"; };
 		B3C872AF2E2E87C500FA275E /* REMOVE_TEST_ARTIFACTS.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = REMOVE_TEST_ARTIFACTS.txt; sourceTree = "<group>"; };
 		B3CC8C862E2DE23500EE9262 /* ACCESSIBILITY_AUTOMATION_IMPLEMENTATION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ACCESSIBILITY_AUTOMATION_IMPLEMENTATION.md; sourceTree = "<group>"; };
 		B3CC8C872E2DE23500EE9262 /* CONFLICT_LOGGING_IMPLEMENTATION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONFLICT_LOGGING_IMPLEMENTATION.md; sourceTree = "<group>"; };
@@ -742,7 +740,6 @@
 				B3CC8F182E2DE24500EE9262 /* Sources */,
 				B3CC93762E2DE24E00EE9262 /* Tests */,
 				B3C872AB2E2E7C3E00FA275E /* TriggerCondition+CoreDataProperties.swift */,
-				B3C872AD2E2E7CE600FA275E /* TriggerCondition+CoreDataProperties 2.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2606,7 +2603,6 @@
 				B3CC90D82E2DE24500EE9262 /* DocumentCollaborationView.swift in Sources */,
 				B3CC90D92E2DE24500EE9262 /* PerformanceTargetsViewModel.swift in Sources */,
 				B3CC90DA2E2DE24500EE9262 /* TaskCompletionLog.swift in Sources */,
-				B3C872AE2E2E7CE600FA275E /* TriggerCondition+CoreDataProperties 2.swift in Sources */,
 				B3CC90DB2E2DE24500EE9262 /* Dashboard.swift in Sources */,
 				B3CC90DD2E2DE24500EE9262 /* AIInsightsAnalyticsView.swift in Sources */,
 				B3CC90DE2E2DE24500EE9262 /* TicketRepository.swift in Sources */,
