@@ -609,7 +609,6 @@ extension CustomReportModel {
         )
     }
 }
-#endif
 
 // MARK: - Upload Record
 public struct UploadRecord: Identifiable, Codable, Hashable {
@@ -654,7 +653,6 @@ public struct ReportLog: Identifiable, Codable, Hashable {
 }
 
 
-#if canImport(CloudKit)
 extension UploadRecord {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "UploadRecord", recordID: CKRecord.ID(recordName: id))
@@ -699,4 +697,4 @@ extension ReportLog {
         return ReportLog(id: record.recordID.recordName, reportId: reportId, entryDate: entryDate, summary: summary, executionTime: executionTime, status: status, errorDetails: errorDetails)
     }
 }
-#endif
+

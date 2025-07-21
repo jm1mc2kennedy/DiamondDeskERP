@@ -645,7 +645,6 @@ extension Office365IntegrationModel {
         )
     }
 }
-#endif
 
 // MARK: - Microsoft Graph Sync
 public struct MicrosoftGraphSync: Identifiable, Codable, Hashable {
@@ -665,7 +664,6 @@ public struct MicrosoftGraphSync: Identifiable, Codable, Hashable {
     }
 }
 
-#if canImport(CloudKit)
 extension MicrosoftGraphSync {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "MicrosoftGraphSync", recordID: CKRecord.ID(recordName: id))
@@ -690,4 +688,3 @@ extension MicrosoftGraphSync {
                                   errorCount: errorCount)
     }
 }
-#endif

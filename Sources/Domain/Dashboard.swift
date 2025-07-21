@@ -605,7 +605,7 @@ extension DashboardModel {
         )
     }
 }
-#endif
+
 
 public typealias WidgetConfig = WidgetConfiguration
 
