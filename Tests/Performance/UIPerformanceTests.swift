@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import SwiftUI
 import XCTest
 
@@ -500,3 +501,4 @@ extension XCTestCase {
         return result
     }
 }
+#endif

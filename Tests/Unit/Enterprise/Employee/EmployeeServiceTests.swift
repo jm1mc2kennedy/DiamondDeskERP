@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import CloudKit
 import XCTest
 
@@ -558,3 +559,4 @@ final class EmployeeCloudKitTests: XCTestCase {
         XCTAssertEqual(deserializedReview?.notes, review.notes)
     }
 }
+#endif

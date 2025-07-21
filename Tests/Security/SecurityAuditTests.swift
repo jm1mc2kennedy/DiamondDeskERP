@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import CryptoKit
 import LocalAuthentication
 import XCTest
@@ -676,3 +677,4 @@ enum RiskLevel {
     case high
     case critical
 }
+#endif

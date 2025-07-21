@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import CloudKit
 import XCTest
 
@@ -342,3 +343,4 @@ final class WorkflowCloudKitTests: XCTestCase {
         XCTAssertEqual(deserializedExecution?.triggerMethod, execution.triggerMethod)
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import DiamondDeskERP
 import XCTest
 
@@ -44,3 +45,4 @@ class PerformanceTargetsViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.errorMessage, "Fetch error")
     }
 }
+#endif

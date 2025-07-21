@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  ClientViewModelTests.swift
 //  DiamondDeskERPTests
@@ -551,3 +552,4 @@ struct ClientViewModelTests {
         #expect(viewModel.error == nil)
     }
 }
+#endif

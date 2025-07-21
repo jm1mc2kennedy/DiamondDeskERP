@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  ModelTests.swift
 //  DiamondDeskERPTests
@@ -518,3 +519,4 @@ struct ModelTests {
         #expect(ticket.assignedToUserRef?.recordID.recordName == "assigned-user")
     }
 }
+#endif

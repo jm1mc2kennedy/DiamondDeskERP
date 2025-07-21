@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import XCTest
 import Combine
 @testable import DiamondDeskERP
@@ -519,3 +520,4 @@ extension DirectoryError: LocalizedError {
         }
     }
 }
+#endif

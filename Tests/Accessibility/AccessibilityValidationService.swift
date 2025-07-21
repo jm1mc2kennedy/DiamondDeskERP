@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import Foundation
 import SwiftUI
 import UIKit
@@ -432,3 +433,4 @@ struct AccessibilityIssuesView: View {
         }
     }
 }
+#endif

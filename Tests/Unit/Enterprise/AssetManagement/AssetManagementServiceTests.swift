@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import CloudKit
 import XCTest
 
@@ -432,3 +433,4 @@ final class AssetCloudKitTests: XCTestCase {
         XCTAssertEqual(deserializedLog?.sessionId, usageLog.sessionId)
     }
 }
+#endif

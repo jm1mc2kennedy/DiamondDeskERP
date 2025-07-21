@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import CloudKit
 import XCTest
 
@@ -754,3 +755,4 @@ extension ProjectModelTests {
         return project
     }
 }
+#endif

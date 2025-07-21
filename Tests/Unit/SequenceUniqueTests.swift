@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import XCTest
 @testable import DiamondDeskERP
 
@@ -20,3 +21,4 @@ class SequenceUniqueTests: XCTestCase {
         XCTAssertEqual(unique, ["a", "b", "c"])
     }
 }
+#endif

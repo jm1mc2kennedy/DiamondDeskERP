@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import CloudKit
 import XCTest
 
@@ -46,3 +47,4 @@ class MockCKDatabase: CKDatabase {
         return record
     }
 }
+#endif

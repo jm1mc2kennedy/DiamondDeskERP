@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import Foundation
 import XCTest
 
@@ -314,3 +315,4 @@ class PerformanceRegressionTests: XCTestCase {
         return documentsPath.appendingPathComponent("PerformanceReports")
     }
 }
+#endif

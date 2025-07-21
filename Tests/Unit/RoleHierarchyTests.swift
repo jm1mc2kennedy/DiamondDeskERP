@@ -1,1 +1,3 @@
+#if canImport(XCTest)
 
+#endif

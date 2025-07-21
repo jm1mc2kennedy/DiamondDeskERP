@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import XCTest
 
 @MainActor
@@ -61,3 +62,4 @@ class DocumentViewModelTests: XCTestCase {
     }
 }
 
+#endif

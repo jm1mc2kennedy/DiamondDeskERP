@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import SwiftUI
 import XCTest
 
@@ -475,3 +476,4 @@ struct AccessibilityReport: Codable {
     let issuesBySeverity: [String: Int]
     let results: [AccessibilityAutomationTests.AccessibilityTestResult]
 }
+#endif

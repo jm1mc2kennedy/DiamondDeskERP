@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import XCTest
 import Combine
 @testable import DiamondDeskERP
@@ -849,3 +850,4 @@ protocol DirectoryServiceProtocol {
     func exportEmployeesToCSV() async throws -> URL
     func exportVendorsToCSV() async throws -> URL
 }
+#endif
