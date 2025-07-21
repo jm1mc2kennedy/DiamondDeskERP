@@ -689,3 +689,108 @@ extension Employee {
         )
     }
 }
+
+// MARK: - Vendor CloudKit Extensions
+extension Vendor {
+    public func toCKRecord() -> CKRecord {
+        let record = CKRecord(recordType: "Vendor", recordID: CKRecord.ID(recordName: id))
+        record["companyName"] = companyName
+        record["contactPerson"] = contactPerson
+        record["email"] = email
+        record["phone"] = phone
+        record["vendorType"] = vendorType.rawValue
+        record["contractStart"] = contractStart
+        record["contractEnd"] = contractEnd
+        record["paymentTerms"] = paymentTerms
+        record["performanceRating"] = performanceRating
+        record["certifications"] = certifications
+        record["serviceCategories"] = serviceCategories
+        record["isPreferred"] = isPreferred
+        record["riskLevel"] = riskLevel.rawValue
+        record["documents"] = documents
+        record["notes"] = notes
+        record["isActive"] = isActive
+        record["createdAt"] = createdAt
+        record["modifiedAt"] = modifiedAt
+        
+        // Encode complex objects as Data
+        if let addressData = try? JSONEncoder().encode(address) {
+            record["address"] = addressData
+        }
+        if let auditHistoryData = try? JSONEncoder().encode(auditHistory) {
+            record["auditHistory"] = auditHistoryData
+        }
+        if let contactsData = try? JSONEncoder().encode(contacts) {
+            record["contacts"] = contactsData
+        }
+        
+        return record
+    }
+    
+    public static func from(record: CKRecord) -> Vendor? {
+        guard let companyName = record["companyName"] as? String,
+              let contactPerson = record["contactPerson"] as? String,
+              let email = record["email"] as? String,
+              let phone = record["phone"] as? String,
+              let vendorTypeString = record["vendorType"] as? String,
+              let vendorType = VendorType(rawValue: vendorTypeString),
+              let contractStart = record["contractStart"] as? Date,
+              let contractEnd = record["contractEnd"] as? Date,
+              let paymentTerms = record["paymentTerms"] as? String,
+              let performanceRating = record["performanceRating"] as? Double,
+              let isPreferred = record["isPreferred"] as? Bool,
+              let riskLevelString = record["riskLevel"] as? String,
+              let riskLevel = RiskLevel(rawValue: riskLevelString),
+              let isActive = record["isActive"] as? Bool,
+              let createdAt = record["createdAt"] as? Date,
+              let modifiedAt = record["modifiedAt"] as? Date else {
+            return nil
+        }
+        
+        let certifications = record["certifications"] as? [String] ?? []
+        let serviceCategories = record["serviceCategories"] as? [String] ?? []
+        let documents = record["documents"] as? [String] ?? []
+        let notes = record["notes"] as? String
+        
+        // Decode complex objects
+        var address = Address()
+        if let addressData = record["address"] as? Data {
+            address = (try? JSONDecoder().decode(Address.self, from: addressData)) ?? Address()
+        }
+        
+        var auditHistory: [VendorAudit] = []
+        if let auditHistoryData = record["auditHistory"] as? Data {
+            auditHistory = (try? JSONDecoder().decode([VendorAudit].self, from: auditHistoryData)) ?? []
+        }
+        
+        var contacts: [VendorContact] = []
+        if let contactsData = record["contacts"] as? Data {
+            contacts = (try? JSONDecoder().decode([VendorContact].self, from: contactsData)) ?? []
+        }
+        
+        return Vendor(
+            id: record.recordID.recordName,
+            companyName: companyName,
+            contactPerson: contactPerson,
+            email: email,
+            phone: phone,
+            address: address,
+            vendorType: vendorType,
+            contractStart: contractStart,
+            contractEnd: contractEnd,
+            paymentTerms: paymentTerms,
+            performanceRating: performanceRating,
+            certifications: certifications,
+            serviceCategories: serviceCategories,
+            isPreferred: isPreferred,
+            riskLevel: riskLevel,
+            auditHistory: auditHistory,
+            contacts: contacts,
+            documents: documents,
+            notes: notes,
+            isActive: isActive,
+            createdAt: createdAt,
+            modifiedAt: modifiedAt
+        )
+    }
+}

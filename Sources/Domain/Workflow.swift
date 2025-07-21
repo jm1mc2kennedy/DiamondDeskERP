@@ -439,3 +439,65 @@ extension Workflow {
         )
     }
 }
+
+// MARK: - WorkflowExecution CloudKit Extensions
+extension WorkflowExecution {
+    public func toCKRecord() -> CKRecord {
+        let record = CKRecord(recordType: "WorkflowExecution", recordID: CKRecord.ID(recordName: id))
+        record["workflowId"] = workflowId
+        record["status"] = status.rawValue
+        record["startedAt"] = startedAt
+        record["completedAt"] = completedAt
+        record["triggeredBy"] = triggeredBy
+        record["triggerMethod"] = triggerMethod
+        record["errorMessage"] = errorMessage
+        
+        // Encode complex objects as Data
+        if let stepResultsData = try? JSONEncoder().encode(stepResults) {
+            record["stepResults"] = stepResultsData
+        }
+        if let metricsData = try? JSONEncoder().encode(metrics) {
+            record["metrics"] = metricsData
+        }
+        
+        return record
+    }
+    
+    public static func from(record: CKRecord) -> WorkflowExecution? {
+        guard let workflowId = record["workflowId"] as? String,
+              let statusString = record["status"] as? String,
+              let status = ExecutionStatus(rawValue: statusString),
+              let startedAt = record["startedAt"] as? Date else {
+            return nil
+        }
+        
+        let completedAt = record["completedAt"] as? Date
+        let triggeredBy = record["triggeredBy"] as? String
+        let triggerMethod = record["triggerMethod"] as? String
+        let errorMessage = record["errorMessage"] as? String
+        
+        // Decode complex objects
+        var stepResults: [StepResult] = []
+        if let stepResultsData = record["stepResults"] as? Data {
+            stepResults = (try? JSONDecoder().decode([StepResult].self, from: stepResultsData)) ?? []
+        }
+        
+        var metrics = ExecutionMetrics()
+        if let metricsData = record["metrics"] as? Data {
+            metrics = (try? JSONDecoder().decode(ExecutionMetrics.self, from: metricsData)) ?? ExecutionMetrics()
+        }
+        
+        return WorkflowExecution(
+            id: record.recordID.recordName,
+            workflowId: workflowId,
+            status: status,
+            startedAt: startedAt,
+            completedAt: completedAt,
+            triggeredBy: triggeredBy,
+            triggerMethod: triggerMethod,
+            errorMessage: errorMessage,
+            stepResults: stepResults,
+            metrics: metrics
+        )
+    }
+}

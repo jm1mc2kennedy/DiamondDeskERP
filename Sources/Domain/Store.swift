@@ -8,7 +8,6 @@ struct Store: Identifiable, Hashable {
     let address: String
     let status: String
     let region: String
-    let createdAt: Date
 
     init?(record: CKRecord) {
         guard
@@ -16,8 +15,7 @@ struct Store: Identifiable, Hashable {
             let name = record["name"] as? String,
             let address = record["address"] as? String,
             let status = record["status"] as? String,
-            let region = record["region"] as? String,
-            let createdAt = record["createdAt"] as? Date
+            let region = record["region"] as? String
         else {
             return nil
         }
@@ -25,10 +23,6 @@ struct Store: Identifiable, Hashable {
         self.id = record.recordID
         self.code = code
         self.name = name
-        self.address = address
-        self.status = status
-        self.region = region
-        self.createdAt = createdAt
         self.address = address
         self.status = status
         self.region = region
