@@ -273,35 +273,6 @@
 		B3CC91D42E2DE24500EE9262 /* RecordLinking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D5D2E2DE24500EE9262 /* RecordLinking.swift */; };
 		B3CC91D62E2DE24500EE9262 /* StoreReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8F0D2E2DE24500EE9262 /* StoreReportRepository.swift */; };
 		B3CC91D82E2DE24500EE9262 /* NavigationDestinationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC8D2E2E2DE24500EE9262 /* NavigationDestinationHandler.swift */; };
-		B3CC93792E2DE24E00EE9262 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93722E2DE24E00EE9262 /* ServiceTests.swift */; };
-		B3CC937A2E2DE24E00EE9262 /* PerformanceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93692E2DE24E00EE9262 /* PerformanceViewModelTests.swift */; };
-		B3CC937B2E2DE24E00EE9262 /* AuditRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC935F2E2DE24E00EE9262 /* AuditRepositoryTests.swift */; };
-		B3CC937C2E2DE24E00EE9262 /* AccessibilityAutomationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93392E2DE24E00EE9262 /* AccessibilityAutomationTests.swift */; };
-		B3CC937D2E2DE24E00EE9262 /* DocumentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93642E2DE24E00EE9262 /* DocumentViewModelTests.swift */; };
-		B3CC937E2E2DE24E00EE9262 /* DirectoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93632E2DE24E00EE9262 /* DirectoryViewModelTests.swift */; };
-		B3CC93812E2DE24E00EE9262 /* PerformanceTargetsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93682E2DE24E00EE9262 /* PerformanceTargetsViewModelTests.swift */; };
-		B3CC93822E2DE24E00EE9262 /* UnifiedPermissionsServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93582E2DE24E00EE9262 /* UnifiedPermissionsServiceTests.swift */; };
-		B3CC93832E2DE24E00EE9262 /* UIPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC934A2E2DE24E00EE9262 /* UIPerformanceTests.swift */; };
-		B3CC93842E2DE24E00EE9262 /* RoleHierarchyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC936F2E2DE24E00EE9262 /* RoleHierarchyTests.swift */; };
-		B3CC93862E2DE24E00EE9262 /* WorkflowServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93552E2DE24E00EE9262 /* WorkflowServiceTests.swift */; };
-		B3CC93872E2DE24E00EE9262 /* PerformanceRegressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93472E2DE24E00EE9262 /* PerformanceRegressionTests.swift */; };
-		B3CC93882E2DE24E00EE9262 /* DiamondDeskERPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93622E2DE24E00EE9262 /* DiamondDeskERPTests.swift */; };
-		B3CC93892E2DE24E00EE9262 /* AuditViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93602E2DE24E00EE9262 /* AuditViewModelTests.swift */; };
-		B3CC938A2E2DE24E00EE9262 /* ProjectModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC936B2E2DE24E00EE9262 /* ProjectModelTests.swift */; };
-		B3CC938B2E2DE24E00EE9262 /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC936D2E2DE24E00EE9262 /* RepositoryTests.swift */; };
-		B3CC938C2E2DE24E00EE9262 /* TicketViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93732E2DE24E00EE9262 /* TicketViewModelTests.swift */; };
-		B3CC938E2E2DE24E00EE9262 /* ClientViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93612E2DE24E00EE9262 /* ClientViewModelTests.swift */; };
-		B3CC938F2E2DE24E00EE9262 /* EmployeeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93532E2DE24E00EE9262 /* EmployeeServiceTests.swift */; };
-		B3CC93912E2DE24E00EE9262 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93652E2DE24E00EE9262 /* ModelTests.swift */; };
-		B3CC93922E2DE24E00EE9262 /* ProjectPortfolioServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC936C2E2DE24E00EE9262 /* ProjectPortfolioServiceTests.swift */; };
-		B3CC93942E2DE24E00EE9262 /* SeederTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93702E2DE24E00EE9262 /* SeederTests.swift */; };
-		B3CC93962E2DE24E00EE9262 /* SecurityAuditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC934C2E2DE24E00EE9262 /* SecurityAuditTests.swift */; };
-		B3CC93972E2DE24E00EE9262 /* PermissionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93572E2DE24E00EE9262 /* PermissionsTests.swift */; };
-		B3CC93982E2DE24E00EE9262 /* AccessibilityValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC933A2E2DE24E00EE9262 /* AccessibilityValidationService.swift */; };
-		B3CC939A2E2DE24E00EE9262 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93432E2DE24E00EE9262 /* IntegrationTests.swift */; };
-		B3CC939F2E2DE24E00EE9262 /* PerformanceBaseline.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93462E2DE24E00EE9262 /* PerformanceBaseline.swift */; };
-		B3CC93A42E2DE24E00EE9262 /* AssetManagementServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93512E2DE24E00EE9262 /* AssetManagementServiceTests.swift */; };
-		B3CC93A52E2DE24E00EE9262 /* ComplexWorkflowPerformanceBenchmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CC93452E2DE24E00EE9262 /* ComplexWorkflowPerformanceBenchmarks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2616,35 +2587,6 @@
 				B3CC90C32E2DE24500EE9262 /* DiamondDeskAIPlugin.swift in Sources */,
 				B3CC90C42E2DE24500EE9262 /* KPIViewModel.swift in Sources */,
 				B3CC90C52E2DE24500EE9262 /* AIInsightDetailView.swift in Sources */,
-				B3CC93792E2DE24E00EE9262 /* ServiceTests.swift in Sources */,
-				B3CC937A2E2DE24E00EE9262 /* PerformanceViewModelTests.swift in Sources */,
-				B3CC937B2E2DE24E00EE9262 /* AuditRepositoryTests.swift in Sources */,
-				B3CC937C2E2DE24E00EE9262 /* AccessibilityAutomationTests.swift in Sources */,
-				B3CC937D2E2DE24E00EE9262 /* DocumentViewModelTests.swift in Sources */,
-				B3CC937E2E2DE24E00EE9262 /* DirectoryViewModelTests.swift in Sources */,
-				B3CC93812E2DE24E00EE9262 /* PerformanceTargetsViewModelTests.swift in Sources */,
-				B3CC93822E2DE24E00EE9262 /* UnifiedPermissionsServiceTests.swift in Sources */,
-				B3CC93832E2DE24E00EE9262 /* UIPerformanceTests.swift in Sources */,
-				B3CC93842E2DE24E00EE9262 /* RoleHierarchyTests.swift in Sources */,
-				B3CC93862E2DE24E00EE9262 /* WorkflowServiceTests.swift in Sources */,
-				B3CC93872E2DE24E00EE9262 /* PerformanceRegressionTests.swift in Sources */,
-				B3CC93882E2DE24E00EE9262 /* DiamondDeskERPTests.swift in Sources */,
-				B3CC93892E2DE24E00EE9262 /* AuditViewModelTests.swift in Sources */,
-				B3CC938A2E2DE24E00EE9262 /* ProjectModelTests.swift in Sources */,
-				B3CC938B2E2DE24E00EE9262 /* RepositoryTests.swift in Sources */,
-				B3CC938C2E2DE24E00EE9262 /* TicketViewModelTests.swift in Sources */,
-				B3CC938E2E2DE24E00EE9262 /* ClientViewModelTests.swift in Sources */,
-				B3CC938F2E2DE24E00EE9262 /* EmployeeServiceTests.swift in Sources */,
-				B3CC93912E2DE24E00EE9262 /* ModelTests.swift in Sources */,
-				B3CC93922E2DE24E00EE9262 /* ProjectPortfolioServiceTests.swift in Sources */,
-				B3CC93942E2DE24E00EE9262 /* SeederTests.swift in Sources */,
-				B3CC93962E2DE24E00EE9262 /* SecurityAuditTests.swift in Sources */,
-				B3CC93972E2DE24E00EE9262 /* PermissionsTests.swift in Sources */,
-				B3CC93982E2DE24E00EE9262 /* AccessibilityValidationService.swift in Sources */,
-				B3CC939A2E2DE24E00EE9262 /* IntegrationTests.swift in Sources */,
-				B3CC939F2E2DE24E00EE9262 /* PerformanceBaseline.swift in Sources */,
-				B3CC93A42E2DE24E00EE9262 /* AssetManagementServiceTests.swift in Sources */,
-				B3CC93A52E2DE24E00EE9262 /* ComplexWorkflowPerformanceBenchmarks.swift in Sources */,
 				B3CC90C62E2DE24500EE9262 /* MLInsightsProcessor.swift in Sources */,
 				B3CC90C72E2DE24500EE9262 /* AssetManagementService.swift in Sources */,
 				B3CC90C82E2DE24500EE9262 /* VendorPerformance.swift in Sources */,

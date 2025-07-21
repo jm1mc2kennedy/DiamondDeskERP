@@ -1,6 +1,6 @@
 import Foundation
 import CloudKit
-internal import Combine
+import Combine
 
 // MARK: - Employee Service Protocol
 public protocol EmployeeServiceProtocol {
