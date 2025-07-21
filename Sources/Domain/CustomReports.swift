@@ -621,7 +621,16 @@ public struct UploadRecord: Identifiable, Codable, Hashable {
     public var fileSize: Int
     public var processedRows: Int?
     public var errorCount: Int?
-    public init(id: String = UUID().uuidString, reportId: String, filename: String, version: Int = 1, uploadDate: Date = Date(), fileSize: Int = 0, processedRows: Int? = nil, errorCount: Int? = nil) {
+    public init(
+        id: String = UUID().uuidString,
+        reportId: String,
+        filename: String,
+        version: Int = 1,
+        uploadDate: Date = Date(),
+        fileSize: Int = 0,
+        processedRows: Int? = nil,
+        errorCount: Int? = nil
+    ) {
         self.id = id
         self.reportId = reportId
         self.filename = filename
