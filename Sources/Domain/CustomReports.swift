@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
+#endif
 
 // MARK: - Custom Report Models (Phase 4.11+ Implementation)
 public struct CustomReportModel: Identifiable, Codable, Hashable {
@@ -521,6 +523,7 @@ public enum TriggerMethod: String, CaseIterable, Codable, Identifiable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
+#if canImport(CloudKit)
 extension CustomReportModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "CustomReport", recordID: CKRecord.ID(recordName: id))
@@ -606,6 +609,7 @@ extension CustomReportModel {
         )
     }
 }
+#endif
 
 // MARK: - Upload Record
 public struct UploadRecord: Identifiable, Codable, Hashable {
@@ -649,6 +653,7 @@ public struct ReportLog: Identifiable, Codable, Hashable {
     }
 }
 
+#if canImport(CloudKit)
 extension UploadRecord {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "UploadRecord", recordID: CKRecord.ID(recordName: id))
@@ -672,6 +677,7 @@ extension UploadRecord {
         return UploadRecord(id: record.recordID.recordName, reportId: reportId, filename: filename, version: version, uploadDate: uploadDate, fileSize: fileSize, processedRows: processedRows, errorCount: errorCount)
     }
 }
+
 extension ReportLog {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "ReportLog", recordID: CKRecord.ID(recordName: id))
@@ -693,3 +699,4 @@ extension ReportLog {
         return ReportLog(id: record.recordID.recordName, reportId: reportId, entryDate: entryDate, summary: summary, executionTime: executionTime, status: status, errorDetails: errorDetails)
     }
 }
+#endif

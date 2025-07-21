@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
+#endif
 
 // MARK: - Dashboard Models (Phase 4.12+ Implementation)
 public struct DashboardModel: Identifiable, Codable, Hashable {
@@ -434,6 +436,19 @@ public enum ConfigFieldType: String, CaseIterable, Codable, Identifiable {
     public var id: String { rawValue }
 }
 
+public enum DataSourceType: String, CaseIterable, Codable, Identifiable {
+    case cloudKit = "CLOUDKIT"
+    case coreData = "CORE_DATA"
+    case restAPI = "REST_API"
+    case graphQL = "GRAPHQL"
+    case database = "DATABASE"
+    case csv = "CSV"
+    case json = "JSON"
+    case xml = "XML"
+    
+    public var id: String { rawValue }
+}
+
 public struct DataConnection: Identifiable, Codable, Hashable {
     public let id: String
     public var name: String
@@ -483,7 +498,7 @@ public struct RefreshSettings: Codable, Hashable {
 
 public struct ConditionalDisplayRule: Codable, Hashable {
     public var condition: String
-    public var Conditionaloperator: ConditionalOperator
+    public var conditionalOperator: ConditionalOperator
     public var value: String
     public var isEnabled: Bool
     
@@ -494,7 +509,7 @@ public struct ConditionalDisplayRule: Codable, Hashable {
         isEnabled: Bool = true
     ) {
         self.condition = condition
-        self.operator = Conditionaloperator
+        self.conditionalOperator = `operator`
         self.value = value
         self.isEnabled = isEnabled
     }
@@ -533,6 +548,7 @@ public struct WidgetStyling: Codable, Hashable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
+#if canImport(CloudKit)
 extension DashboardModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "Dashboard", recordID: CKRecord.ID(recordName: id))
@@ -602,6 +618,7 @@ extension DashboardModel {
         )
     }
 }
+#endif
 
 public typealias WidgetConfig = WidgetConfiguration
 

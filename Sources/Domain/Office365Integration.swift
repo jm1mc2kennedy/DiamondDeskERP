@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
+#endif
 
 // MARK: - Office 365 Integration Models (Phase 4.13+ Implementation)
 public struct Office365IntegrationModel: Identifiable, Codable, Hashable {
@@ -542,6 +544,7 @@ public struct OutlookMetrics: Codable, Hashable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
+#if canImport(CloudKit)
 extension Office365IntegrationModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "Office365Integration", recordID: CKRecord.ID(recordName: id))
@@ -642,6 +645,7 @@ extension Office365IntegrationModel {
         )
     }
 }
+#endif
 
 // MARK: - Microsoft Graph Sync
 public struct MicrosoftGraphSync: Identifiable, Codable, Hashable {
@@ -660,6 +664,8 @@ public struct MicrosoftGraphSync: Identifiable, Codable, Hashable {
         self.errorCount = errorCount
     }
 }
+
+#if canImport(CloudKit)
 extension MicrosoftGraphSync {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "MicrosoftGraphSync", recordID: CKRecord.ID(recordName: id))
@@ -684,3 +690,4 @@ extension MicrosoftGraphSync {
                                   errorCount: errorCount)
     }
 }
+#endif

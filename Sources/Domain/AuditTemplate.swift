@@ -1,9 +1,15 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
+#endif
 
 /// Enhanced audit template with advanced features for comprehensive store audits
 public struct AuditTemplate: Identifiable, Codable {
+    #if canImport(CloudKit)
     public let id: CKRecord.ID
+    #else
+    public let id: String
+    #endif
     public let title: String
     public let description: String?
     public let department: String?
@@ -13,7 +19,11 @@ public struct AuditTemplate: Identifiable, Codable {
     public let sections: [AuditSection]
     public let weighting: SectionWeighting
     public let settings: AuditSettings
+    #if canImport(CloudKit)
     public let createdBy: CKRecord.Reference
+    #else
+    public let createdBy: String
+    #endif
     public let createdByName: String
     public let createdAt: Date
     public let updatedAt: Date
@@ -23,7 +33,11 @@ public struct AuditTemplate: Identifiable, Codable {
     public let requiredRole: String?
     public let tags: [String]
     public let isTemplate: Bool
+    #if canImport(CloudKit)
     public let parentTemplateId: CKRecord.Reference?
+    #else
+    public let parentTemplateId: String?
+    #endif
     
     public enum AuditCategory: String, CaseIterable, Codable {
         case operations = "operations"
@@ -410,6 +424,7 @@ public struct AuditTemplate: Identifiable, Codable {
     
     // MARK: - CloudKit Integration
     
+    #if canImport(CloudKit)
     public init?(record: CKRecord) {
         guard let title = record["title"] as? String,
               let categoryRaw = record["category"] as? String,
@@ -522,9 +537,11 @@ public struct AuditTemplate: Identifiable, Codable {
     public static func from(record: CKRecord) -> AuditTemplate? {
         return AuditTemplate(record: record)
     }
+    #endif
     
     // MARK: - Factory Methods
     
+    #if canImport(CloudKit)
     public static func create(
         title: String,
         description: String? = nil,
@@ -562,6 +579,45 @@ public struct AuditTemplate: Identifiable, Codable {
             parentTemplateId: nil
         )
     }
+    #else
+    public static func create(
+        title: String,
+        description: String? = nil,
+        department: String? = nil,
+        category: AuditCategory,
+        createdBy: String,
+        createdByName: String,
+        requiredRole: String? = nil,
+        estimatedDuration: TimeInterval = 1800, // 30 minutes default
+        tags: [String] = []
+    ) -> AuditTemplate {
+        let now = Date()
+        
+        return AuditTemplate(
+            id: UUID().uuidString,
+            title: title,
+            description: description,
+            department: department,
+            category: category,
+            version: 1,
+            isActive: true,
+            sections: [],
+            weighting: SectionWeighting(sections: [:]),
+            settings: AuditSettings(),
+            createdBy: createdBy,
+            createdByName: createdByName,
+            createdAt: now,
+            updatedAt: now,
+            lastUsedAt: nil,
+            usageCount: 0,
+            estimatedDuration: estimatedDuration,
+            requiredRole: requiredRole,
+            tags: tags,
+            isTemplate: true,
+            parentTemplateId: nil
+        )
+    }
+    #endif
     
     // MARK: - Helper Methods
     
@@ -591,6 +647,7 @@ public struct AuditTemplate: Identifiable, Codable {
         )
     }
     
+    #if canImport(CloudKit)
     public func createNewVersion(
         sections: [AuditSection]? = nil,
         weighting: SectionWeighting? = nil,
@@ -621,6 +678,38 @@ public struct AuditTemplate: Identifiable, Codable {
             parentTemplateId: CKRecord.Reference(recordID: id, action: .none)
         )
     }
+    #else
+    public func createNewVersion(
+        sections: [AuditSection]? = nil,
+        weighting: SectionWeighting? = nil,
+        settings: AuditSettings? = nil,
+        updatedBy: String
+    ) -> AuditTemplate {
+        return AuditTemplate(
+            id: UUID().uuidString,
+            title: title,
+            description: description,
+            department: department,
+            category: category,
+            version: version + 1,
+            isActive: isActive,
+            sections: sections ?? self.sections,
+            weighting: weighting ?? self.weighting,
+            settings: settings ?? self.settings,
+            createdBy: updatedBy,
+            createdByName: createdByName,
+            createdAt: Date(),
+            updatedAt: Date(),
+            lastUsedAt: nil,
+            usageCount: 0,
+            estimatedDuration: estimatedDuration,
+            requiredRole: requiredRole,
+            tags: tags,
+            isTemplate: isTemplate,
+            parentTemplateId: id
+        )
+    }
+    #endif
     
     public func deactivate() -> AuditTemplate {
         return AuditTemplate(
@@ -649,5 +738,5 @@ public struct AuditTemplate: Identifiable, Codable {
     }
 }
 
-public typealias AuditItem = AuditQuestion
+public typealias AuditItem = AuditTemplate.AuditQuestion
 
