@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
+#endif
 
 // MARK: - Dashboard Models (Phase 4.12+ Implementation)
 public struct DashboardModel: Identifiable, Codable, Hashable {
@@ -602,3 +604,7 @@ extension DashboardModel {
         )
     }
 }
+
+public typealias WidgetConfig = WidgetConfiguration
+
+public typealias UserDashboard = DashboardModel
