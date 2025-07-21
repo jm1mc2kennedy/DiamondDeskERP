@@ -1,8 +1,0 @@
-// Place this file in your app's main bundle. Add or adjust entries as needed for production.
-[
-    { "code": "001", "name": "Hannoush Main St.", "status": "Active", "region": "East" },
-    { "code": "002", "name": "Hannoush Mall", "status": "Active", "region": "West" },
-    { "code": "003", "name": "Hannoush Outlets", "status": "Planned", "region": "North" },
-    { "code": "004", "name": "Hannoush HQ", "status": "Active", "region": "Central" },
-    { "code": "005", "name": "Hannoush Kiosk", "status": "Inactive", "region": "South" }
-]
