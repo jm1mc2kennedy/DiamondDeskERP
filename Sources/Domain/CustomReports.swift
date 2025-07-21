@@ -692,7 +692,16 @@ extension UploadRecord {
               let fileSize = record["fileSize"] as? Int else { return nil }
         let processedRows = record["processedRows"] as? Int
         let errorCount = record["errorCount"] as? Int
-        return UploadRecord(id: record.recordID.recordName, reportId: reportId, filename: filename, version: version, uploadDate: uploadDate, fileSize: fileSize, processedRows: processedRows, errorCount: errorCount)
+        return UploadRecord(
+            id: record.recordID.recordName,
+            reportId: reportId,
+            filename: filename,
+            version: version,
+            uploadDate: uploadDate,
+            fileSize: fileSize,
+            processedRows: processedRows,
+            errorCount: errorCount
+        )
     }
 }
 extension ReportLog {
