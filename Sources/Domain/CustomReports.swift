@@ -651,7 +651,15 @@ public struct ReportLog: Identifiable, Codable, Hashable {
     public var executionTime: Double?
     public var status: String
     public var errorDetails: String?
-    public init(id: String = UUID().uuidString, reportId: String, entryDate: Date = Date(), summary: String, executionTime: Double? = nil, status: String = "SUCCESS", errorDetails: String? = nil) {
+    public init(
+        id: String = UUID().uuidString,
+        reportId: String,
+        entryDate: Date = Date(),
+        summary: String,
+        executionTime: Double? = nil,
+        status: String = "SUCCESS",
+        errorDetails: String? = nil
+    ) {
         self.id = id
         self.reportId = reportId
         self.entryDate = entryDate
