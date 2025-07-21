@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import XCTest
 @testable import DiamondDeskERP
 
@@ -298,3 +299,4 @@ extension NewModelsTests {
         }
     }
 }
+#endif

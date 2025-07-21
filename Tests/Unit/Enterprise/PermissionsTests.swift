@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  PermissionsTests.swift
 //  DiamondDeskERPTests
@@ -579,3 +580,4 @@ extension UnifiedPermissionsService {
         }
     }
 }
+#endif

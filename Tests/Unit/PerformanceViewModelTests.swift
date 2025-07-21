@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  PerformanceViewModelTests.swift
 //  DiamondDeskERPTests
@@ -689,3 +690,4 @@ struct PerformanceViewModelTests {
         #expect(viewModel.targets.isEmpty)
     }
 }
+#endif

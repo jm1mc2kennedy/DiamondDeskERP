@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  PerformanceRepositoryTests.swift
 //  DiamondDeskERPTests
@@ -582,3 +583,4 @@ struct PerformanceRepositoryTests {
         }
     }
 }
+#endif

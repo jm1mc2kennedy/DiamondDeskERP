@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  DiamondDeskERPUITests.swift
 //  DiamondDeskERPUITests
@@ -39,3 +40,4 @@ final class DiamondDeskERPUITests: XCTestCase {
         }
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import CloudKit
 import XCTest
 
@@ -850,3 +851,4 @@ extension ProjectPortfolioServiceTests {
         XCTAssertGreaterThanOrEqual(portfolioService.projects.count, 2)
     }
 }
+#endif

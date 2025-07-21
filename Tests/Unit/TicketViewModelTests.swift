@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  TicketViewModelTests.swift
 //  DiamondDeskERPTests
@@ -526,3 +527,4 @@ struct TicketViewModelTests {
         #expect(abs(avgTime - 5400) < 60) // Average of 1.5 hours (5400 seconds), allowing small variance
     }
 }
+#endif

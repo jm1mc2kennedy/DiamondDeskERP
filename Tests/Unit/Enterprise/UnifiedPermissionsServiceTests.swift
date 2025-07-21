@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  UnifiedPermissionsServiceTests.swift
 //  DiamondDeskERPTests
@@ -625,3 +626,4 @@ struct ResolvedPermissions {
     let resolvedAt: Date
     let cacheExpiry: Date
 }
+#endif

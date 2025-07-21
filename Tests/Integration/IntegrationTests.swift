@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  IntegrationTests.swift
 //  DiamondDeskERPTests
@@ -566,3 +567,4 @@ struct IntegrationTests {
         await taskViewModel1.deleteTask(testTask.id.recordName)
     }
 }
+#endif

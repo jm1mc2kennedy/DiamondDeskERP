@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import XCTest
 @testable import DiamondDeskERP
 
@@ -619,3 +620,4 @@ extension VendorLifecycleService {
         self.vendors = vendors
     }
 }
+#endif

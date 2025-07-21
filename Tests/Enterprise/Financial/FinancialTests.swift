@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import XCTest
 import Combine
 
@@ -963,3 +964,4 @@ final class FinancialIntegrationTests: XCTestCase {
         )
     }
 }
+#endif

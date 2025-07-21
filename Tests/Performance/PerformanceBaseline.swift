@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import Foundation
 import XCTest
 
@@ -299,3 +300,4 @@ class PerformanceBaseline: XCTestCase {
         return documentsPath.appendingPathComponent(baselineFile)
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 //
 //  ServiceTests.swift
 //  DiamondDeskERPTests
@@ -397,3 +398,4 @@ import UserNotifications
     }
 }
 
+#endif

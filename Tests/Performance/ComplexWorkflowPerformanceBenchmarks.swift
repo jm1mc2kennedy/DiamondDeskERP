@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import Foundation
 import CloudKit
 import XCTest
@@ -710,3 +711,4 @@ struct SyncConflict {
 }
 
 // Additional workflow classes would be implemented similarly...
+#endif

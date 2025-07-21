@@ -1,3 +1,4 @@
+#if canImport(XCTest)
 import XCTest
 @testable import DiamondDeskERP
 
@@ -489,3 +490,4 @@ final class ConsentStatusTests: XCTestCase {
         }
     }
 }
+#endif
