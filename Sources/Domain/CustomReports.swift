@@ -1,5 +1,7 @@
 import Foundation
+#if canImport(CloudKit)
 import CloudKit
+#endif
 
 // MARK: - Custom Report Models (Phase 4.11+ Implementation)
 public struct CustomReportModel: Identifiable, Codable, Hashable {
@@ -521,6 +523,7 @@ public enum TriggerMethod: String, CaseIterable, Codable, Identifiable {
 }
 
 // MARK: - CloudKit Extensions (Placeholder)
+#if canImport(CloudKit)
 extension CustomReportModel {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "CustomReport", recordID: CKRecord.ID(recordName: id))
@@ -649,6 +652,7 @@ public struct ReportLog: Identifiable, Codable, Hashable {
     }
 }
 
+
 extension UploadRecord {
     public func toRecord() -> CKRecord {
         let record = CKRecord(recordType: "UploadRecord", recordID: CKRecord.ID(recordName: id))
@@ -693,3 +697,4 @@ extension ReportLog {
         return ReportLog(id: record.recordID.recordName, reportId: reportId, entryDate: entryDate, summary: summary, executionTime: executionTime, status: status, errorDetails: errorDetails)
     }
 }
+
