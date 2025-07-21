@@ -1,4 +1,5 @@
 import SwiftUI
+import XCTest
 
 final class UIPerformanceTests: XCTestCase {
     var app: XCUIApplication!

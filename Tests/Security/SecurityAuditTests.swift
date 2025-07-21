@@ -1,5 +1,6 @@
 import CryptoKit
 import LocalAuthentication
+import XCTest
 
 final class SecurityAuditTests: XCTestCase {
     var securityManager: SecurityManager!

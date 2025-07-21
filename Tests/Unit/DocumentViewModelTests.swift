@@ -1,3 +1,5 @@
+import XCTest
+
 @MainActor
 class DocumentViewModelTests: XCTestCase {
     class MockSuccessService: DocumentService {

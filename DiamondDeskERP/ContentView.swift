@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(\<#Root#>.currentUser) private var currentUser
+    @Environment(\.currentUser) private var currentUser
     @StateObject private var consentService = AnalyticsConsentService.shared
 
     var body: some View {

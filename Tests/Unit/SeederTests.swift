@@ -1,4 +1,5 @@
 import CloudKit
+import XCTest
 
 class SeederTests: XCTestCase {
 

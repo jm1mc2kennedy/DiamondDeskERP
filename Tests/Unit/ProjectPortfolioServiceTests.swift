@@ -1,4 +1,5 @@
 import CloudKit
+import XCTest
 
 /// Comprehensive unit tests for ProjectPortfolioService
 /// Tests PT3VS1 compliance and enterprise portfolio management capabilities
