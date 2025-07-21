@@ -1,5 +1,5 @@
 import Foundation
-internal import Combine
+import Combine
 
 /// Performance monitoring and benchmarking system for DiamondDeskERP
 @MainActor

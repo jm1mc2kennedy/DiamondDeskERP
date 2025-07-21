@@ -15,7 +15,7 @@ class ConflictLoggingService: ObservableObject {
     @Published var isLoggingEnabled: Bool = true
     
     private let database: CKDatabase
-    private let logger = Logger(subsystem: "DiamondDeskERP", category: "ConflictLogging")
+    let logger = Logger(subsystem: "DiamondDeskERP", category: "ConflictLogging")
     private let conflictQueue = DispatchQueue(label: "conflict.logging", qos: .utility)
     
     // Conflict resolution strategies

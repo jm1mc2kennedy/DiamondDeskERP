@@ -1,7 +1,7 @@
 import SwiftUI
 import Foundation
 import CloudKit
-internal import Combine
+import Combine
 
 @MainActor
 class MessageViewModel: ObservableObject {

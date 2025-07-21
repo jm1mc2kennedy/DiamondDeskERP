@@ -1,6 +1,8 @@
 import Foundation
 import CloudKit
 
+#if ENABLE_CONFLICT_LOGGING
+
 /// Repository integration extension for automatic conflict detection
 /// Seamlessly integrates conflict logging into existing MVVM repository pattern
 extension ConflictLoggingService {
@@ -8,10 +10,10 @@ extension ConflictLoggingService {
     // MARK: - Repository Integration Methods
     
     /// Wraps CloudKit save operation with conflict detection
-    func saveManagedRecord<T: Codable>(
+    func saveManagedRecord(
         _ record: CKRecord,
         operation: String,
-        in database: CKDatabase = CKContainer.default().privateCloudKitDatabase
+        in database: CKDatabase = CKContainer.default().privateCloudDatabase
     ) async throws -> CKRecord {
         
         do {
@@ -52,7 +54,7 @@ extension ConflictLoggingService {
         _ recordID: CKRecord.ID,
         operation: String,
         localRecord: CKRecord? = nil,
-        in database: CKDatabase = CKContainer.default().privateCloudKitDatabase
+        in database: CKDatabase = CKContainer.default().privateCloudDatabase
     ) async throws -> CKRecord {
         
         do {
@@ -93,7 +95,7 @@ extension ConflictLoggingService {
         _ query: CKQuery,
         operation: String,
         localRecords: [CKRecord] = [],
-        in database: CKDatabase = CKContainer.default().privateCloudKitDatabase
+        in database: CKDatabase = CKContainer.default().privateCloudDatabase
     ) async throws -> [CKRecord] {
         
         do {
@@ -132,7 +134,7 @@ extension ConflictLoggingService {
     func deleteManagedRecord(
         _ recordID: CKRecord.ID,
         operation: String,
-        in database: CKDatabase = CKContainer.default().privateCloudKitDatabase
+        in database: CKDatabase = CKContainer.default().privateCloudDatabase
     ) async throws {
         
         do {
@@ -164,7 +166,7 @@ extension ConflictLoggingService {
     func saveManagedRecords(
         _ records: [CKRecord],
         operation: String,
-        in database: CKDatabase = CKContainer.default().privateCloudKitDatabase
+        in database: CKDatabase = CKContainer.default().privateCloudDatabase
     ) async throws -> [CKRecord] {
         
         let saveOperation = CKModifyRecordsOperation(recordsToSave: records)
@@ -234,7 +236,7 @@ class ConflictAwareRepository<T: Codable>: ObservableObject {
     private let conflictService: ConflictLoggingService
     private let database: CKDatabase
     
-    init(conflictService: ConflictLoggingService, database: CKDatabase = CKContainer.default().privateCloudKitDatabase) {
+    init(conflictService: ConflictLoggingService, database: CKDatabase = CKContainer.default().privateCloudDatabase) {
         self.conflictService = conflictService
         self.database = database
     }
@@ -429,3 +431,4 @@ extension ClientViewModel {
         }
     }
 }
+#endif
