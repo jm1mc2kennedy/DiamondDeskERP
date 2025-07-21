@@ -655,7 +655,14 @@ public struct MicrosoftGraphSync: Identifiable, Codable, Hashable {
     public var lastSyncToken: String?
     public var syncStatus: String
     public var errorCount: Int
-    public init(id: String = UUID().uuidString, userId: String, resourceType: String, lastSyncToken: String? = nil, syncStatus: String = "PENDING", errorCount: Int = 0) {
+    public init(
+        id: String = UUID().uuidString,
+        userId: String,
+        resourceType: String,
+        lastSyncToken: String? = nil,
+        syncStatus: String = "PENDING",
+        errorCount: Int = 0
+    ) {
         self.id = id
         self.userId = userId
         self.resourceType = resourceType
