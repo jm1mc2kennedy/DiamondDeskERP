@@ -1,6 +1,4 @@
-import XCTest
 import Foundation
-@testable import DiamondDeskERP
 
 /// Performance baseline establishment and validation
 /// Implements 5-sample device metric validation against buildout plan targets

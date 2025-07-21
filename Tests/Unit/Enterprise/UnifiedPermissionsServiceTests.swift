@@ -5,10 +5,8 @@
 //  Created by AI Assistant on 7/20/25.
 //
 
-import XCTest
 import CloudKit
 import Combine
-@testable import DiamondDeskERP
 
 /// Service-specific tests for UnifiedPermissionsService implementation
 /// Tests: Service lifecycle, CloudKit integration, caching, and enterprise features

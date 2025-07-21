@@ -1104,7 +1104,7 @@ enum VisibilityLevel: String, CaseIterable, Codable {
     case team = "Team"
     case department = "Department"
     case organization = "Organization"
-    case public = "Public"
+    case publicProfile = "public"
     
     var description: String {
         switch self {
@@ -1114,7 +1114,7 @@ enum VisibilityLevel: String, CaseIterable, Codable {
         case .team: return "Visible to your immediate team"
         case .department: return "Visible to your department"
         case .organization: return "Visible to entire organization"
-        case .public: return "Publicly visible"
+        case .publicProfile: return "Publicly visible"
         }
     }
 }
@@ -1362,3 +1362,4 @@ enum DirectoryViewMode: String, CaseIterable {
         }
     }
 }
+

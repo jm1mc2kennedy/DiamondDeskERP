@@ -203,7 +203,7 @@ enum PermissionAction: String, CaseIterable, Codable {
     case approve = "approve"
     case assign = "assign"
     case export = "export"
-    case import = "import"
+    case importAction = "import" // 'import' is a Swift keyword
     case configure = "configure"
     case audit = "audit"
     
@@ -216,7 +216,7 @@ enum PermissionAction: String, CaseIterable, Codable {
         case .approve: return "Approve"
         case .assign: return "Assign"
         case .export: return "Export"
-        case .import: return "Import"
+        case .importAction: return "Import"
         case .configure: return "Configure"
         case .audit: return "Audit"
         }
@@ -231,7 +231,7 @@ enum PermissionAction: String, CaseIterable, Codable {
         case .approve: return .purple
         case .assign: return .teal
         case .export: return .indigo
-        case .import: return .mint
+        case .importAction: return .mint
         case .configure: return .brown
         case .audit: return .gray
         }
@@ -261,7 +261,7 @@ enum PermissionScope: String, CaseIterable, Codable {
 struct PermissionCondition: Codable, Hashable {
     let type: ConditionType
     let field: String
-    let operator: ConditionOperator
+    let `operator`: ConditionOperator
     let value: String
     
     enum ConditionType: String, CaseIterable, Codable {
@@ -605,3 +605,4 @@ extension PermissionAuditEntry {
         }
     }
 }
+

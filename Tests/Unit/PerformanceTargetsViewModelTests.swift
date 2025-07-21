@@ -1,5 +1,4 @@
-import XCTest
-@testable import DiamondDeskERP
+import DiamondDeskERP
 
 @MainActor
 class PerformanceTargetsViewModelTests: XCTestCase {

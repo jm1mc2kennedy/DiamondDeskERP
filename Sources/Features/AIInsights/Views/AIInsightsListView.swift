@@ -54,7 +54,6 @@ struct AIInsightsListView: View {
             }
         }
     }
-    }
     
     // MARK: - Quick Filters Section
     
@@ -462,3 +461,4 @@ struct AIInsightsListView_Previews: PreviewProvider {
         AIInsightsListView()
     }
 }
+

@@ -1,6 +1,5 @@
 import XCTest
 import Combine
-@testable import DiamondDeskERP
 
 // MARK: - Financial Service Tests
 

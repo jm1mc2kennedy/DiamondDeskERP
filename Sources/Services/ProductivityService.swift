@@ -1,6 +1,5 @@
 import Foundation
 import CloudKit
-import Apollo
 import Combine
 
 /// Comprehensive service orchestrating all three productivity modules:
@@ -19,7 +18,6 @@ final class ProductivityService: ObservableObject {
     
     // MARK: - Private Properties
     private let cloudKitService: CloudKitService
-    private let apolloClient: ApolloClient
     private let currentUser: User
     private var cancellables = Set<AnyCancellable>()
     

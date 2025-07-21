@@ -339,20 +339,20 @@ public struct RecordLinkRule: Identifiable, Codable, Hashable {
 public struct AutoLinkCondition: Identifiable, Codable, Hashable {
     public let id: String
     public var fieldName: String
-    public var operator: ConditionOperator
+    public var conditionOperator: ConditionOperator
     public var value: String
     public var weight: Double
     
     public init(
         id: String = UUID().uuidString,
         fieldName: String,
-        operator: ConditionOperator,
+        conditionOperator: ConditionOperator,
         value: String,
         weight: Double = 1.0
     ) {
         self.id = id
         self.fieldName = fieldName
-        self.operator = operator
+        self.conditionOperator = conditionOperator
         self.value = value
         self.weight = weight
     }
@@ -600,3 +600,4 @@ extension RecordLink {
         )
     }
 }
+

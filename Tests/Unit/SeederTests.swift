@@ -1,6 +1,4 @@
-import XCTest
 import CloudKit
-@testable import DiamondDeskERP
 
 class SeederTests: XCTestCase {
 

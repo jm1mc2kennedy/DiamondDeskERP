@@ -1,11 +1,7 @@
 import Foundation
 import CloudKit
 
-// MARK: - Office365 Integration Models (Phase 4.13+ Implementation)
-public struct Office365IntegrationModel: Identifiable, Codable, Hashable {t Foundation
-import CloudKit
-
-// MARK: - Office 365 Integration Models (Phase 4.13+ Placeholder)
+// MARK: - Office 365 Integration Models (Phase 4.13+ Implementation)
 public struct Office365IntegrationModel: Identifiable, Codable, Hashable {
     public let id: String
     public var userId: String

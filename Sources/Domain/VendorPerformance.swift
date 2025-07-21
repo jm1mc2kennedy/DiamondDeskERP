@@ -763,7 +763,7 @@ public struct VendorPerformance: Identifiable, Codable {
         public let actionTaken: String?
         
         public enum FeedbackSource: String, CaseIterable, Codable {
-            case internal = "internal"
+            case `internal` = "internal"
             case customer = "customer"
             case management = "management"
             case audit = "audit"
@@ -1214,3 +1214,4 @@ public struct VendorPerformance: Identifiable, Codable {
         )
     }
 }
+

@@ -1,7 +1,5 @@
-import XCTest
 import CryptoKit
 import LocalAuthentication
-@testable import DiamondDeskERP
 
 final class SecurityAuditTests: XCTestCase {
     var securityManager: SecurityManager!

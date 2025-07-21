@@ -1,3 +1,4 @@
+// NOTE: WorkflowExecution renamed to WorkflowExecutionModel (see Workflow.swift) to avoid Core Data conflict.
 import SwiftUI
 import Combine
 
@@ -10,7 +11,7 @@ public class WorkflowViewModel: ObservableObject {
     
     @Published public var workflows: [Workflow] = []
     @Published public var activeWorkflows: [Workflow] = []
-    @Published public var recentExecutions: [WorkflowExecution] = []
+    @Published public var recentExecutions: [WorkflowExecutionModel] = []
     @Published public var filteredWorkflows: [Workflow] = []
     
     @Published public var searchText = ""
@@ -26,7 +27,7 @@ public class WorkflowViewModel: ObservableObject {
     
     @Published public var selectedWorkflow: Workflow?
     @Published public var executionInProgress = false
-    @Published public var lastExecutionResult: WorkflowExecution?
+    @Published public var lastExecutionResult: WorkflowExecutionModel?
     
     // MARK: - Analytics Data
     
@@ -366,3 +367,4 @@ public struct WorkflowPerformanceMetrics {
         self.errorRate = errorRate
     }
 }
+

@@ -1,5 +1,5 @@
 import Foundation
-import Combine
+internal import Combine
 import SwiftUI
 
 // MARK: - Financial View Model
@@ -516,7 +516,7 @@ public enum BulkActionType: String, CaseIterable {
 // MARK: - Filter Extensions
 
 extension InvoiceFilter {
-    public func isEmpty: Bool {
+    public var isEmpty: Bool {
         return statuses?.isEmpty != false &&
                dateRange == nil &&
                minAmount == nil &&
@@ -590,3 +590,4 @@ public extension Date {
         return calendar.date(byAdding: DateComponents(year: 1, day: -1), to: startOfYear) ?? Date()
     }
 }
+

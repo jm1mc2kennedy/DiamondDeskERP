@@ -44,9 +44,8 @@ struct EnhancedDashboardView: View {
                 }
             }
         }
-            .refreshable {
-                await dashboardViewModel.loadData(for: selectedTimeRange)
-            }
+        .refreshable {
+            await dashboardViewModel.loadData(for: selectedTimeRange)
         }
         .environmentObject(dashboardViewModel)
         .task {

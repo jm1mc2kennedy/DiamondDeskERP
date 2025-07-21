@@ -414,8 +414,3 @@ extension Notification.Name {
     static let refreshTickets = Notification.Name("refreshTickets")
     static let refreshClients = Notification.Name("refreshClients")
 }
-        // Parse CloudKit notification and emit message
-        latestMessage = "You have updates!"
-        // For production, parse userInfo for detailed info, update UI if needed
-    }
-}

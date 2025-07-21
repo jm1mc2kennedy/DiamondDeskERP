@@ -1,6 +1,4 @@
-import XCTest
 import SwiftUI
-@testable import DiamondDeskERP
 
 final class UIPerformanceTests: XCTestCase {
     var app: XCUIApplication!

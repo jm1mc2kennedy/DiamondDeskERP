@@ -2,6 +2,11 @@ import Foundation
 import CloudKit
 import Combine
 import UniformTypeIdentifiers
+import CryptoKit
+
+#if canImport(UIKit)
+import UIKit
+#endif
 
 // MARK: - Asset Management Service Protocol
 public protocol AssetManagementServiceProtocol {
@@ -498,8 +503,6 @@ public final class AssetManagementService: ObservableObject, AssetManagementServ
     
     private func generateImageThumbnail(from data: Data, maxSize: CGSize = CGSize(width: 200, height: 200)) -> Data? {
         #if canImport(UIKit)
-        import UIKit
-        
         guard let image = UIImage(data: data) else { return nil }
         
         let renderer = UIGraphicsImageRenderer(size: maxSize)
@@ -568,7 +571,6 @@ public enum AssetManagementServiceError: LocalizedError {
 // MARK: - Data Extension for SHA256
 extension Data {
     func sha256Hash() -> String {
-        import CryptoKit
         let hashed = SHA256.hash(data: self)
         return hashed.compactMap { String(format: "%02x", $0) }.joined()
     }
@@ -659,3 +661,4 @@ public final class MockAssetManagementService: AssetManagementServiceProtocol {
         return AssetUsageStats(totalViews: 0, totalDownloads: 0, totalShares: 0, uniqueUsers: 0, lastAccessed: nil)
     }
 }
+

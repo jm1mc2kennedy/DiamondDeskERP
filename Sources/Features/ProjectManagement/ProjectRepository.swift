@@ -12,11 +12,6 @@ class ProjectRepository {
     private let database = CKContainer.default().privateCloudDatabase
 
     func fetchAllProjects() async throws -> [Project] {
-        // TODO: Build CKQuery to fetch all Project records
-        return []
-    }
-
-    func fetchAllProjects() async throws -> [Project] {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Project", predicate: predicate)
         let (matchResults, _) = try await database.records(matching: query)
@@ -33,6 +28,8 @@ class ProjectRepository {
         }
         return projects
     }
+
+    func fetchProject(by id: CKRecord.ID) async throws -> Project? {
         let record = try await database.record(for: id)
         return Project.fromCloudKitRecord(record)
     }

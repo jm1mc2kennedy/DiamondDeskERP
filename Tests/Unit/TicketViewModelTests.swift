@@ -5,9 +5,7 @@
 //  Created by J.Michael McDermott on 7/18/25.
 //
 
-import Testing
 import CloudKit
-@testable import DiamondDeskERP
 
 @MainActor
 struct TicketViewModelTests {

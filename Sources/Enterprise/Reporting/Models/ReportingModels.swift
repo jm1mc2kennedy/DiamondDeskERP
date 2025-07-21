@@ -263,20 +263,20 @@ public struct AmountRange: Codable, Hashable {
 public struct CustomFilter: Identifiable, Codable, Hashable {
     public let id: UUID
     public var field: String
-    public var operator: FilterOperator
+    public var filterOperator: FilterOperator
     public var value: String
     public var dataType: FilterDataType
     
     public init(
         id: UUID = UUID(),
         field: String,
-        operator: FilterOperator,
+        filterOperator: FilterOperator,
         value: String,
         dataType: FilterDataType
     ) {
         self.id = id
         self.field = field
-        self.operator = `operator`
+        self.filterOperator = filterOperator
         self.value = value
         self.dataType = dataType
     }

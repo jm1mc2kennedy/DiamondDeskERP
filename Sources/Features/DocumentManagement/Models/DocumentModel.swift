@@ -308,8 +308,8 @@ enum DocumentCategory: String, CaseIterable, Codable {
 // MARK: - Document Access Level
 
 enum DocumentAccessLevel: String, CaseIterable, Codable {
-    case public = "PUBLIC"
-    case internal = "INTERNAL"
+    case `public` = "PUBLIC"
+    case `internal` = "INTERNAL"
     case confidential = "CONFIDENTIAL"
     case restricted = "RESTRICTED"
     case topSecret = "TOP_SECRET"

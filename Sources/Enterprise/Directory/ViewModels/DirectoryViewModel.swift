@@ -1,5 +1,9 @@
 import SwiftUI
-import Combine
+public import Combine
+
+// Disambiguate Vendor type
+typealias DirectoryVendor = EnterpriseDirectory.Vendor
+typealias DirectoryEmployee = EnterpriseDirectory.Employee
 
 // MARK: - Directory View Model
 
@@ -8,10 +12,10 @@ public class DirectoryViewModel: ObservableObject {
     
     // MARK: - Published Properties
     
-    @Published public var employees: [Employee] = []
-    @Published public var vendors: [Vendor] = []
-    @Published public var filteredEmployees: [Employee] = []
-    @Published public var filteredVendors: [Vendor] = []
+    @Published public var employees: [DirectoryEmployee] = []
+    @Published public var vendors: [DirectoryVendor] = []
+    @Published public var filteredEmployees: [DirectoryEmployee] = []
+    @Published public var filteredVendors: [DirectoryVendor] = []
     
     @Published public var searchText = ""
     @Published public var selectedTab: DirectoryTab = .employees
@@ -29,8 +33,8 @@ public class DirectoryViewModel: ObservableObject {
     @Published public var showingPerformanceReport = false
     @Published public var showingAnalytics = false
     
-    @Published public var selectedEmployee: Employee?
-    @Published public var selectedVendor: Vendor?
+    @Published public var selectedEmployee: DirectoryEmployee?
+    @Published public var selectedVendor: DirectoryVendor?
     
     // MARK: - Analytics Data
     
@@ -45,7 +49,7 @@ public class DirectoryViewModel: ObservableObject {
     
     // MARK: - Initialization
     
-    public init(directoryService: DirectoryService = DirectoryService()) {
+    @MainActor public init(directoryService: DirectoryService = DirectoryService()) {
         self.directoryService = directoryService
         setupBindings()
         setupSearchAndFilters()
@@ -154,7 +158,7 @@ public class DirectoryViewModel: ObservableObject {
     
     // MARK: - Employee Operations
     
-    public func createEmployee(_ employee: Employee) async {
+    public func createEmployee(_ employee: DirectoryEmployee) async {
         do {
             _ = try await directoryService.createEmployee(employee)
             showingCreateEmployee = false
@@ -163,7 +167,7 @@ public class DirectoryViewModel: ObservableObject {
         }
     }
     
-    public func updateEmployee(_ employee: Employee) async {
+    public func updateEmployee(_ employee: DirectoryEmployee) async {
         do {
             _ = try await directoryService.updateEmployee(employee)
         } catch {
@@ -171,7 +175,7 @@ public class DirectoryViewModel: ObservableObject {
         }
     }
     
-    public func deleteEmployee(_ employee: Employee) async {
+    public func deleteEmployee(_ employee: DirectoryEmployee) async {
         do {
             try await directoryService.deleteEmployee(employee)
         } catch {
@@ -192,7 +196,7 @@ public class DirectoryViewModel: ObservableObject {
     
     // MARK: - Vendor Operations
     
-    public func createVendor(_ vendor: Vendor) async {
+    public func createVendor(_ vendor: DirectoryVendor) async {
         do {
             _ = try await directoryService.createVendor(vendor)
             showingCreateVendor = false
@@ -201,7 +205,7 @@ public class DirectoryViewModel: ObservableObject {
         }
     }
     
-    public func updateVendor(_ vendor: Vendor) async {
+    public func updateVendor(_ vendor: DirectoryVendor) async {
         do {
             _ = try await directoryService.updateVendor(vendor)
         } catch {
@@ -209,7 +213,7 @@ public class DirectoryViewModel: ObservableObject {
         }
     }
     
-    public func deleteVendor(_ vendor: Vendor) async {
+    public func deleteVendor(_ vendor: DirectoryVendor) async {
         do {
             try await directoryService.deleteVendor(vendor)
         } catch {
@@ -258,7 +262,7 @@ public class DirectoryViewModel: ObservableObject {
     
     // MARK: - Filter Methods
     
-    private func filterEmployees(_ employees: [Employee], searchText: String, filter: EmployeeFilter) -> [Employee] {
+    private func filterEmployees(_ employees: [DirectoryEmployee], searchText: String, filter: EmployeeFilter) -> [DirectoryEmployee] {
         var filtered = employees
         
         // Apply search filter
@@ -295,7 +299,7 @@ public class DirectoryViewModel: ObservableObject {
         return filtered
     }
     
-    private func filterVendors(_ vendors: [Vendor], searchText: String, filter: VendorFilter) -> [Vendor] {
+    private func filterVendors(_ vendors: [DirectoryVendor], searchText: String, filter: VendorFilter) -> [DirectoryVendor] {
         var filtered = vendors
         
         // Apply search filter
@@ -340,11 +344,11 @@ public class DirectoryViewModel: ObservableObject {
         error = nil
     }
     
-    public func selectEmployee(_ employee: Employee) {
+    public func selectEmployee(_ employee: DirectoryEmployee) {
         selectedEmployee = employee
     }
     
-    public func selectVendor(_ vendor: Vendor) {
+    public func selectVendor(_ vendor: DirectoryVendor) {
         selectedVendor = vendor
     }
     
@@ -352,27 +356,27 @@ public class DirectoryViewModel: ObservableObject {
         Array(Set(employees.map { $0.department })).sorted()
     }
     
-    public func getManagers() -> [Employee] {
+    public func getManagers() -> [DirectoryEmployee] {
         employees.filter { $0.isManager }.sorted { $0.fullName < $1.fullName }
     }
     
-    public func getDirectReports(for managerId: String) -> [Employee] {
+    public func getDirectReports(for managerId: String) -> [DirectoryEmployee] {
         employees.filter { $0.manager == managerId }
     }
     
-    public func getEmployeesByDepartment() -> [String: [Employee]] {
+    public func getEmployeesByDepartment() -> [String: [DirectoryEmployee]] {
         Dictionary(grouping: employees) { $0.department }
     }
     
-    public func getVendorsByType() -> [VendorType: [Vendor]] {
+    public func getVendorsByType() -> [VendorType: [DirectoryVendor]] {
         Dictionary(grouping: vendors) { $0.vendorType }
     }
     
-    public func getExpiringVendorContracts() -> [Vendor] {
+    public func getExpiringVendorContracts() -> [DirectoryVendor] {
         vendors.filter { $0.isContractExpiring }
     }
     
-    public func getHighRiskVendors() -> [Vendor] {
+    public func getHighRiskVendors() -> [DirectoryVendor] {
         vendors.filter { $0.riskAssessment.overallRiskLevel == .high || $0.riskAssessment.overallRiskLevel == .critical }
     }
 }
@@ -401,27 +405,3 @@ public enum DirectoryTab: String, CaseIterable {
     }
 }
 
-public enum DirectoryViewMode: String, CaseIterable {
-    case list = "list"
-    case grid = "grid"
-    case orgChart = "orgChart"
-    case map = "map"
-    
-    public var displayName: String {
-        switch self {
-        case .list: return "List"
-        case .grid: return "Grid"
-        case .orgChart: return "Org Chart"
-        case .map: return "Map"
-        }
-    }
-    
-    public var systemImage: String {
-        switch self {
-        case .list: return "list.bullet"
-        case .grid: return "square.grid.2x2"
-        case .orgChart: return "hierarchy"
-        case .map: return "map"
-        }
-    }
-}

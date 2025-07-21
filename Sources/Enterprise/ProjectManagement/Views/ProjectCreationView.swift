@@ -66,7 +66,6 @@ struct ProjectCreationView: View {
                 Text(viewModel.errorMessage ?? "Unknown error")
             }
         }
-        }
     }
 }
 

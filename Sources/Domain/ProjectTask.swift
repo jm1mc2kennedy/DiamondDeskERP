@@ -412,7 +412,7 @@ extension ProjectTask {
         return actual - estimated
     }
     
-    var isAssignedTo(_ userId: String) -> Bool {
+    func isAssignedTo(_ userId: String) -> Bool {
         return assignedTo.contains(userId)
     }
     
@@ -683,3 +683,4 @@ struct TaskFilters: Codable {
         return true
     }
 }
+

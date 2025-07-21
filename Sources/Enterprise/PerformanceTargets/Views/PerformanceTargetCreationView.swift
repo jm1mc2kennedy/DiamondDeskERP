@@ -77,7 +77,6 @@ struct PerformanceTargetCreationView: View {
                 Text(viewModel.errorMessage ?? "Unknown error")
             }
         }
-        }
     }
 }
 

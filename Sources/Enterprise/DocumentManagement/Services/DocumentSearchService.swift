@@ -7,7 +7,7 @@
 
 import Foundation
 import CloudKit
-import Combine
+internal import Combine
 import NaturalLanguage
 
 /// Advanced Document Search Service

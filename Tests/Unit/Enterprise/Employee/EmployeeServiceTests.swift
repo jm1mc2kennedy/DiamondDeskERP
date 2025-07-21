@@ -1,6 +1,4 @@
-import XCTest
 import CloudKit
-@testable import DiamondDeskERP
 
 final class EmployeeServiceTests: XCTestCase {
     

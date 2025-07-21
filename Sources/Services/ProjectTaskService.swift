@@ -1,6 +1,5 @@
 import Foundation
 import CloudKit
-import Apollo
 import Combine
 
 /// Service for managing ProjectTask operations with enhanced features:
@@ -679,11 +678,10 @@ final class ProjectTaskService: ObservableService {
 
 // MARK: - Service Error Extensions
 
+// Note: The enum case 'customError(String)' must be declared in the main ServiceError enum, not the extension.
 extension ServiceError {
     static let circularDependency = ServiceError.customError("Adding this dependency would create a circular reference")
     static let taskNotFound = ServiceError.customError("Task not found")
-    
-    case customError(String)
     
     var errorDescription: String? {
         switch self {
@@ -862,3 +860,4 @@ protocol ObservableService: ObservableObject {
     var isLoading: Bool { get set }
     var errorMessage: String? { get set }
 }
+

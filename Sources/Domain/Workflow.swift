@@ -1,6 +1,8 @@
 import Foundation
 import CloudKit
 
+/// NOTE: This struct was renamed to WorkflowExecutionModel to avoid conflict with CoreData NSManagedObject class.
+
 // MARK: - Workflow & Automation Models (Phase 4.12+ Implementation)
 
 public struct Workflow: Identifiable, Codable, Hashable {
@@ -16,7 +18,7 @@ public struct Workflow: Identifiable, Codable, Hashable {
     public var triggerConditions: [TriggerCondition]
     public var actionSteps: [ActionStep]
     public var errorHandling: ErrorHandlingConfig
-    public var executionHistory: [WorkflowExecution]
+    public var executionHistory: [WorkflowExecutionModel]
     public var tags: [String]
     
     public init(
@@ -32,7 +34,7 @@ public struct Workflow: Identifiable, Codable, Hashable {
         triggerConditions: [TriggerCondition] = [],
         actionSteps: [ActionStep] = [],
         errorHandling: ErrorHandlingConfig = ErrorHandlingConfig(),
-        executionHistory: [WorkflowExecution] = [],
+        executionHistory: [WorkflowExecutionModel] = [],
         tags: [String] = []
     ) {
         self.id = id
@@ -80,7 +82,7 @@ public struct TriggerCondition: Identifiable, Codable, Hashable {
     public let id: String
     public var workflowId: String
     public var field: String
-    public var operator: ConditionOperator
+    public var conditionOperator: ConditionOperator
     public var value: String
     public var logicalOperator: LogicalOperator
     public var priority: Int
@@ -90,7 +92,7 @@ public struct TriggerCondition: Identifiable, Codable, Hashable {
         id: String = UUID().uuidString,
         workflowId: String,
         field: String,
-        operator: ConditionOperator,
+        conditionOperator: ConditionOperator,
         value: String,
         logicalOperator: LogicalOperator = .and,
         priority: Int = 0,
@@ -99,7 +101,7 @@ public struct TriggerCondition: Identifiable, Codable, Hashable {
         self.id = id
         self.workflowId = workflowId
         self.field = field
-        self.operator = `operator`
+        self.conditionOperator = conditionOperator
         self.value = value
         self.logicalOperator = logicalOperator
         self.priority = priority
@@ -217,7 +219,7 @@ public enum ActionType: String, CaseIterable, Codable, Identifiable {
     }
 }
 
-public struct WorkflowExecution: Identifiable, Codable, Hashable {
+public struct WorkflowExecutionModel: Identifiable, Codable, Hashable {
     public let id: String
     public var workflowId: String
     public var status: ExecutionStatus
@@ -440,8 +442,8 @@ extension Workflow {
     }
 }
 
-// MARK: - WorkflowExecution CloudKit Extensions
-extension WorkflowExecution {
+// MARK: - WorkflowExecutionModel CloudKit Extensions
+extension WorkflowExecutionModel {
     public func toCKRecord() -> CKRecord {
         let record = CKRecord(recordType: "WorkflowExecution", recordID: CKRecord.ID(recordName: id))
         record["workflowId"] = workflowId
@@ -463,7 +465,7 @@ extension WorkflowExecution {
         return record
     }
     
-    public static func from(record: CKRecord) -> WorkflowExecution? {
+    public static func from(record: CKRecord) -> WorkflowExecutionModel? {
         guard let workflowId = record["workflowId"] as? String,
               let statusString = record["status"] as? String,
               let status = ExecutionStatus(rawValue: statusString),
@@ -487,7 +489,7 @@ extension WorkflowExecution {
             metrics = (try? JSONDecoder().decode(ExecutionMetrics.self, from: metricsData)) ?? ExecutionMetrics()
         }
         
-        return WorkflowExecution(
+        return WorkflowExecutionModel(
             id: record.recordID.recordName,
             workflowId: workflowId,
             status: status,
@@ -501,3 +503,4 @@ extension WorkflowExecution {
         )
     }
 }
+

@@ -1,6 +1,4 @@
-import XCTest
 import Foundation
-@testable import DiamondDeskERP
 
 /// Performance regression detection using established baseline
 /// Validates current performance against persisted baseline with variance tolerance

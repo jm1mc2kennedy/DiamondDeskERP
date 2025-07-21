@@ -483,7 +483,7 @@ public struct RefreshSettings: Codable, Hashable {
 
 public struct ConditionalDisplayRule: Codable, Hashable {
     public var condition: String
-    public var operator: ConditionalOperator
+    public var Conditionaloperator: ConditionalOperator
     public var value: String
     public var isEnabled: Bool
     
@@ -494,7 +494,7 @@ public struct ConditionalDisplayRule: Codable, Hashable {
         isEnabled: Bool = true
     ) {
         self.condition = condition
-        self.operator = operator
+        self.operator = Conditionaloperator
         self.value = value
         self.isEnabled = isEnabled
     }

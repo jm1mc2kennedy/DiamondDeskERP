@@ -33,6 +33,7 @@ struct DirectoryFilterView: View {
                                 if on { selectedDepartments.insert(dept) } else { selectedDepartments.remove(dept) }
                             }
                         ))
+                    }
                 }
                 
                 Section(header: Text("Levels")) {

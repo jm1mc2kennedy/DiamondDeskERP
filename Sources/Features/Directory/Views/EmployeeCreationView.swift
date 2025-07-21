@@ -34,6 +34,7 @@ struct EmployeeCreationView: View {
                             Text(dept.name).tag(Optional(dept))
                         }
                     }
+                }
                 Section(header: Text("Contact")) {
                     TextField("Email", text: $email)
                     TextField("Mobile Phone", text: $mobilePhone)
@@ -42,7 +43,6 @@ struct EmployeeCreationView: View {
             }
             .navigationTitle("Add Employee")
             .pickerStyle(MenuPickerStyle())
-            }
             .listStyle(InsetGroupedListStyle())
             .navigationBarItems(
                 leading: Button("Cancel") { dismiss() },
@@ -66,16 +66,15 @@ struct EmployeeCreationView: View {
             .alert("Error", isPresented: Binding(
                 get: { viewModel.errorMessage != nil },
                 set: { _ in viewModel.errorMessage = nil }
-            )) {
+            ), actions: {
                 Button("OK", role: .cancel) {}
-            } message: {
+            }, message: {
                 Text(viewModel.errorMessage ?? "Unknown error")
-            }
-            )
+            })
         }
     }
 }
 
 #Preview {
-    EmployeeCreationView()
+    EmployeeCreationView(viewModel: DirectoryViewModel())
 }

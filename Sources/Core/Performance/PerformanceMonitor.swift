@@ -1,5 +1,5 @@
 import Foundation
-import Combine
+internal import Combine
 
 /// Performance monitoring and benchmarking system for DiamondDeskERP
 @MainActor
@@ -7,7 +7,7 @@ final class PerformanceMonitor: ObservableObject {
     static let shared = PerformanceMonitor()
     
     @Published var isMonitoring = false
-    @Published var currentMetrics: PerformanceMetrics = PerformanceMetrics()
+    @Published var currentMetrics: MonitorPerformanceMetrics = MonitorPerformanceMetrics()
     @Published var historicalData: [PerformanceSnapshot] = []
     
     private var metricsTimer: Timer?
@@ -69,7 +69,7 @@ final class PerformanceMonitor: ObservableObject {
     private func updateCurrentMetrics() {
         let recentSnapshots = Array(historicalData.suffix(10))
         
-        currentMetrics = PerformanceMetrics(
+        currentMetrics = MonitorPerformanceMetrics(
             memoryUsage: recentSnapshots.last?.memoryUsage ?? 0,
             averageMemoryUsage: recentSnapshots.map(\.memoryUsage).reduce(0, +) / Double(recentSnapshots.count),
             peakMemoryUsage: recentSnapshots.map(\.memoryUsage).max() ?? 0,
@@ -149,18 +149,29 @@ final class PerformanceMonitor: ObservableObject {
     }
     
     private func getCurrentCPUUsage() -> Double {
-        var info = processor_info_array_t()
-        var numCpus = natural_t(0)
-        var numCpusU = mach_msg_type_number_t(0)
-        
-        let result = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &numCpus, &info, &numCpusU)
-        
-        if result == KERN_SUCCESS {
-            // Simplified CPU usage calculation
-            // In a real implementation, you'd want more sophisticated CPU monitoring
-            return Double.random(in: 0...100) // Placeholder
+        var kr: kern_return_t
+        var cpuInfo: processor_info_array_t? = nil
+        var numCpuInfo: mach_msg_type_number_t = 0
+        var numCPUsU: natural_t = 0
+        var cpuUsage: Double = 0
+
+        kr = host_processor_info(mach_host_self(), PROCESSOR_CPU_LOAD_INFO, &numCPUsU, &cpuInfo, &numCpuInfo)
+        if kr == KERN_SUCCESS, let cpuInfo = cpuInfo {
+            // Basic CPU usage calculation: sum up user + system + nice
+            for cpu in 0..<Int(numCPUsU) {
+                let cpuLoadInfo = cpuInfo.advanced(by: Int(CPU_STATE_MAX) * cpu)
+                let user = Double(cpuLoadInfo[Int(CPU_STATE_USER)])
+                let system = Double(cpuLoadInfo[Int(CPU_STATE_SYSTEM)])
+                let nice = Double(cpuLoadInfo[Int(CPU_STATE_NICE)])
+                let total = user + system + Double(cpuLoadInfo[Int(CPU_STATE_IDLE)]) + nice
+                cpuUsage += (user + system + nice) / total
+            }
+            cpuUsage = (cpuUsage / Double(numCPUsU)) * 100
+            // Deallocate memory
+            let deallocateSize = vm_size_t(numCpuInfo) * vm_size_t(MemoryLayout<integer_t>.stride)
+            vm_deallocate(mach_task_self_, vm_address_t(bitPattern: cpuInfo), deallocateSize)
+            return cpuUsage
         }
-        
         return 0
     }
     
@@ -371,7 +382,7 @@ final class PerformanceMonitor: ObservableObject {
     private func generatePerformanceReport() {
         guard !historicalData.isEmpty else { return }
         
-        let report = PerformanceReport(
+        let report = MonitoringSessionReport(
             sessionDuration: Date().timeIntervalSince(historicalData.first?.timestamp ?? Date()),
             totalOperations: currentMetrics.totalOperationsCompleted,
             averageMemoryUsage: currentMetrics.averageMemoryUsage,
@@ -401,7 +412,7 @@ final class PerformanceMonitor: ObservableObject {
 
 // MARK: - Data Models
 
-struct PerformanceMetrics {
+struct MonitorPerformanceMetrics {
     var memoryUsage: Double = 0
     var averageMemoryUsage: Double = 0
     var peakMemoryUsage: Double = 0
@@ -487,7 +498,7 @@ struct UIBenchmarkResults {
     }
 }
 
-struct PerformanceReport {
+struct MonitoringSessionReport {
     let sessionDuration: TimeInterval
     let totalOperations: Int
     let averageMemoryUsage: Double
@@ -556,3 +567,4 @@ extension PerformanceMonitor {
         }
     }
 }
+

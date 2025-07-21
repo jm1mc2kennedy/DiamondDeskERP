@@ -1,6 +1,3 @@
-import XCTest
-@testable import DiamondDeskERP
-
 @MainActor
 class DocumentViewModelTests: XCTestCase {
     class MockSuccessService: DocumentService {
@@ -61,3 +58,4 @@ class DocumentViewModelTests: XCTestCase {
         XCTAssertEqual(service.deletedDocument, doc)
     }
 }
+

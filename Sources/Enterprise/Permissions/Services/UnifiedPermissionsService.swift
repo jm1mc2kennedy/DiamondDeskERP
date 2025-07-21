@@ -1289,7 +1289,7 @@ struct PermissionRule: Codable {
 struct PermissionCondition: Codable {
     let type: ConditionType
     let attribute: String
-    let operator: ConditionOperator
+    let `operator`: ConditionOperator
     let value: String
 }
 
@@ -1559,8 +1559,8 @@ enum ConditionOperator: String, CaseIterable, Codable {
     case notEquals = "not_equals"
     case contains = "contains"
     case notContains = "not_contains"
-    case in = "in"
-    case notIn = "not_in"
+    case inList = "in"
+    case notInList = "not_in"
     case greaterThan = "greater_than"
     case lessThan = "less_than"
     case matches = "matches"
@@ -1571,8 +1571,8 @@ enum ConditionOperator: String, CaseIterable, Codable {
         case .notEquals: return "Not Equals"
         case .contains: return "Contains"
         case .notContains: return "Not Contains"
-        case .in: return "In"
-        case .notIn: return "Not In"
+        case .inList: return "In"
+        case .notInList: return "Not In"
         case .greaterThan: return "Greater Than"
         case .lessThan: return "Less Than"
         case .matches: return "Matches"
@@ -1744,3 +1744,4 @@ enum PermissionsError: LocalizedError {
         }
     }
 }
+

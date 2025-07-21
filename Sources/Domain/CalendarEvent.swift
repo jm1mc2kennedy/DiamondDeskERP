@@ -117,7 +117,7 @@ public enum EventVisibility: String, CaseIterable, Codable, Identifiable {
     case `private` = "PRIVATE"
     case `public` = "PUBLIC"
     case confidential = "CONFIDENTIAL"
-    case internal = "INTERNAL"
+    case `internal` = "INTERNAL"
     
     public var id: String { rawValue }
 }

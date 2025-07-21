@@ -1,3 +1,4 @@
+// NOTE: WorkflowExecution renamed to WorkflowExecutionModel (see Workflow.swift) to avoid Core Data conflict.
 import Foundation
 import CloudKit
 import Combine
@@ -13,8 +14,8 @@ public protocol WorkflowServiceProtocol {
     func updateWorkflow(_ workflow: Workflow) async throws -> Workflow
     func deleteWorkflow(id: String) async throws
     func toggleWorkflowStatus(id: String, isActive: Bool) async throws -> Workflow
-    func executeWorkflow(id: String, context: [String: Any]?) async throws -> WorkflowExecution
-    func fetchWorkflowExecutions(workflowId: String, limit: Int?) async throws -> [WorkflowExecution]
+    func executeWorkflow(id: String, context: [String: Any]?) async throws -> WorkflowExecutionModel
+    func fetchWorkflowExecutions(workflowId: String, limit: Int?) async throws -> [WorkflowExecutionModel]
     func searchWorkflows(query: String) async throws -> [Workflow]
 }
 
@@ -25,7 +26,7 @@ public final class WorkflowService: ObservableObject, WorkflowServiceProtocol {
     // MARK: - Published Properties
     @Published public private(set) var workflows: [Workflow] = []
     @Published public private(set) var activeWorkflows: [Workflow] = []
-    @Published public private(set) var recentExecutions: [WorkflowExecution] = []
+    @Published public private(set) var recentExecutions: [WorkflowExecutionModel] = []
     @Published public private(set) var isLoading = false
     @Published public private(set) var error: Error?
     
@@ -235,7 +236,7 @@ public final class WorkflowService: ObservableObject, WorkflowServiceProtocol {
         return try await updateWorkflow(updatedWorkflow)
     }
     
-    public func executeWorkflow(id: String, context: [String: Any]?) async throws -> WorkflowExecution {
+    public func executeWorkflow(id: String, context: [String: Any]?) async throws -> WorkflowExecutionModel {
         guard let workflow = try await fetchWorkflow(by: id) else {
             throw WorkflowServiceError.workflowNotFound
         }
@@ -245,7 +246,7 @@ public final class WorkflowService: ObservableObject, WorkflowServiceProtocol {
         }
         
         // Create execution record
-        let execution = WorkflowExecution(
+        let execution = WorkflowExecutionModel(
             id: UUID().uuidString,
             workflowId: id,
             status: .running,
@@ -276,7 +277,7 @@ public final class WorkflowService: ObservableObject, WorkflowServiceProtocol {
         return completedExecution
     }
     
-    public func fetchWorkflowExecutions(workflowId: String, limit: Int? = 20) async throws -> [WorkflowExecution] {
+    public func fetchWorkflowExecutions(workflowId: String, limit: Int? = 20) async throws -> [WorkflowExecutionModel] {
         let predicate = NSPredicate(format: "workflowId == %@", workflowId)
         let query = CKQuery(recordType: RecordType.workflowExecution, predicate: predicate)
         query.sortDescriptors = [NSSortDescriptor(key: "startedAt", ascending: false)]
@@ -285,7 +286,7 @@ public final class WorkflowService: ObservableObject, WorkflowServiceProtocol {
         let executions = records.compactMap { _, result in
             switch result {
             case .success(let record):
-                return WorkflowExecution.from(record: record)
+                return WorkflowExecutionModel.from(record: record)
             case .failure:
                 return nil
             }
@@ -402,12 +403,12 @@ public final class MockWorkflowService: WorkflowServiceProtocol {
         return try await updateWorkflow(updated)
     }
     
-    public func executeWorkflow(id: String, context: [String: Any]?) async throws -> WorkflowExecution {
+    public func executeWorkflow(id: String, context: [String: Any]?) async throws -> WorkflowExecutionModel {
         guard let workflow = workflows.first(where: { $0.id == id }) else {
             throw WorkflowServiceError.workflowNotFound
         }
         
-        return WorkflowExecution(
+        return WorkflowExecutionModel(
             id: UUID().uuidString,
             workflowId: id,
             status: .completed,
@@ -418,7 +419,7 @@ public final class MockWorkflowService: WorkflowServiceProtocol {
         )
     }
     
-    public func fetchWorkflowExecutions(workflowId: String, limit: Int?) async throws -> [WorkflowExecution] {
+    public func fetchWorkflowExecutions(workflowId: String, limit: Int?) async throws -> [WorkflowExecutionModel] {
         return []
     }
     
@@ -429,3 +430,4 @@ public final class MockWorkflowService: WorkflowServiceProtocol {
         }
     }
 }
+

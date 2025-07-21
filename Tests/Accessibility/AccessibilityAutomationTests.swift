@@ -1,6 +1,4 @@
-import XCTest
 import SwiftUI
-@testable import DiamondDeskERP
 
 /// Accessibility Automation with Dynamic Type harness and snapshot diff validation
 /// Implements automated accessibility testing across all Dynamic Type content size categories

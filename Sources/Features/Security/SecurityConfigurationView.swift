@@ -429,7 +429,7 @@ class SecurityConfigurationManager: ObservableObject {
     @Published var keyRotationDays = 90
     @Published var useHSM = false
     @Published var enableKeyEscrow = false
-    @Published var encryptedDataTypes: Set<DataClassification> = [.confidential, .secret]
+    @Published var encryptedDataTypes: Set<DataClassification> = [.confidential, .`internal`]
     
     // Network Security
     @Published var enforceHTTPS = true
@@ -588,8 +588,8 @@ enum EncryptionKeySize: Int, CaseIterable, Codable {
 }
 
 enum DataClassification: String, CaseIterable, Codable {
-    case public = "public"
-    case internal = "internal"
+    case `public` = "public"
+    case `internal` = "internal"
     case confidential = "confidential"
     case secret = "secret"
     case topSecret = "topSecret"
@@ -630,3 +630,4 @@ struct SecurityConfiguration: Codable {
 #Preview {
     SecurityConfigurationView()
 }
+

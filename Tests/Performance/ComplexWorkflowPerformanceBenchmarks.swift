@@ -1,8 +1,5 @@
-import XCTest
 import Foundation
-import Combine
 import CloudKit
-@testable import DiamondDeskERP
 
 /// Complex Workflow Performance Benchmarks
 /// Implements comprehensive performance testing for multi-module workflows
