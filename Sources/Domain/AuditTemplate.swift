@@ -648,3 +648,6 @@ public struct AuditTemplate: Identifiable, Codable {
         )
     }
 }
+
+public typealias AuditItem = AuditQuestion
+
