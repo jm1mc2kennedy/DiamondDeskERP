@@ -1,6 +1,6 @@
 import Foundation
 import CloudKit
-internal import Combine
+import Combine
 
 // MARK: - Financial Service
 

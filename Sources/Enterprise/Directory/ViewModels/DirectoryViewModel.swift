@@ -1,5 +1,5 @@
 import SwiftUI
-public import Combine
+import Combine
 
 // Disambiguate Vendor type
 typealias DirectoryVendor = EnterpriseDirectory.Vendor

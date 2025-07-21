@@ -414,7 +414,7 @@
         <attribute name="version" attributeType="String" defaultValueString="unknown"/>
         <attribute name="widgetType" attributeType="String" defaultValueString="unknown"/>
     </entity>
-    <entity name="Workflow" representedClassName="Workflow" syncable="YES" codeGenerationType="class">
+    <entity name="Workflow" representedClassName="WorkflowEntity" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="774798180" usesScalarValueType="NO"/>
         <attribute name="createdBy" attributeType="String" defaultValueString="unknown"/>
         <attribute name="executionCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
