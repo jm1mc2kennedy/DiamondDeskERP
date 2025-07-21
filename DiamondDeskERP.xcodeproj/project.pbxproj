@@ -203,6 +203,11 @@
 		   path = Services;
 		   sourceTree = "<group>";
 	   };
+	   B3F4A2002E2C5FFF00BCCA03 /* Project Root */ = {
+		   isa = PBXFileSystemSynchronizedRootGroup;
+		   path = ".";
+		   sourceTree = "<group>";
+	   };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +302,7 @@
 			   B3DC48592E2C45B800BCCA03 /* DashboardView.swift */, 
 			   B3F4A1002E2C5FFF00BCCA03 /* Sources */,
 			   B3F4A1004E2C5FFF00BCCA03 /* Services */, 
+			   B3F4A2002E2C5FFF00BCCA03 /* Project Root */, 
 		   );
 			sourceTree = "<group>";
 		};
